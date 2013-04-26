@@ -27,11 +27,11 @@ ul{
 }
 
 #right {
-	background: #0052bd;
+	background:#0052bd url('../img/police_logo_alpha.png') no-repeat 50% 50% ;
 	float:right;
 	width: 76%;
 	border: 3px solid #fff;
-	min-height: 400px;
+	min-height: 300px;
 	height: 100%;
 	overflow:hidden;
 	margin-bottom:20px;
