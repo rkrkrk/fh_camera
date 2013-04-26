@@ -6,9 +6,9 @@ $fh.ready(function() {
     $fh.act({
       "act": "getList",
     }, function(res) {
-      $('#picture_list').empty();
+      $('#photo_list').empty();
       $.each(res.pictures.list, function(i, picture) {
-        $('#picture_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
+        $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
       });
     }, function(msg, err) {
       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
@@ -22,7 +22,7 @@ $fh.ready(function() {
       console.log("take pic");
       var img = new Image();
       img.src = "data:image/jpeg;base64," + imageData;
-      $('#picture_list').append(img);
+      $('#photo_list').append(img);
 
       $fh.act({
         "act": "postPicture",
