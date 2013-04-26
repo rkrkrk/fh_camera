@@ -19,6 +19,7 @@ $fh.ready(function() {
 
   function takePicture() {
     navigator.camera.getPicture(function(imageData) {
+      console.log("take pic");
       var img = new Image();
       img.src = "data:image/jpeg;base64," + imageData;
       $('#images').append(img);
@@ -54,7 +55,7 @@ $fh.ready(function() {
     }, function(msg, err) {
       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
       listPictures();
-    });
+t    });
   };
 
   $('#camera').click(function() {
