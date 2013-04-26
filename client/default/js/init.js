@@ -8,6 +8,8 @@ $fh.ready(function() {
     }, function(res) {
       $('#photo_list').empty();
       $.each(res.pictures.list, function(i, picture) {
+         img.src = "data:image/jpeg;base64," + picture.fields.imageData;
+        $('#photo_list').append(img);
         $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
       });
     }, function(msg, err) {
@@ -52,6 +54,7 @@ $fh.ready(function() {
       "act": "deletePictures"
     }, function(res) {
       listPictures();
+      $()
     }, function(msg, err) {
       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
       listPictures();

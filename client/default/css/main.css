@@ -53,6 +53,8 @@ ul{
 #photo_list  p {
 	text-align: center;
 	vertical-align: center;
+	font-weight:bold;
+	font-size:16px;
 }
 
 #photo_list img {
