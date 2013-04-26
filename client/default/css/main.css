@@ -26,10 +26,10 @@ ul{
 }
 
 #right {
-	background: #00089d;
+	background: #0052bd;
 	float:right;
-	width: 78%;
-	border: 4px solid #fff;
+	width: 76%;
+	border: 3px solid #fff;
 	min-height: 400px;
 	height: 100%;
 }

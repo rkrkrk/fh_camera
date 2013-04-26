@@ -22,7 +22,7 @@ $fh.ready(function() {
       console.log("take pic");
       var img = new Image();
       img.src = "data:image/jpeg;base64," + imageData;
-      $('#images').append(img);
+      $('#picture_list').append(img);
 
       $fh.act({
         "act": "postPicture",
