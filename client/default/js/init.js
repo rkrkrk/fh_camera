@@ -17,7 +17,7 @@ $fh.ready(function() {
     });
   };
 
-  listPictures();
+  // listPictures();
 
   function takePicture() {
     navigator.camera.getPicture(function(imageData) {
@@ -25,22 +25,6 @@ $fh.ready(function() {
       var img = new Image();
       img.src = "data:image/jpeg;base64," + imageData;
       $('#photo_list').append(img);
-
-      $fh.act({
-        "act": "postPicture",
-        "req": {
-          "data": imageData,
-          "ts": new Date().getTime()
-        }
-      }, function(res) {
-        // Cloud call was successful. Alert the response
-        alert('Image sent.');
-        listPictures();
-      }, function(msg, err) {
-        // An error occured during the cloud call. Alert some debugging information
-        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-        listPictures();
-      });
 
     }, function() {
       //error
@@ -50,15 +34,33 @@ $fh.ready(function() {
   };
 
   function deletePictures() {
-    $fh.act({
-      "act": "deletePictures"
-    }, function(res) {
-      listPictures();
-      $()
-    }, function(msg, err) {
-      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-      listPictures();
-t    });
+    // $fh.act({
+    //   "act": "deletePictures"
+    // }, function(res) {
+    //   listPictures();
+    //   $()
+    // }, function(msg, err) {
+    //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+    //   listPictures();
+    // });
+  };
+
+ function uploadPictures() {
+   // $fh.act({
+   //    "act": "postPicture",
+   //    "req": {
+   //      "data": imageData,
+   //      "ts": new Date().getTime()
+   //    }
+   //  }, function(res) {
+   //    // Cloud call was successful. Alert the response
+   //    alert('Image sent.');
+   //    listPictures();
+   //  }, function(msg, err) {
+   //    // An error occured during the cloud call. Alert some debugging information
+   //    alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+   //    listPictures();
+   //  });
   };
 
   $('#camera').click(function() {
@@ -70,7 +72,24 @@ t    });
   });
 
   $('#refresh').click(function() {
-    listPictures();
+    uploadPictures();
+  });
+
+  $('.photos').click(function(e) {
+    var target = $(e.currentTarget);
+    console.log(target);
+    console.log(jQuery.isPlainObject( target ));
+    console.log(typeof target );
+ 
+    $("#photo_content").hide();
+    $("#photo_single").show();
+   //$("#photo_single").append(target[0]);
+    $("#photo_single").append("hello");
+
+
+    alert("yo");
+     $("#photo_content").show();
+
   });
 
 });
