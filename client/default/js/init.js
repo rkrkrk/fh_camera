@@ -24,6 +24,7 @@ $fh.ready(function() {
       console.log("take pic");
       var img = new Image();
       img.src = "data:image/jpeg;base64," + imageData;
+      img.addClass("photoslist");
       $('#photo_list').append(img);
 
     }, function() {

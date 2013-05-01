@@ -1,7 +1,7 @@
 html, body {
   width: 100%;
   background: #00129d;
-  font: normal 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: normal 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#fff;
 }
 
@@ -59,13 +59,13 @@ ul{
 	text-align: center;
 	vertical-align: center;
 	font-weight:bold;
-	font-size:16px;
 }
 
-#photo_list img {
-	margin-top:10px;
+.fingerphotos  {
+	margin: 4px;
   	width: 32%; 
 	max-width:150px;
+	border: 3px solid #00129d;
 }
 
 button {
@@ -77,11 +77,11 @@ button {
 
 
 #input input {
-	font-size:16px;
+	font-size:14px;
 	font-weight:bold;
 	padding:5px;
 	margin: 10px 10px;
-	width: 220px;
+	width: 180px;
 	height:25px;
 	text-align: center
 }
@@ -95,6 +95,6 @@ button {
 	font-weight:bold;
 	padding:5px;
 	margin: 10px 10px;
-	width: 150px;
-	height:50px;
+	width: 120px;
+	height:40px;
 }
