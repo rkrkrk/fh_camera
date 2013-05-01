@@ -3,18 +3,18 @@ $fh.ready(function() {
   $fh.legacy.fh_timeout = 500000;
 
   function listPictures() {
-    $fh.act({
-      "act": "getList",
-    }, function(res) {
-      $('#photo_list').empty();
-      $.each(res.pictures.list, function(i, picture) {
-         img.src = "data:image/jpeg;base64," + picture.fields.imageData;
-        $('#photo_list').append(img);
-        $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
-      });
-    }, function(msg, err) {
-      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-    });
+    // $fh.act({
+    //   "act": "getList",
+    // }, function(res) {
+    //   $('#photo_list').empty();
+    //   $.each(res.pictures.list, function(i, picture) {
+    //      img.src = "data:image/jpeg;base64," + picture.fields.imageData;
+    //     $('#photo_list').append(img);
+    //     $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
+    //   });
+    // }, function(msg, err) {
+    //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+    // });
   };
 
   // listPictures();
@@ -24,15 +24,23 @@ $fh.ready(function() {
       console.log("take pic");
       var img = new Image();
       img.src = "data:image/jpeg;base64," + imageData;
-      img.addClass("photoslist");
       $('#photo_list').append(img);
-
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass("fingerphotos");   
     }, function() {
       //error
     }, {
       quality: 10
     });
   };
+
+  // function takePicture() {
+  //     var img = new Image();
+  //     img.src = "img/fingerprint40.jpg";
+  //     $('#photo_list').append(img);
+  //     $('#photo_list img').removeClass();
+  //     $('#photo_list img').addClass("fingerphotos");   
+  // };
 
   function deletePictures() {
     // $fh.act({
