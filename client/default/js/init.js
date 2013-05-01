@@ -19,41 +19,41 @@ $fh.ready(function() {
 
   // listPictures();
 
-  // function takePicture() {
-  //   navigator.camera.getPicture(function(imageData) {
-  //     console.log("take pic");
-  //     var img = new Image();
-  //     img.src = "data:image/jpeg;base64," + imageData;
-  //     $('#photo_list').append(img);
-  //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass("fingerphotos");   
-  //   }, function() {
-  //     //error
-  //   }, {
-  //     quality: 10
-  //   });
-  // };
-
   function takePicture() {
+    navigator.camera.getPicture(function(imageData) {
+      console.log("take pic");
       var img = new Image();
-      img.src = "img/fingerprint40.jpg";
+      img.src = "data:image/jpeg;base64," + imageData;
       $('#photo_list').append(img);
       $('#photo_list img').removeClass();
-      $('#photo_list img').addClass("fingerphotos");  
-      $('.fingerphotos').unbind("click");
-      $('.fingerphotos').click(function(e) {
-        showPicture(e);
-      });
- 
+      $('#photo_list img').addClass("fingerphotos");   
+    }, function() {
+      //error
+    }, {
+      quality: 10
+    });
   };
+
+  // function takePicture() {
+  //     var img = new Image();
+  //     img.src = "img/fingerprint40.jpg";
+  //     $('#photo_list').append(img);
+  //     $('#photo_list img').removeClass();
+  //     $('#photo_list img').addClass("fingerphotos");  
+  //     $('.fingerphotos').unbind("click");
+  //     $('.fingerphotos').click(function(e) {
+  //       showPicture(e);
+  //     });
+ 
+  // };
 
   function showPicture(e) {
       $('#content').hide();
       $('#singlephoto').show(); 
       var photo=$(e.currentTarget); 
       var phototemp=$(e.currentTarget).clone();
-      console.log(phototemp);
-      console.log(phototemp[0].src);
+      // console.log(phototemp);
+      // console.log(phototemp[0].src);
       $('#single').append(phototemp[0]);
 
       $("#back").click(function() {
