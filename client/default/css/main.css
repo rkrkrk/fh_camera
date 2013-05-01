@@ -98,3 +98,11 @@ button {
 	width: 120px;
 	height:40px;
 }
+
+#singlephoto {
+	 display: none;
+}
+
+#back, #delete {
+	margin: 20px;
+}
