@@ -26,7 +26,12 @@ $fh.ready(function() {
       img.src = "data:image/jpeg;base64," + imageData;
       $('#photo_list').append(img);
       $('#photo_list img').removeClass();
-      $('#photo_list img').addClass("fingerphotos");   
+      $('#photo_list img').addClass("fingerphotos");  
+      $('.fingerphotos').unbind("click");
+      $('.fingerphotos').click(function(e) {
+        showPicture(e);
+      });
+
     }, function() {
       //error
     }, {
