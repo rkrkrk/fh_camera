@@ -31,19 +31,20 @@ ul{
 	display:inline;
 }
 
-#camera, #refresh{
+#camera, #upload{
 	text-align: center;
 	font-weight: bold;
 	width: 50px;
-	margin :0px 20px;
 }
 
 #camera{
 	float:left;
+	margin-left : 20px;
 }
 
-#refresh{
+#upload{
 	float:right;
+	margin-right : 20px;
 }
 
 .finger_icons {
@@ -56,9 +57,12 @@ ul{
 }
 
 #photo_list  p {
-	text-align: center;
-	vertical-align: center;
+	text-align: left;
+	font-size:16px;
+	vertical-align: top;
 	font-weight:bold;
+	margin-top:0px;
+	margin-bottom:0px;
 }
 
 .fingerphotos  {
@@ -81,7 +85,7 @@ button {
 	font-weight:bold;
 	padding:5px;
 	margin: 10px 10px;
-	width: 140px;
+	width: 170px;
 	height:25px;
 	text-align: center
 }
@@ -99,10 +103,78 @@ button {
 	height:40px;
 }
 
-#singlephoto {
-	 display: none;
+#singlephoto, #uploaded {
+	display: none;
+	width:75%;
+	height:75%;
+	position: absolute;
+	border: 3px solid #fff;
+	padding: 10px;
+	background: #00129d;
+	text-align: center;
+	left:20px;
+	top:20px;
 }
 
-#back, #delete {
-	margin: 20px;
+#singlephoto img {
+	height:90%;
+
+}
+
+#back {
+	float:left;
+	margin-left:10px;
+	margin-bottom:5px;
+}
+
+#delete {
+	float:right;
+	margin-right:10px;
+	margin-bottom:5px;
+}
+
+#back img, #delete img {
+	width:24px;
+	height:24px;
+}
+
+#loginscreen {
+	height:100%;
+	text-align: center;
+}
+
+#loginscreen img{
+	margin: 20px 0px 0px 0px;
+	height:50%;
+}
+
+#uploaded img{
+	margin: 20px 0px 0px 0px;
+	height:60%;
+}
+
+#loginscreen input{
+	font-size:14px;
+	font-weight:bold;
+	padding:5px;
+	height:25px;
+	text-align: center
+}
+
+#loginscreen  #loginbutton {
+	font-size:20px;
+	font-weight:bold;
+	padding:5px;
+	margin: 10px 10px;
+	width: 100px;
+	height:40px;
+}
+
+._button{
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 10px 10px;
+	width: 100px;
+	height: 40px;
 }

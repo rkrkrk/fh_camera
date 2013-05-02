@@ -6,6 +6,19 @@
   var exports = {};
 </script>
 
+
+<div id="loginscreen">
+	<img src="img/police_logo_alpha.png"><br/>
+	<h1>Fingerprint Capture App</h1>
+	<p>Username:
+    <input id="username" name="username" type="text" /></p>
+    <p>
+    Password:
+    <input id="password" name="upload_email" type="text" /></p>
+    <input class="_button" type="button" id="loginbutton" value="login">
+</div>
+
+
 <div id="content">
 	<div id="photo_content">
 		<div id="wrapper" class="iscroll-container">
@@ -32,34 +45,43 @@
 			<br/>Add Photos
 		</div>
 
-		 <div id="refresh" >
+		 <div id="upload" >
 			<img class="finger_icons" src="img/fingerprint_up1.png">
 			<br/>Upload Photos
 		</div> 
 		
 		<div id="input">
-			     <input id="socrates_id" name="socrates_id" type="text" value="enter Socrates case ID" />
-			      <input id="upload_email" name="upload_email" type="text" value="enter upload email address" />
-		</div>	
+		    <input id="socrates_id" name="socrates_id" type="text" value="Socrates case ID" />
+		    <input id="upload_email" name="upload_email" type="text" value="upload email address" />
+	</div>	
 	</div>
 
 	<div id="nav">
-		 <input type="button" id="reset" value="reset">
-		 <input type="button" id="quit" value="quit">
+		 <input class="_button" type="button" id="reset" value="reset">
+		 <input class="_button" type="button" id="quit" value="quit">
 	</div>
 </div>
 
 <div id="singlephoto">
-	<div id="single">
-		photo
-	</div>
 	<div id="back">
-		bback
+		<img class="icon" src="img/back_icon.png">
+		<br/>Back
 	</div>	
 	<div id="delete">
-		ddelete
+		<img class="icon" src="img/delete_icon.png">
+		<br/>Delete
+	</div>
+	<div id="single">
 	</div>
 </div>
+
+<div id="uploaded">
+	<img src="img/police_logo_alpha.png"><br/>
+	<h1>Photos Uploaded</h1>
+    <input class="_button" type="button" id="uploadedbutton" value="OK">
+</div>
+
+
   
 <script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="lib/iscroll.js"></script>

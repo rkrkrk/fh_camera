@@ -2,6 +2,13 @@ $fh.ready(function() {
 
   $fh.legacy.fh_timeout = 500000;
 
+  //show login screen, hide the rest
+  $('#loginscreen').show();
+  $('#content').hide();
+  $('#singlephoto').hide();
+  $('#uploaded').hide();
+
+
   function listPictures() {
     // $fh.act({
     //   "act": "getList",
@@ -17,31 +24,13 @@ $fh.ready(function() {
     // });
   };
 
-  // listPictures();
-
-  function takePicture() {
-    navigator.camera.getPicture(function(imageData) {
-      console.log("take pic");
-      var img = new Image();
-      img.src = "data:image/jpeg;base64," + imageData;
-      $('#photo_list').append(img);
-      $('#photo_list img').removeClass();
-      $('#photo_list img').addClass("fingerphotos");  
-      $('.fingerphotos').unbind("click");
-      $('.fingerphotos').click(function(e) {
-        showPicture(e);
-      });
-
-    }, function() {
-      //error
-    }, {
-      quality: 10
-    });
-  };
+  listPictures();
 
   // function takePicture() {
+  //   navigator.camera.getPicture(function(imageData) {
+  //     console.log("take pic");
   //     var img = new Image();
-  //     img.src = "img/fingerprint40.jpg";
+  //     img.src = "data:image/jpeg;base64," + imageData;
   //     $('#photo_list').append(img);
   //     $('#photo_list img').removeClass();
   //     $('#photo_list img').addClass("fingerphotos");  
@@ -49,34 +38,71 @@ $fh.ready(function() {
   //     $('.fingerphotos').click(function(e) {
   //       showPicture(e);
   //     });
- 
+
+  //   }, function() {
+  //     //error
+  //   }, {
+  //     quality: 10
+  //   });
   // };
 
+  function takePicture() {
+      var img = new Image();
+      img.src = "img/fingerprint40.jpg";
+      $('#photo_list').append(img);
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass("fingerphotos");  
+      $('.fingerphotos').unbind("click");
+      $('.fingerphotos').click(function(e) {
+        showPicture(e);
+      });
+ 
+  };
+
   function showPicture(e) {
-      $('#content').hide();
+      var winH = $(window).height();
+      var winW = $(window).width();
+      $('#content').fadeTo(500,0.3);
       $('#singlephoto').show(); 
+      $('#singlephoto').css('top',  winH/2-$('#singlephoto').height()/2);
+      $('#singlephoto').css('left', winW/2-$('#singlephoto').width()/2);
       var photo=$(e.currentTarget); 
       var phototemp=$(e.currentTarget).clone();
       // console.log(phototemp);
       // console.log(phototemp[0].src);
       $('#single').append(phototemp[0]);
+      $('#single img').removeClass();
 
       $("#back").click(function() {
         $('#single').empty();
-        $('#content').show();
+        $('#content').fadeTo(500,1);
         phototemp.remove();
         $('#singlephoto').hide();
       });
 
       $("#delete").click(function() {
         $('#single').empty();
-        $('#content').show();
+        $('#content').fadeTo(500,1);
         phototemp.remove();
         photo.remove();
         $('#singlephoto').hide();
       });
+   };
 
+   function uploadPictures() {
+      var winH = $(window).height();
+      var winW = $(window).width();
+      $('#uploaded').show();
+      $('#content').fadeTo(500,0.3);
+      $('#uploaded').show(); 
+      $('#uploaded').css('top',  winH/2-$('#singlephoto').height()/2);
+      $('#uploaded').css('left', winW/2-$('#singlephoto').width()/2);   
+      $("#uploadedbutton").click(function() {
+        $('#content').fadeTo(500,1);
+        $('#uploaded').hide();
+      });
 
+     
    };
 
   function deletePictures() {
@@ -91,7 +117,7 @@ $fh.ready(function() {
     // });
   };
 
- function uploadPictures() {
+ // function uploadPictures() {
    // $fh.act({
    //    "act": "postPicture",
    //    "req": {
@@ -107,7 +133,7 @@ $fh.ready(function() {
    //    alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
    //    listPictures();
    //  });
-  };
+  // };
 
   $('#camera').click(function() {
     takePicture();
@@ -119,6 +145,21 @@ $fh.ready(function() {
   });
 
   $('#refresh').click(function() {
+    uploadPictures();
+  });
+
+  $('#reset').click(function() {
+    $('#photo_list img').remove();
+  });
+
+  $('#loginbutton').click(function() {
+    $('#loginscreen').hide();
+    $('#content').show();
+    $('#singlephoto').hide();
+    $('#uploaded').hide();
+  });
+
+  $('#upload').click(function() {
     uploadPictures();
   });
 
