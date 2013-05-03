@@ -141,6 +141,7 @@ button {
 #loginscreen {
 	height:100%;
 	text-align: center;
+	font-weight:bold;
 }
 
 #loginscreen img{
@@ -155,15 +156,13 @@ button {
 
 #loginscreen input{
 	font-size:14px;
-	font-weight:bold;
 	padding:5px;
 	height:25px;
 	text-align: center
 }
 
 #loginscreen  #loginbutton {
-	font-size:20px;
-	font-weight:bold;
+	font-size:20px;	
 	padding:5px;
 	margin: 10px 10px;
 	width: 100px;
