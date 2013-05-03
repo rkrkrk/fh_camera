@@ -9,20 +9,19 @@ $fh.ready(function() {
   $('#uploaded').hide();
 
   var winH = $(window).height();
-  $('#loginlogo').css('height',  winH/2);
+  $('#loginlogo').css('height',  winH/2.2);
 
 
   assignClicks();
-  console.log("yo1");
 
   //set up click handlers
   function assignClicks(){
     //remove clicks first and reassign them
-    $('#camera').unbind("click");
-    $('#quit').unbind("click");
-    $('#reset').unbind("click");
-    $('#upload').unbind("click");
-    $('.fingerphotos').unbind("click");
+    $('#camera').unbind('click');
+    $('#quit').unbind('click');
+    $('#reset').unbind('click');
+    $('#upload').unbind('click');
+    $('.fingerphotos').unbind('click');
     $('#camera').click(function() {
       takePicture();
     });
@@ -49,12 +48,12 @@ $fh.ready(function() {
   };
 
   function removeClicks(){
-    console.log("removeClicks");
-    $('#camera').unbind("click");
-    $('#quit').unbind("click");
-    $('#reset').unbind("click");
-    $('#upload').unbind("click");
-    $('.fingerphotos').unbind("click");
+    console.log('removeClicks');
+    $('#camera').unbind('click');
+    $('#quit').unbind('click');
+    $('#reset').unbind('click');
+    $('#upload').unbind('click');
+    $('.fingerphotos').unbind('click');
   };
 
   function quit() {
@@ -75,11 +74,11 @@ $fh.ready(function() {
      // dummy take pic for testing
   // function takePicture() {
   //     var img = new Image();
-  //     img.src = "img/fingerprint40.jpg";
+  //     img.src = 'img/fingerprint40.jpg';
   //     $('#photo_list').append(img);
   //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass("fingerphotos");  
-  //     $('.fingerphotos').unbind("click");
+  //     $('#photo_list img').addClass('fingerphotos');  
+  //     $('.fingerphotos').unbind('click');
   //     $('.fingerphotos').click(function(e) {
   //       showPicture(e);
   //     }); 
@@ -87,13 +86,13 @@ $fh.ready(function() {
 
   function takePicture() {
     navigator.camera.getPicture(function(imageData) {
-      console.log("take pic");
+      console.log('take pic');
       var img = new Image();
-      img.src = "data:image/jpeg;base64," + imageData;
+      img.src = 'data:image/jpeg;base64,' + imageData;
       $('#photo_list').append(img);
       $('#photo_list img').removeClass();
-      $('#photo_list img').addClass("fingerphotos");  
-      $('.fingerphotos').unbind("click");
+      $('#photo_list img').addClass('fingerphotos');  
+      $('.fingerphotos').unbind('click');
       $('.fingerphotos').click(function(e) {
         showPicture(e);
       });
@@ -118,8 +117,8 @@ $fh.ready(function() {
       var phototemp=$(e.currentTarget).clone();
       $('#single').append(phototemp[0]);
       $('#single img').removeClass();
-
-      $("#back").click(function() {
+      $('#single img').css('height', '90%');
+      $('#back').click(function() {
         $('#single').empty();
         $('#content').fadeTo(500,1);
         phototemp.remove();
@@ -127,7 +126,7 @@ $fh.ready(function() {
         assignClicks();
       });
 
-      $("#delete").click(function() {
+      $('#delete').click(function() {
         $('#single').empty();
         $('#content').fadeTo(500,1);
         phototemp.remove();
@@ -145,7 +144,7 @@ $fh.ready(function() {
       $('#uploaded').show(); 
       $('#uploaded').css('top',  winH/2-$('#singlephoto').height()/2);
       $('#uploaded').css('left', winW/2-$('#singlephoto').width()/2);   
-      $("#uploadedbutton").click(function() {
+      $('#uploadedbutton').click(function() {
         $('#content').fadeTo(500,1);
         $('#uploaded').hide();
       });
