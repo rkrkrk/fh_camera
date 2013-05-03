@@ -72,37 +72,37 @@ $fh.ready(function() {
   };
 
      // dummy take pic for testing
-  // function takePicture() {
-  //     var img = new Image();
-  //     img.src = 'img/fingerprint40.jpg';
-  //     $('#photo_list').append(img);
-  //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass('fingerphotos');  
-  //     $('.fingerphotos').unbind('click');
-  //     $('.fingerphotos').click(function(e) {
-  //       showPicture(e);
-  //     }); 
-  // };
-
   function takePicture() {
-    navigator.camera.getPicture(function(imageData) {
-      console.log('take pic');
       var img = new Image();
-      img.src = 'data:image/jpeg;base64,' + imageData;
+      img.src = 'img/fingerprint40.jpg';
       $('#photo_list').append(img);
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
       $('.fingerphotos').unbind('click');
       $('.fingerphotos').click(function(e) {
         showPicture(e);
-      });
-
-    }, function() {
-      //error
-    }, {
-      quality: 10
-    });
+      }); 
   };
+
+  // function takePicture() {
+  //   navigator.camera.getPicture(function(imageData) {
+  //     console.log('take pic');
+  //     var img = new Image();
+  //     img.src = 'data:image/jpeg;base64,' + imageData;
+  //     $('#photo_list').append(img);
+  //     $('#photo_list img').removeClass();
+  //     $('#photo_list img').addClass('fingerphotos');  
+  //     $('.fingerphotos').unbind('click');
+  //     $('.fingerphotos').click(function(e) {
+  //       showPicture(e);
+  //     });
+
+  //   }, function() {
+  //     //error
+  //   }, {
+  //     quality: 10
+  //   });
+  // };
 
 
   function showPicture(e) {
@@ -117,7 +117,7 @@ $fh.ready(function() {
       var phototemp=$(e.currentTarget).clone();
       $('#single').append(phototemp[0]);
       $('#single img').removeClass();
-      $('#single img').css('height', '90%');
+      $('#single img').css('height', $('#singlephoto').height()*.9);
       $('#back').click(function() {
         $('#single').empty();
         $('#content').fadeTo(500,1);
