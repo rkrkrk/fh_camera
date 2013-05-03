@@ -85,7 +85,7 @@ $fh.ready(function() {
   //     }); 
   // };
 
-  // function takePicture() {
+  function takePicture() {
     navigator.camera.getPicture(function(imageData) {
       console.log("take pic");
       var img = new Image();
