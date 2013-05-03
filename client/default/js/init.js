@@ -8,6 +8,10 @@ $fh.ready(function() {
   $('#singlephoto').hide();
   $('#uploaded').hide();
 
+  var winH = $(window).height();
+  $('#loginlogo').css('height',  winH/2);
+
+
   assignClicks();
   console.log("yo1");
 
@@ -81,7 +85,7 @@ $fh.ready(function() {
   //     }); 
   // };
 
-  function takePicture() {
+  // function takePicture() {
     navigator.camera.getPicture(function(imageData) {
       console.log("take pic");
       var img = new Image();
