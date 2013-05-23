@@ -119,7 +119,10 @@ $fh.ready(function() {
       $('#photo_list').empty();
         console.log(res);
         var img = new Image();
+        var i=0;
         $.each(res.pictures.list, function(i, picture) {
+        i++;
+        console.log(i+" -  "+picture.fields.data);
         img.src = "data:image/jpeg;base64," + picture.fields.data;
         $('#photo_list').append(img);
         $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
@@ -129,6 +132,7 @@ $fh.ready(function() {
     });
   };
 
+  deletePictures();
   listPictures();
 
   // function takePicture() {
@@ -222,15 +226,15 @@ $fh.ready(function() {
   // };
 
   function deletePictures() {
-    // $fh.act({
-    //   "act": "deletePictures"
-    // }, function(res) {
-    //   listPictures();
-    //   $()
-    // }, function(msg, err) {
-    //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-    //   listPictures();
-    // });
+    $fh.act({
+      "act": "deletePictures"
+    }, function(res) {
+      listPictures();
+      // $()
+    }, function(msg, err) {
+      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      listPictures();
+    });
   };
 
  // function uploadPictures() {
