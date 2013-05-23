@@ -185,7 +185,7 @@ $fh.ready(function() {
     }, function(res) {
       $('#photo_list').empty();
       console.log(res);
-      var img=new image();
+      var img=new Image();
       $.each(res.pictures.list, function(i, picture) {
          img.src = "data:image/jpeg;base64," + picture.fields.imageData;
         $('#photo_list').append(img);
