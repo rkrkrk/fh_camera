@@ -123,6 +123,7 @@ $fh.ready(function() {
         $.each(res.pictures.list, function(i, picture) {
           i++;
           console.log(i+" -  "+picture.fields.data);
+           var img = new Image();
           img.src = "data:image/jpeg;base64," + picture.fields.data;
           $('#photo_list').append(img);
           $('#photo_list img').removeClass();
