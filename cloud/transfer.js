@@ -5,7 +5,7 @@ var async = require('async');
 var client = knox.createClient({
   key: '<your-key>',
   secret: '<your-secret>',
-  bucket: '<your-bucket>'
+  bucket: 'fmbucket'
 });
 
 var imageContentType = "image/jpeg";

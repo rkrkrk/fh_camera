@@ -79,7 +79,7 @@ $fh.ready(function() {
     $('#uploaded').hide();
   };
 
-     dummy take pic for testing
+   //  dummy take pic for testing
   function takePicture() {
       var img = new Image();
       img.src = 'img/fingerprint40.jpg';
@@ -161,21 +161,21 @@ $fh.ready(function() {
 
 
   function listPictures() {
-    // $fh.act({
-    //   "act": "getList",
-    // }, function(res) {
-    //   $('#photo_list').empty();
-    //   $.each(res.pictures.list, function(i, picture) {
-    //      img.src = "data:image/jpeg;base64," + picture.fields.imageData;
-    //     $('#photo_list').append(img);
-    //     $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
-    //   });
-    // }, function(msg, err) {
-    //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-    // });
+    $fh.act({
+      "act": "getList",
+    }, function(res) {
+      $('#photo_list').empty();
+      $.each(res.pictures.list, function(i, picture) {
+         img.src = "data:image/jpeg;base64," + picture.fields.imageData;
+        $('#photo_list').append(img);
+        $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
+      });
+    }, function(msg, err) {
+      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+    });
   };
 
-  //listPictures();
+  listPictures();
 
   // function takePicture() {
   //   navigator.camera.getPicture(function(imageData) {
