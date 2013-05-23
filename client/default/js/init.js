@@ -120,7 +120,7 @@ $fh.ready(function() {
         console.log(res);
         var img = new Image();
         $.each(res.pictures.list, function(i, picture) {
-        img.src = "data:image/jpeg;base64," + ipicture.fields.daTA;
+        img.src = "data:image/jpeg;base64," + picture.fields.data;
         $('#photo_list').append(img);
         $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
       });
