@@ -91,7 +91,7 @@ $fh.ready(function() {
       $('.fingerphotos').click(function(e) {
         showPicture(e);
       }); 
-      console.log("postpicture")
+      console.log("postpicture");
       $fh.act({
         "act": "postPicture",
         "req": {
