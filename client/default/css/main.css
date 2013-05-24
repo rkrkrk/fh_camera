@@ -26,7 +26,7 @@ ul{
 	background:#0052bd url('../img/police_logo_alpha20.png') no-repeat 50% 50% ;
 	background-size: contain;
 	border: 3px solid #fff;
-	min-height: 350px;
+	height: 400px;
 	margin: 5px;
 }
 
@@ -81,7 +81,7 @@ ul{
 }
 
 #wrapper {
-  max-height: 300px;
+  /*max-height: 300px;*/
   overflow-x:hidden;
   overflow-y:scroll;
 }		
