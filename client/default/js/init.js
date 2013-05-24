@@ -39,7 +39,7 @@ $fh.ready(function() {
     $('#one').click(function() {
       takePicture2();
     });
-    $('#quit').click(function() {
+    $('#two').click(function() {
       takePicture3();
     });
     $('#quit').click(function() {
@@ -192,7 +192,7 @@ $fh.ready(function() {
     }, {
       quality: 50,
       sourceType : Camera.PictureSourceType.CAMERA,
-      destinationType : Camera.DestinationType.NATIVE_URI,
+      destinationType : 2,
     });
   };
 
