@@ -89,9 +89,9 @@ $fh.ready(function() {
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
       $('.fingerphotos').unbind('click');
-      // $('.fingerphotos').click(function(e) {
-      //   showPicture(e);
-      // }); 
+      $('.fingerphotos').click(function(e) {
+        showPicture(e);
+      }); 
 
       $fh.act({
         "act": "postPicture",
@@ -102,8 +102,7 @@ $fh.ready(function() {
       }, function(res) {
         // Cloud call was successful. Alert the response
         alert('Image sent.');
-       $('#photo_list').append("in cloud");
-  //      listPictures();
+        listPictures();
       }, function(msg, err) {
         // An error occured during the cloud call. Alert some debugging information
         alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
@@ -137,7 +136,7 @@ $fh.ready(function() {
     };
 
   deletePictures();
- // listPictures();
+  listPictures();
 
   // function takePicture() {
   //   navigator.camera.getPicture(function(imageData) {
