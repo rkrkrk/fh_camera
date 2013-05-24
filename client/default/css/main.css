@@ -82,7 +82,7 @@ ul{
 
 #wrapper {
   max-height: 300px;
-  overflow:hidden;
+  overflow:scroll;
 }		
 
 button {
