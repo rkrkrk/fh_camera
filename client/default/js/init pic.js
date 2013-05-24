@@ -80,38 +80,38 @@ $fh.ready(function() {
   };
 
    //  dummy take pic for testing
-  function takePicture() {
-      var img = new Image();
-      var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
-      // img.src = 'img/fingerprint40.jpg';
-      img.src = "data:image/jpeg;base64," + imageData;
-      $('#photo_list').append(img);
-      $('#photo_list img').removeClass();
-      $('#photo_list img').addClass('fingerphotos');  
-      $('.fingerphotos').unbind('click');
-      // $('.fingerphotos').click(function(e) {
-      //   showPicture(e);
-      // }); 
+  // function takePicture() {
+  //     var img = new Image();
+  //     var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
+  //     // img.src = 'img/fingerprint40.jpg';
+  //     img.src = "data:image/jpeg;base64," + imageData;
+  //     $('#photo_list').append(img);
+  //     $('#photo_list img').removeClass();
+  //     $('#photo_list img').addClass('fingerphotos');  
+  //     $('.fingerphotos').unbind('click');
+  //     // $('.fingerphotos').click(function(e) {
+  //     //   showPicture(e);
+  //     // }); 
 
-      $fh.act({
-        "act": "postPicture",
-        "req": {
-          "data": imageData,
-          "ts": new Date().getTime()
-        }
-      }, function(res) {
-        // Cloud call was successful. Alert the response
-        alert('Image Sent');
-       $('#photo_list').append("in cloud<br/>");
-  //      listPictures();
-      }, function(msg, err) {
-        // An error occured during the cloud call. Alert some debugging information
-        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-        // listPictures();
-      });
+  //     $fh.act({
+  //       "act": "postPicture",
+  //       "req": {
+  //         "data": imageData,
+  //         "ts": new Date().getTime()
+  //       }
+  //     }, function(res) {
+  //       // Cloud call was successful. Alert the response
+  //       alert('Image Sent');
+  //      $('#photo_list').append("in cloud<br/>");
+  // //      listPictures();
+  //     }, function(msg, err) {
+  //       // An error occured during the cloud call. Alert some debugging information
+  //       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+  //       // listPictures();
+  //     });
 
 
-  };
+  // };
 
   function listPictures() {
     $fh.act({
@@ -139,25 +139,28 @@ $fh.ready(function() {
   deletePictures();
  // listPictures();
 
-  // function takePicture() {
-  //   navigator.camera.getPicture(function(imageData) {
-  //     console.log('take pic');
-  //     var img = new Image();
-  //     img.src = 'data:image/jpeg;base64,' + imageData;
-  //     $('#photo_list').append(img);
-  //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass('fingerphotos');  
-  //     $('.fingerphotos').unbind('click');
-  //     $('.fingerphotos').click(function(e) {
-  //       showPicture(e);
-  //     });
+  function takePicture() {
+    navigator.camera.getPicture(function(imageURI) {
+      console.log('take pictur');
+      var img = new Image();
+      img.src = imageURI;
+      console.log("qqq"+imageURI);
+      $('#photo_list').append(img);
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos');  
+      $('.fingerphotos').unbind('click');
+      $('.fingerphotos').click(function(e) {
+        showPicture(e);
+      });
 
-  //   }, function() {
-  //     //error
-  //   }, {
-  //     quality: 10
-  //   });
-  // };
+    }, function() {
+      //error
+    }, {
+      quality: 50,
+      sourceType : Camera.PictureSourceType.CAMERA,
+      destinationType : Camera.DestinationType.FIRE_URI,
+    });
+  };
 
 
   function showPicture(e) {
