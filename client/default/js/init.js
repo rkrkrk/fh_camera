@@ -101,13 +101,13 @@ $fh.ready(function() {
         }
       }, function(res) {
         // Cloud call was successful. Alert the response
-        alert('Image sent.');
+        alert('Image Sent');
        $('#photo_list').append("in cloud");
   //      listPictures();
       }, function(msg, err) {
         // An error occured during the cloud call. Alert some debugging information
         alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-        listPictures();
+        // listPictures();
       });
 
 
