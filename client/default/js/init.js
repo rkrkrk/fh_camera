@@ -103,7 +103,7 @@ $fh.ready(function() {
         // Cloud call was successful. Alert the response
         alert('Image Sent');
        $('#photo_list').append("in cloud<br/>");
-  //      listPictures();
+       listPictures();
       }, function(msg, err) {
         // An error occured during the cloud call. Alert some debugging information
         alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
@@ -117,7 +117,7 @@ $fh.ready(function() {
     $fh.act({
       "act": "getList",
     }, function(res) {
-      $('#photo_list').empty();
+      // $('#photo_list').empty();
         console.log(res);
         var img = new Image();
         var i=0;
