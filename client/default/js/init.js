@@ -102,7 +102,7 @@ $fh.ready(function() {
       }, function(res) {
         // Cloud call was successful. Alert the response
         alert('Image Sent');
-       $('#photo_list').append("in cloud");
+       $('#photo_list').append("in cloud<br/>");
   //      listPictures();
       }, function(msg, err) {
         // An error occured during the cloud call. Alert some debugging information
