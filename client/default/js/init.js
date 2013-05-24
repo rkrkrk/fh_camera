@@ -159,7 +159,7 @@ $fh.ready(function() {
     }, {
       quality: 50,
       sourceType : Camera.PictureSourceType.CAMERA,
-      destinationType : Camera.DestinationType.FILE_URI,
+      destinationType : Camera.DestinationType.NATIVE_URI,
     });
   };
 
