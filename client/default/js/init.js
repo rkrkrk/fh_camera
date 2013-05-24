@@ -146,7 +146,6 @@ $fh.ready(function() {
       img.src = imageURI;
       console.log("qqq"+imageURI);
       $('#photo_list').append(img);
-      $('#photo_list').append(imareURI+"<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
       $('.fingerphotos').unbind('click');
