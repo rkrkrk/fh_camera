@@ -3,6 +3,7 @@ $fh.ready(function() {
   $fh.legacy.fh_timeout = 500000;
 
   var myScroll;
+  var upURI;
     // function loaded() {
   // setTimeout(function () {
   //   myScroll = new iScroll('#wrapper1');
@@ -152,6 +153,7 @@ $fh.ready(function() {
     navigator.camera.getPicture(function(imageURI) {
       console.log('take picture1');
       var img = new Image();
+      upURI=imageURI;
       img.src = imageURI;
       console.log("qqq"+imageURI);
       $('#photo_list').append(img);
@@ -166,7 +168,7 @@ $fh.ready(function() {
     }, function() {
       //error
     }, {
-      quality: 50,
+      quality: 60,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.FILE_URI,
     });
