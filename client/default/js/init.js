@@ -137,22 +137,18 @@ $fh.ready(function() {
       $('#photo_list').append(imageURI+"<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
-      $('.fingerphotos').unbind('click');
-      $('.fingerphotos').click(function(e) {
-        showPicture(e);
-      });
 
-          $fh.send({
-            type:"email",
-            to: "fintan.mahon@feedhenry.com",
-            subject: "PHOTO TEST FILE_URI QUALITY100",
-            body: "hi there",
-            attachments: upURI,
-          }, function(res) {
-            console.log("Response is  json:" + JSON.stringify(res));
-          }, function(msg, err) {
-            alert("Error " + msg);
-          });
+      $fh.send({
+        type:"email",
+        to: "fintan.mahon@feedhenry.com",
+        subject: "PHOTO TEST FILE_URI QUALITY100",
+        body: "hi there",
+        attachments: upURI,
+      }, function(res) {
+        alert("Response is  json:" + JSON.stringify(res));
+      }, function(msg, err) {
+        alert("Error " + msg);
+      });
 
     }, function() {
       //error
@@ -187,7 +183,7 @@ $fh.ready(function() {
       filename: "filename1.jpg",
       server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
     }, function(res) {
-      console.log("Response is " + res.res + ". Send Data : " + res.size + 
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
       $('#photo_list').append(JSON.stringify(res)+"<br/>");
 
