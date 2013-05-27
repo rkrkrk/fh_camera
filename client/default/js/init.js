@@ -143,7 +143,7 @@ $fh.ready(function() {
         to: "fintan.mahon@feedhenry.com",
         subject: "PHOTO TEST FILE_URI QUALITY100",
         body: "hi there",
-        attachments: upURI,
+        attachments: [upURI],
       }, function(res) {
         alert("Response is  json:" + JSON.stringify(res));
       }, function(msg, err) {
