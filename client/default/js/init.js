@@ -152,7 +152,7 @@ $fh.ready(function() {
   };
 
   function one() {
-    console.log("22"+upURI);
+    console.log("11"+upURI);
       var img = new Image();
       img.src = upURI;
       $('#photo_list').append(img);
@@ -168,6 +168,8 @@ $fh.ready(function() {
     $fh.file({
       act: "upload",
       filepath: upURI,
+      filekey: "filekey1",
+      filename: "filename1",
       server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
@@ -180,6 +182,19 @@ $fh.ready(function() {
   };
 
   function two() {
+    console.log("22"+upURI);
+
+    $fh.file({
+      act: "list",
+      server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
+    }, function(res) {
+      console.log("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
+    }, function(msg, err) {
+      alert("Error " + msg);
+    });
+
+
   };
 
 
