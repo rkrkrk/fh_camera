@@ -182,7 +182,7 @@ $fh.ready(function() {
   };
 
   function two() {
-    console.log("22"+upURI);
+    console.log("222"+upURI);
 
     $fh.file({
       act: "list",
@@ -193,6 +193,21 @@ $fh.ready(function() {
         " json:" + JSON.stringify(res));
     }, function(msg, err) {
       alert("Error " + msg);
+    });
+
+    $fh.file({
+      act: 'download',
+      src: "http://www.feedhenry.com/wp-content/uploads/2012/06/VMware_FH_casestudy_final1.pdf",
+      dest: "qqqfile",
+    }, function(path) {
+      //open the downloaded file using $fh.webview
+      //$fh.webview can open most of the file formats on ios (pdf, doc, xls etc)
+      $fh.webview({
+        act: 'open',
+        url: path
+      });
+    }, function(msg, err) {
+      alert(msg);
     });
 
 
