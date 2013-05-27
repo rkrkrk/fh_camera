@@ -142,25 +142,27 @@ $fh.ready(function() {
         showPicture(e);
       });
 
+          $fh.send({
+            type:"email",
+            to: "fintan.mahon@feedhenry.com",
+            subject: "PHOTO TEST FILE_URI QUALITY100",
+            body: "hi there",
+            attachments: upURI,
+          }, function(res) {
+            console.log("Response is  json:" + JSON.stringify(res));
+          }, function(msg, err) {
+            alert("Error " + msg);
+          });
+
     }, function() {
       //error
     }, {
       quality: 100,
-      sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+      sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
       destinationType : Camera.DestinationType.FILE_URI,
     });
 
-    $fh.send({
-      type:"email",
-      to: "fintan.mahon@feedhenry.com",
-      subject: "PHOTO TEST FILE_URI QUALITY100",
-      body: "hi there",
-      attachments: upURI,
-    }, function(res) {
-      console.log("Response is  json:" + JSON.stringify(res));
-    }, function(msg, err) {
-      alert("Error " + msg);
-    });
+    
 
   };
 
