@@ -169,7 +169,7 @@ $fh.ready(function() {
       act: "upload",
       filepath: upURI,
       filekey: "filekey1",
-      filename: "filename1",
+      filename: "filename1.jpg",
       server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
@@ -186,7 +186,7 @@ $fh.ready(function() {
 
     $fh.file({
       act: "list",
-      server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
+      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
