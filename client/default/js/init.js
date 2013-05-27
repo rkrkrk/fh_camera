@@ -186,7 +186,8 @@ $fh.ready(function() {
 
     $fh.file({
       act: "list",
-      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
+      // url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
+      url: "ftp://ftp.bu.edu",
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
