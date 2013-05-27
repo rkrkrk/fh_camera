@@ -37,10 +37,10 @@ $fh.ready(function() {
     });
 
     $('#one').click(function() {
-      one();
+      takePicture2();
     });
     $('#two').click(function() {
-      two();
+      takePicture3();
     });
     $('#quit').click(function() {
       quit();
@@ -148,7 +148,7 @@ $fh.ready(function() {
   // deletePictures();
  // listPictures();
 
-  function takePicture() {
+  function takePicture1() {
     navigator.camera.getPicture(function(imageURI) {
       console.log('take picture1');
       var img = new Image();
@@ -172,34 +172,53 @@ $fh.ready(function() {
     });
   };
 
-  function one() {
-    console.log("22"+upURI);
+  function takePicture2() {
+    navigator.camera.getPicture(function(imageURI) {
+      console.log('take picture2');
       var img = new Image();
-      img.src = upURI;
+      img.src = imageURI;
+      console.log("qqq"+imageURI);
       $('#photo_list').append(img);
+      $('#photo_list').append(imageURI+"<br/>");
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos');  
+      $('.fingerphotos').unbind('click');
+      $('.fingerphotos').click(function(e) {
+        showPicture(e);
+      });
 
- 
-   $fh.file({
-      act: "upload",
-      filepath: upURI,
-      server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
-    }, function(res) {
-      console.log("Response is " + res.res + ". Send Data : " + res.size);
-    }, function(msg, err) {
-      alert("Error " + msg+"-"+err);
-    });
-
-
-
-  };
-
-  function two() {
-      console.log('takegit  picture3');
-      $fh.env({}, function(props) {
-      console.log(JSON.stringify(props));
+    }, function() {
+      //error
+    }, {
+      quality: 50,
+      sourceType : Camera.PictureSourceType.CAMERA,
+      destinationType : Camera.DestinationType.NATIVE_URI,
     });
   };
 
+    function takePicture3() {
+    navigator.camera.getPicture(function(image) {
+      console.log('take picture3');
+      var img = new Image();
+      img.src = "data:image/jpeg;base64," + image;
+      console.log("qqq"+image);
+      $('#photo_list').append(img);
+      $('#photo_list').append(imageURI+"<br/>");
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos');  
+      $('.fingerphotos').unbind('click');
+      $('.fingerphotos').click(function(e) {
+        showPicture(e);
+      });
+
+    }, function() {
+      //error
+    }, {
+      quality: 50,
+      sourceType : Camera.PictureSourceType.CAMERA,
+      destinationType : Camera.DestinationType.DATA_URL,
+    });
+  };
 
 
   function showPicture(e) {
