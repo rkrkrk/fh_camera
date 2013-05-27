@@ -69,6 +69,14 @@ exports.getList = function(params, callback) {
   });
 };
 
+exports.listFiles = function(params, callback) {
+  console.log('inlistFiles'+ util.inspect(params));
+
+  $fh.log({
+    "key": "inlistFiles"+ util.inspect(params)
+  });
+};
+
 exports.deletePictures = function(params, callback) {
   console.log('in deletePictures with ts:' + Date.now());
 

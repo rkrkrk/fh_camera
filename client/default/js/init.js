@@ -174,6 +174,8 @@ $fh.ready(function() {
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
+      $('#photo_list').append(JSON.stringify(res)+"<br/>");
+
     }, function(msg, err) {
       alert("Error " + msg);
     });
@@ -184,10 +186,12 @@ $fh.ready(function() {
   function two() {
     console.log("222"+upURI);
 
+    listFiles();
+
     $fh.file({
       act: "list",
       // url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
-      url: "ftp://ftp.bu.edu",
+      url: "ftp://ftp.bu.edu"
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
@@ -261,6 +265,7 @@ $fh.ready(function() {
    };
 
   function listPictures() {
+    console.log("list");
     $fh.act({
       "act": "getList",
     }, function(res) {
@@ -283,28 +288,6 @@ $fh.ready(function() {
       });
     };
 
-
-
-  // function takePicture() {
-  //   navigator.camera.getPicture(function(imageData) {
-  //     console.log("take pic");
-  //     var img = new Image();
-  //     img.src = "data:image/jpeg;base64," + imageData;
-  //     $('#photo_list').append(img);
-  //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass("fingerphotos");  
-  //     $('.fingerphotos').unbind("click");
-  //     $('.fingerphotos').click(function(e) {
-  //       showPicture(e);
-  //     });
-
-  //   }, function() {
-  //     //error
-  //   }, {
-  //     quality: 10
-  //   });
-  // };
-
   function deletePictures() {
     $fh.act({
       "act": "deletePictures"
@@ -314,6 +297,19 @@ $fh.ready(function() {
     }, function(msg, err) {
       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
       listPictures();
+    });
+  };
+
+  function listFiles() {
+    $fh.act({
+      "act": "listFiles"
+    }, function(res) {
+        console.log("result",JSON.stringify(res));
+     // listPictures();
+      // $()
+    }, function(msg, err) {
+      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      //listPictures();
     });
   };
 
