@@ -33,7 +33,7 @@ $fh.ready(function() {
     $('#upload').unbind('click');
     $('.fingerphotos').unbind('click');
     $('#camera').click(function() {
-      takePicture1();
+      takePicture();
     });
 
     $('#one').click(function() {
