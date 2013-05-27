@@ -167,7 +167,7 @@ $fh.ready(function() {
  
     $fh.file({
       act: "upload",
-      filepath: "http://127.0.0.1:8000/img/fingerprint40.jpg",
+      filepath: upURI,
       server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
     }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
