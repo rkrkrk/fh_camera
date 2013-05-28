@@ -123,49 +123,76 @@ $fh.ready(function() {
   // };
 
  
-  deletePictures();
+  // deletePictures();
  // listPictures();
 
   function takePicture() {
-    navigator.camera.getPicture(function(imageData) {
+    navigator.camera.getPicture(function(imageURI) {
       console.log('take picture1');
       var img = new Image();
-      img.src = 'data:image/jpeg;base64,' + imageData;
+      upURI=imageURI;
+      img.src = imageURI;
+      console.log("qqq"+imageURI);
       $('#photo_list').append(img);
+      $('#photo_list').append(imageURI+"<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
 
-      $fh.act({
-        "act": "postPicture",
-        "req": {
-          "data": imageData,
-          "ts": new Date().getTime()
-        }
+      $fh.send({
+        type:"email",
+        to: "fintan.mahon@feedhenry.com",
+        subject: "PHOTO TEST FILE_URI QUALITY100",
+        body: "hi there",
+        attachments: [upURI],
       }, function(res) {
-        // Cloud call was successful. Alert the response
-        alert('Image sent.');
-        $('#photo_list').append("uploaded<br/>");
-        
+        alert("Response is  json:" + JSON.stringify(res));
       }, function(msg, err) {
-        // An error occured during the cloud call. Alert some debugging information
-        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-        
+        alert("Error " + msg);
       });
 
     }, function() {
       //error
-      Alert("camera error");
     }, {
       quality: 100,
-      sourceType : Camera.PictureSourceType.CAMERA,
-      destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+      destinationType : Camera.DestinationType.FILE_URI,
     });
+
+    
+
   };
 
   function one() {
-    listPictures();
-  });
+    console.log("11"+upURI);
+      var img = new Image();
+      img.src = upURI;
+      $('#photo_list').append(img);
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos'); 
+
+    $fh.env({}, function(props) {
+      console.log(JSON.stringify(props));
+    });
  
+
+ 
+    $fh.file({
+      act: "upload",
+      filepath: upURI,
+      filekey: "filekey1",
+      filename: "filename1.jpg",
+      server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
+    }, function(res) {
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
+      $('#photo_list').append(JSON.stringify(res)+"<br/>");
+
+    }, function(msg, err) {
+      alert("Error " + msg);
+    });
+
+
+  };
 
   function two() {
     console.log("222"+upURI);
@@ -284,7 +311,18 @@ $fh.ready(function() {
     });
   };
 
-  
+  function listFiles() {
+    $fh.act({
+      "act": "listFiles"
+    }, function(res) {
+        console.log("result",JSON.stringify(res));
+     // listPictures();
+      // $()
+    }, function(msg, err) {
+      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      //listPictures();
+    });
+  };
 
  // function uploadPictures() {
    // $fh.act({
