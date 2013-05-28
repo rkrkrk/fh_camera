@@ -178,7 +178,7 @@ $fh.ready(function() {
     // });
     $fh.file({
       act: "list",
-      url: "https://api.df.live.u101.feedhenry.net/tmp",
+      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
      }, function(res) {
       alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
@@ -193,7 +193,7 @@ $fh.ready(function() {
     alert("222");
     $fh.file({
       act: "list",
-      url: "https://api.df.live.u101.feedhenry.net",
+      url: "https://api.df.live.u101.feedhenry.net/",
      }, function(res) {
       alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
