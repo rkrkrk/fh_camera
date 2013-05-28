@@ -160,49 +160,20 @@ $fh.ready(function() {
       //error
       Alert("camera error");
     }, {
-      quality: 50,
+      quality: 100,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });
   };
 
   function one() {
-    console.log("listpics");
+    alert("listpics");
     listPictures();
   };
  
 
   function two() {
     console.log("222"+upURI);
-
-    listFiles();
-
-    $fh.file({
-      act: "list",
-      // url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-dev.df.dev.u101.feedhenry.net"
-      url: "ftp://ftp.bu.edu"
-    }, function(res) {
-      console.log("Response is " + res.res + ". Send Data : " + res.size + 
-        " json:" + JSON.stringify(res));
-    }, function(msg, err) {
-      alert("Error " + msg);
-    });
-
-    $fh.file({
-      act: 'download',
-      src: "http://www.feedhenry.com/wp-content/uploads/2012/06/VMware_FH_casestudy_final1.pdf",
-      dest: "qqqfile",
-    }, function(path) {
-      //open the downloaded file using $fh.webview
-      //$fh.webview can open most of the file formats on ios (pdf, doc, xls etc)
-      $fh.webview({
-        act: 'open',
-        url: path
-      });
-    }, function(msg, err) {
-      alert(msg);
-    });
-
 
   };
 
@@ -263,7 +234,7 @@ $fh.ready(function() {
         var i=0;
         $.each(res.pictures.list, function(i, picture) {
           i++;
-          console.log(i+" -  "+picture.fields.data.substring(0,15));
+          alert(i+" -  "+picture.fields.data.substring(0,15));
            var img = new Image();
           img.src = "data:image/jpeg;base64," + picture.fields.data;
           $('#photo_list').append(img);
