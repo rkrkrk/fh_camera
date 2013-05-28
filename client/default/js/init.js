@@ -178,13 +178,14 @@ $fh.ready(function() {
     // });
     $fh.file({
       act: "list",
-      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
+      url: "https://api.df.dev.u101.feedhenry.net/dev",
      }, function(res) {
       alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
     }, function(msg, err) {
-      alert("Error list 1" + msg);
+      alert("Error list 2" + msg);
     });
+
 
   };
  
@@ -201,45 +202,7 @@ $fh.ready(function() {
       alert("Error list 2" + msg);
     });
 
-    $fh.file({
-      act: "list",
-      url: "https://api.df.dev.u101.feedhenry.net/dev",
-     }, function(res) {
-      alert("Response is " + res.res + ". Send Data : " + res.size + 
-        " json:" + JSON.stringify(res));
-    }, function(msg, err) {
-      alert("Error list 2" + msg);
-    });
 
-    $fh.file({
-      act: "list",
-      url: "https://api.df.dev.u101.feedhenry.net/etc",
-     }, function(res) {
-      alert("Response is " + res.res + ". Send Data : " + res.size + 
-        " json:" + JSON.stringify(res));
-    }, function(msg, err) {
-      alert("Error list 2" + msg);
-    });
-
-    $fh.file({
-      act: "list",
-      url: "https://api.df.dev.u101.feedhenry.net/pub",
-     }, function(res) {
-      alert("Response is " + res.res + ". Send Data : " + res.size + 
-        " json:" + JSON.stringify(res));
-    }, function(msg, err) {
-      alert("Error list 2" + msg);
-    });
-
-     $fh.file({
-      act: "list",
-      url: "https://api.df.dev.u101.feedhenry.net/tmp",
-     }, function(res) {
-      alert("Response is " + res.res + ". Send Data : " + res.size + 
-        " json:" + JSON.stringify(res));
-    }, function(msg, err) {
-      alert("Error list 2" + msg);
-    });
   };
 
 
