@@ -163,6 +163,7 @@ $fh.ready(function() {
   };
 
   function one() {
+    console.log("listpics");
     listPictures();
   };
  
