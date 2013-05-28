@@ -193,7 +193,7 @@ $fh.ready(function() {
     alert("222");
     $fh.file({
       act: "list",
-      url: "ftp://ftp.bu.edu",
+      url: "https://api.df.dev.u101.feedhenry.net",
      }, function(res) {
       alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
