@@ -139,22 +139,22 @@ $fh.ready(function() {
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
 
-      // $fh.act({
-      //   "act": "postPicture",
-      //   "req": {
-      //     "data": imageData,
-      //     "ts": new Date().getTime()
-      //   }
-      // }, function(res) {
-      //   // Cloud call was successful. Alert the response
-      //   alert('Image sent.');
-      //   $('#photo_list').append("uploaded<br/>");
+      $fh.act({
+        "act": "postPicture",
+        "req": {
+          "data": imageData,
+          "ts": new Date().getTime()
+        }
+      }, function(res) {
+        // Cloud call was successful. Alert the response
+        alert('Image sent.');
+        $('#photo_list').append("uploaded<br/>");
         
-      // }, function(msg, err) {
-      //   // An error occured during the cloud call. Alert some debugging information
-      //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      }, function(msg, err) {
+        // An error occured during the cloud call. Alert some debugging information
+        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
         
-      // });
+      });
 
     }, function() {
       //error
