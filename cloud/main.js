@@ -15,6 +15,7 @@ exports.transfer = function(params, callback) {
       urls: urls
     };
 
+
     if (err) {
       ret.status = "error";
       ret.message = err.toString();
