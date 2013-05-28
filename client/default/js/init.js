@@ -188,7 +188,7 @@ $fh.ready(function() {
       act: "list",
       url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
      }, function(res) {
-      console.log("Response is " + res.res + ". Send Data : " + res.size + 
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
     }, function(msg, err) {
       alert("Error " + msg);
