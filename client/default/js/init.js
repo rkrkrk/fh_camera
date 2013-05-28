@@ -200,6 +200,46 @@ $fh.ready(function() {
     }, function(msg, err) {
       alert("Error list 2" + msg);
     });
+
+    $fh.file({
+      act: "list",
+      url: "https://api.df.dev.u101.feedhenry.net/dev",
+     }, function(res) {
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
+    }, function(msg, err) {
+      alert("Error list 2" + msg);
+    });
+
+    $fh.file({
+      act: "list",
+      url: "https://api.df.dev.u101.feedhenry.net/etc",
+     }, function(res) {
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
+    }, function(msg, err) {
+      alert("Error list 2" + msg);
+    });
+
+    $fh.file({
+      act: "list",
+      url: "https://api.df.dev.u101.feedhenry.net/pub",
+     }, function(res) {
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
+    }, function(msg, err) {
+      alert("Error list 2" + msg);
+    });
+
+     $fh.file({
+      act: "list",
+      url: "https://api.df.dev.u101.feedhenry.net/tmp",
+     }, function(res) {
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
+    }, function(msg, err) {
+      alert("Error list 2" + msg);
+    });
   };
 
 
