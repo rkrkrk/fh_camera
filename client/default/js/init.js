@@ -140,43 +140,50 @@ $fh.ready(function() {
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
 
-      // $fh.act({
-      //   "act": "postPicture",
-      //   "req": {
-      //     "data": imageData,
-      //     "ts": new Date().getTime()
-      //   }
-      // }, function(res) {
-      //   // Cloud call was successful. Alert the response
-      //   alert('Image sent.');
-      //   $('#photo_list').append("uploaded<br/>");
-        
-      // }, function(msg, err) {
-      //   // An error occured during the cloud call. Alert some debugging information
-      //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-        
-      // });
-
-    }, function() {
-      //error
-      Alert("camera error");
-    }, {
-      quality: 50,
-      sourceType : Camera.PictureSourceType.CAMERA,
-      destinationType : Camera.DestinationType.FILE_URI,
-    });
-  };
+      $fh.file({
+          act: "upload",
+          filepath: upURI,
+          server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
+        }, function(res) {
+          alert("Response is " + res.res + ". Send Data : " + res.size);
+        }, function(msg, err) {
+          alert(msg);
+        });
+        }, function() {
+          //error
+          Alert("camera error");
+        }, {
+          quality: 50,
+          sourceType : Camera.PictureSourceType.CAMERA,
+          destinationType : Camera.DestinationType.FILE_URI,
+        });
+      };
 
   function one() {
     alert("111");
+    // $fh.file({
+    //   act: 'download',
+    //   src: fileSrc,
+    //   dest: destFile,
+    //   progressListener: progressListener
+    // }, function(path) {
+    //   //open the downloaded file using $fh.webview
+    //   //$fh.webview can open most of the file formats on ios (pdf, doc, xls etc)
+    //   $fh.webview({
+    //     act: 'open',
+    //     url: path
+    //   });
+    // }, function(msg, err) {
+    //   alert("error download "+msg);
+    // });
     $fh.file({
-      act: "upload",
-      filepath: upURI,
-      server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
-    }, function(res) {
-      alert("Response is " + res.res + ". Send Data : " + res.size);
+      act: "list",
+      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
+     }, function(res) {
+      alert("Response is " + res.res + ". Send Data : " + res.size + 
+        " json:" + JSON.stringify(res));
     }, function(msg, err) {
-      alert(msg);
+      alert("Error list 1" + msg);
     });
 
   };
@@ -186,12 +193,12 @@ $fh.ready(function() {
     alert("222");
     $fh.file({
       act: "list",
-      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
+      url: "ftp://ftp.bu.edu",
      }, function(res) {
       alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
     }, function(msg, err) {
-      alert("Error " + msg);
+      alert("Error list 2" + msg);
     });
   };
 
