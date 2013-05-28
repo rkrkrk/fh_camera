@@ -160,7 +160,7 @@ $fh.ready(function() {
       //error
       Alert("camera error");
     }, {
-      quality: 50,
+      quality: 10,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.FILE_URI,
     });
