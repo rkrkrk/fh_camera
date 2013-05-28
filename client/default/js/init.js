@@ -178,14 +178,13 @@ $fh.ready(function() {
     // });
     $fh.file({
       act: "list",
-      url: "https://api.df.dev.u101.feedhenry.net/dev",
+      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
      }, function(res) {
       alert("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
     }, function(msg, err) {
-      alert("Error list 2" + msg);
+      alert("Error list 1" + msg);
     });
-
 
   };
  
@@ -201,8 +200,6 @@ $fh.ready(function() {
     }, function(msg, err) {
       alert("Error list 2" + msg);
     });
-
-
   };
 
 
