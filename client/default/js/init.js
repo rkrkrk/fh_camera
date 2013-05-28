@@ -164,7 +164,7 @@ $fh.ready(function() {
 
   function one() {
     listPictures();
-  });
+  };
  
 
   function two() {
