@@ -168,6 +168,7 @@ $fh.ready(function() {
   };
 
   function one() {
+    alert("111");
     $fh.file({
       act: "upload",
       filepath: upURI,
@@ -182,10 +183,10 @@ $fh.ready(function() {
  
 
   function two() {
-    
+    alert("222");
     $fh.file({
       act: "list",
-      server: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
+      url: "https://hpcs-qji0fnfdy1qsszpyh1rkw1uj-live_hpcs.df.live.u101.feedhenry.net",
      }, function(res) {
       console.log("Response is " + res.res + ". Send Data : " + res.size + 
         " json:" + JSON.stringify(res));
