@@ -162,8 +162,8 @@ $fh.ready(function() {
       Alert("camera error");
     }, {
       quality: 100,
-      targetWidth: 1800,
-      targetHeight: 1200,
+      // targetWidth: 1800,
+      // targetHeight: 1200,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });
