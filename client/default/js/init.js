@@ -133,6 +133,7 @@ $fh.ready(function() {
       img.src = 'data:image/jpeg;base64,' + imageData;
       // console.log(imageURI)
       // img.src = imageURI;
+      $('.fingerphotos').remove()
       $('#photo_list').append(img);
       $('#photo_list').append(counttaken++ +"taken<br/>");
       $('#photo_list img').removeClass();
@@ -160,8 +161,8 @@ $fh.ready(function() {
       Alert("camera error");
     }, {
       quality: 90,
-      targetWidth: 1800,
-      targetHeight: 1200,
+      // targetWidth: 1800,
+      // targetHeight: 1200,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });
@@ -251,7 +252,7 @@ $fh.ready(function() {
     };
 
   function deletePictures() {
-    
+
     $fh.act({
       "act": "deletePictures"
     }, function(res) {
