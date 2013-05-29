@@ -1,7 +1,7 @@
 $fh.ready(function() {
 
   $fh.legacy.fh_timeout = 500000;
-  $fh.fh_timeout=1000;
+  $fh.fh_timeout=10000;
 
   var myScroll,counttaken=0,countuploaded=0;
   var upURI="";
