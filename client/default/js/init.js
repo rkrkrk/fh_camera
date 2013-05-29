@@ -133,34 +133,34 @@ $fh.ready(function() {
       img.src = 'data:image/jpeg;base64,' + imageData;
       // console.log(imageURI)
       // img.src = imageURI;
-      $('.fingerphotos').remove()
+      // $('.fingerphotos').remove()
       $('#photo_list').append(img);
       $('#photo_list').append(counttaken++ +"taken<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
 
-      $fh.act({
-        "act": "postPicture",
-        "req": {
-          "data": imageData,
-          "ts": new Date().getTime()
-        }
-      }, function(res) {
-        // Cloud call was successful. Alert the response
-        // alert('Image sent.');
-        $('#photo_list').append(countuploaded++ +"uploaded<br/>");
+      // $fh.act({
+      //   "act": "postPicture",
+      //   "req": {
+      //     "data": imageData,
+      //     "ts": new Date().getTime()
+      //   }
+      // }, function(res) {
+      //   // Cloud call was successful. Alert the response
+      //   // alert('Image sent.');
+      //   $('#photo_list').append(countuploaded++ +"uploaded<br/>");
         
-      }, function(msg, err) {
-        // An error occured during the cloud call. Alert some debugging information
-        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      // }, function(msg, err) {
+      //   // An error occured during the cloud call. Alert some debugging information
+      //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
         
-      });
+      // });
 
     }, function() {
       //error
       Alert("camera error");
     }, {
-      quality: 50,
+      quality: 100,
       // targetWidth: 1800,
       // targetHeight: 1200,
       sourceType : Camera.PictureSourceType.CAMERA,
