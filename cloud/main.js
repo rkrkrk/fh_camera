@@ -10,7 +10,7 @@ exports.transfer = function(params, callback) {
     var urls = (listOfUrls) ? listOfUrls : [];
 
     var ret = {
-      status: "ok",
+      status: "ok4",
       message: "saved " + urls.length + " images",
       urls: urls
     };
@@ -51,7 +51,7 @@ exports.postPicture = function(params, callback) {
       //   });
       // }, 1);
       return callback(null, {
-        status: "ok"
+        status: "ok1"
       });
     }
   });
@@ -65,7 +65,7 @@ exports.getList = function(params, callback) {
     "type": "pictures"
   }, function(err, data) {
     return callback(null, {
-      status: "ok",
+      status: "ok2",
       pictures: data
     });
   });
@@ -95,7 +95,7 @@ exports.deletePictures = function(params, callback) {
     };
 
     return callback(null, {
-      status: "ok"
+      status: "ok3"
     });
   });
 };

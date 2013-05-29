@@ -170,12 +170,14 @@ $fh.ready(function() {
   function one() {
     alert("listpics");
     listPictures();
+    alert("listpics end");
   };
  
 
   function two() {
-    console.log("222"+upURI);
+    alert("deletepics");
     deletePictures(); 
+    alert("deletepics end");
   };
 
 
