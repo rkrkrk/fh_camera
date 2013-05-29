@@ -159,7 +159,7 @@ $fh.ready(function() {
       //error
       Alert("camera error");
     }, {
-      quality: 100,
+      quality: 50,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });

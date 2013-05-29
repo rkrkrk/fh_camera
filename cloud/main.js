@@ -31,7 +31,7 @@ exports.postPicture = function(params, callback) {
   $fh.db({
     "act": "create",
     "type": "pictures",
-    "timeout": "30000",
+    "timeout": "60000",
     "fields": {
       "data": params.data,
       "ts": params.ts,
