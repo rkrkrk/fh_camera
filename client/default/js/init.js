@@ -251,10 +251,11 @@ $fh.ready(function() {
     };
 
   function deletePictures() {
+    
     $fh.act({
       "act": "deletePictures"
     }, function(res) {
-      alert("delete" +JSON.stringify(res));
+      alert("delete_" +JSON.stringify(res));
       // $()
     }, function(msg, err) {
       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));

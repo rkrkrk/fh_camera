@@ -59,7 +59,6 @@ exports.postPicture = function(params, callback) {
 
 exports.getList = function(params, callback) {
   console.log('in getList with ts:' + Date.now());
-
   $fh.db({
     "act": "list",
     "type": "pictures"
