@@ -2,7 +2,7 @@ $fh.ready(function() {
 
   $fh.legacy.fh_timeout = 500000;
 
-  var myScroll;
+  var myScroll,counttaken=0,countuploaded=0;
   var upURI="";
     // function loaded() {
   // setTimeout(function () {
@@ -135,6 +135,7 @@ $fh.ready(function() {
       // console.log(imageURI)
       // img.src = imageURI;
       $('#photo_list').append(img);
+      $('#photo_list').append(counttaken++ +"taken<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
 
@@ -147,7 +148,7 @@ $fh.ready(function() {
       }, function(res) {
         // Cloud call was successful. Alert the response
         alert('Image sent.');
-        $('#photo_list').append("uploaded<br/>");
+        $('#photo_list').append(countuploaded++ +"uploaded<br/>");
         
       }, function(msg, err) {
         // An error occured during the cloud call. Alert some debugging information
@@ -159,7 +160,7 @@ $fh.ready(function() {
       //error
       Alert("camera error");
     }, {
-      quality: 50,
+      quality: 90,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });
@@ -250,7 +251,7 @@ $fh.ready(function() {
     $fh.act({
       "act": "deletePictures"
     }, function(res) {
-      console.log(JSON.stringify(res));
+      alert(JSON.stringify(res));
       // $()
     }, function(msg, err) {
       alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
@@ -258,7 +259,6 @@ $fh.ready(function() {
   };
 
   
-
  // function uploadPictures() {
    // $fh.act({
    //    "act": "postPicture",
