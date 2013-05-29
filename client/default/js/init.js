@@ -123,7 +123,7 @@ $fh.ready(function() {
   // };
 
  
-  deletePictures();
+  //deletePictures();
  // listPictures();
 
   function takePicture() {
@@ -160,7 +160,9 @@ $fh.ready(function() {
       //error
       Alert("camera error");
     }, {
-      quality: 50,
+      quality: 90,
+      targetWidth: 1800,
+      targetHeight: 1200,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });
@@ -174,7 +176,7 @@ $fh.ready(function() {
 
   function two() {
     console.log("222"+upURI);
-
+    deletePictures(); 
   };
 
 
