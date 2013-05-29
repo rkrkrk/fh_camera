@@ -1,6 +1,7 @@
 $fh.ready(function() {
 
   $fh.legacy.fh_timeout = 500000;
+  $fh.fh_timeout=1000;
 
   var myScroll,counttaken=0,countuploaded=0;
   var upURI="";
@@ -139,30 +140,30 @@ $fh.ready(function() {
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
 
-      // $fh.act({
-      //   "act": "postPicture",
-      //   "req": {
-      //     "data": imageData,
-      //     "ts": new Date().getTime()
-      //   }
-      // }, function(res) {
-      //   // Cloud call was successful. Alert the response
-      //   // alert('Image sent.');
-      //   $('#photo_list').append(countuploaded++ +"uploaded<br/>");
+      $fh.act({
+        "act": "postPicture",
+        "req": {
+          "data": imageData,
+          "ts": new Date().getTime()
+        }
+      }, function(res) {
+        // Cloud call was successful. Alert the response
+        // alert('Image sent.');
+        $('#photo_list').append(countuploaded++ +"uploaded<br/>");
         
-      // }, function(msg, err) {
-      //   // An error occured during the cloud call. Alert some debugging information
-      //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      }, function(msg, err) {
+        // An error occured during the cloud call. Alert some debugging information
+        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
         
-      // });
+      });
 
     }, function() {
       //error
       Alert("camera error");
     }, {
       quality: 100,
-      // targetWidth: 1800,
-      // targetHeight: 1200,
+      targetWidth: 1800,
+      targetHeight: 1200,
       sourceType : Camera.PictureSourceType.CAMERA,
       destinationType : Camera.DestinationType.DATA_URL,
     });
