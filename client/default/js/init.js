@@ -262,6 +262,10 @@ $fh.ready(function() {
           $('#photo_list img').addClass('fingerphotos');  
         };
 
+        function fail(error) {
+          console.log("error " +error.code);
+        };
+
 
         // fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
       };
