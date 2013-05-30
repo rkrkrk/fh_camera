@@ -298,15 +298,15 @@ $fh.ready(function() {
   // };
 
   function three() {
+      alert("uri: " + upURI);
       alert("Parent Name: " + upURI.name);
       alert("Parent isFile: " + upURI.isFile);
       alert("Parent full path: " + upURI.fullPath);
       var reader = new FileReader();
       reader.onloadend = function(evt) {
         alert("Read as text");
-        alert(evt.target.result);
-        alert(JSON.stringify(evt.target));
-        var img = new Image();
+        console.log(evt.target.result);
+        console.log(JSON.stringify(evt.target));        
         img.src = evt.target.result;
         $('#photo_list').append(img);
         $('#photo_list img').removeClass();
