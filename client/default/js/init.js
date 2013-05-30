@@ -233,6 +233,8 @@ $fh.ready(function() {
 
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
+       alert("uri 111"+upURI);
+
        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
@@ -274,9 +276,9 @@ $fh.ready(function() {
       //     writer.write(imageData);
       // };
 
-      // function fail(error) {
-      //   console.log("error " +error.code);
-      // };
+      function fail(error) {
+        console.log("error " +error.code);
+      };
 
       
 
