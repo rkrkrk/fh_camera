@@ -201,7 +201,8 @@ $fh.ready(function() {
 
   function one() {
            // window.getFile(upURI,null,gotFile, fail);
-      alert("uri 111"+upURI); 
+      alert("uri 111"+upURI);
+      alert("uri isFile"+upURI.isFile); 
       var filein=new File();
       filein=upURI;
       alert("FParent isFile: " + filein.isFile);
