@@ -202,19 +202,24 @@ $fh.ready(function() {
   function one() {
         alert("uri 111"+upURI);
 
-        
-        var filein1=new FileEntry();
-        filein1.file=upURI;
+       window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
+
+      function onSuccess(fileSystem) {
+        alert("root "+fileSystem.root.name);
+        var filein1=new File;
+        var fileent=new FileEntry;
+        filein1=fileent.file(upURI);
         alert("FEParent isFile: " + filein1.isFile);
         alert("FEParent full path: " + filein1.fullPath);
-   
+        alert("FEParent name: " + filein1.name);
+    
 
 
         var reader = new FileReader();
         alert("reader created"+reader.readyState);
         reader.readAsDataURL(filein1);
         alert("reader OK1 " +reader.readyState);
-        alert("reader OK2 "+reader.error);
+        alert("reader OK2 "+JSON.stringify(reader.error));
         //  reader.onloadend = function(evt) {
         //   alert("Read as text");
         //   alert(evt.target.result);
@@ -250,18 +255,22 @@ $fh.ready(function() {
 
       function onSuccess(fileSystem) {
         alert("root "+fileSystem.root.name);
-        var filein1=new FileEntry();
-        filein1.file=upURI;
+        var filein1=new File;
+        var fileent=new FileEntry;
+        fileent=upURI;
+        filein1=fileent.file();
         alert("FEParent isFile: " + filein1.isFile);
         alert("FEParent full path: " + filein1.fullPath);
-   
+        alert("FEParent name: " + filein1.name);
+    
+
 
 
         var reader = new FileReader();
         alert("reader created"+reader.readyState);
         reader.readAsDataURL(filein1);
         alert("reader OK1 " +reader.readyState);
-        alert("reader OK2 "+reader.error);
+        alert("reader OK2 "+JSON.stringify(reader.error));
         //  reader.onloadend = function(evt) {
         //   alert("Read as text");
         //   alert(evt.target.result);
