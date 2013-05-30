@@ -335,7 +335,7 @@ $fh.ready(function() {
       function onSuccess(fileSystem) {
         console.log("name "+fileSystem.name);
         console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
+        fileSystem.root.getDirectory("fh_dir1", {create: true, exclusive: false}, directoryCreated, fail);
       };
 
       function directoryCreated(dir) {
@@ -359,7 +359,7 @@ $fh.ready(function() {
       };
 
       function fail(error) {
-        console.log("error " +error.code);
+        console.log("errorqqq " +JSON.stringify(error));
       };
 
       alert("wait");
@@ -371,7 +371,7 @@ $fh.ready(function() {
       function onSuccess(fileSystem) {
         console.log("name "+fileSystem.name);
         console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+        fileSystem.root.getDirectory("fh_dir1", null, gotDirectory, fail);
       };
 
       function gotDirectory(dir) {
