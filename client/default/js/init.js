@@ -343,7 +343,7 @@ $fh.ready(function() {
           console.log("dir isFile: " + dir.isFile);
           console.log("dir isDirectory: " + dir.isDirectory);
           console.log("dir full path: " + dir.fullPath);
-          dir.getFile("newfile.txt", {create: true, exclusive: false}, fileCreated, fail);
+          dir.getFile("newfile1.txt", {create: true, exclusive: false}, fileCreated, fail);
       };
       
       function fileCreated(file) {
@@ -362,7 +362,7 @@ $fh.ready(function() {
         console.log("error " +error.code);
       };
 
-
+      alert("wait");
 
       console.log("write");
             // request the persistent file system
@@ -379,7 +379,7 @@ $fh.ready(function() {
           console.log("dir isFile: " + dir.isFile);
           console.log("dir isDirectory: " + dir.isDirectory);
           console.log("dir full path: " + dir.fullPath);
-          dir.getFile("newfile.txt", null, gotFile, fail);
+          dir.getFile("newfile1.txt", null, gotFile, fail);
       };
       
       function gotFile(file) {
@@ -387,11 +387,28 @@ $fh.ready(function() {
           console.log("Parent isFile: " + file.isFile);
           console.log("Parent full path: " + file.fullPath);
           var reader = new FileReader();
-          reader.onloadend = function(evt) {
-            console.log("Read as text");
-            console.log(evt.target.result);
-          };
+            alert("reader created"+reader.readyState)
           reader.readAsText(file);
+           alert("reader done"+reader.readyState)
+           reader.onloadend = function(evt) {
+            alert("Read as text");
+            alert(evt.target.result);
+          };
+          reader.onerror = function(evt) {
+            alert("error");
+            alert(evt.error.code);
+          };
+          reader.onloadstart = function(evt) {
+            alert("start");
+          };
+          reader.onload = function(evt) {
+            alert("load");
+          };
+
+
+
+
+
       };
 
       function fail(error) {
