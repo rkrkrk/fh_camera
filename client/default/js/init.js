@@ -215,7 +215,9 @@ $fh.ready(function() {
           alert("file isFile: " + file.isFile);
           alert("file full path: " + file.fullPath);
           var reader = new FileReader();
-          reader.readAsBinaryString(file);
+           alert("reader created"+reader.readyState)
+          reader.readAsText(file);
+           alert("reader done"+reader.readyState)
 
           
           reader.onloadend = function(evt) {
@@ -230,6 +232,12 @@ $fh.ready(function() {
           reader.onerror = function(evt) {
             alert("error");
             alert(evt.error.code);
+          };
+          reader.onloadstart = function(evt) {
+            alert("start");
+          };
+          reader.onload = function(evt) {
+            alert("load");
           };
       };
 
@@ -256,8 +264,10 @@ $fh.ready(function() {
           alert("file isFile: " + file.isFile);
           alert("file full path: " + file.fullPath);
           var reader = new FileReader();
+          alert("reader created"+reader.readyState)
           reader.readAsDataURL(file);
-
+          alert("reader complete"+reader.readyState)
+    
           
           reader.onloadend = function(evt) {
             alert("Read as text");
@@ -271,6 +281,13 @@ $fh.ready(function() {
           reader.onerror = function(evt) {
             alert("error");
             alert(evt.error.code);
+          };
+
+          reader.onloadstart = function(evt) {
+            alert("start");
+          };
+          reader.onload = function(evt) {
+            alert("load");
           };
       };
 
