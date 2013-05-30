@@ -200,49 +200,32 @@ $fh.ready(function() {
   };
 
   function one() {
-      console.log("hello");
-            // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+           // window.getFile(upURI,null,gotFile, fail);
+      alert("uri 111"+upURI); 
+      alert("Parent isFile: " + upURI.isFile);
+      alert("Parent full path: " + upURI.fullPath);
+      var reader = new FileReader();
+      reader.readAsDataURL(upURI);
 
-      function onSuccess(fileSystem) {
-        console.log("name "+fileSystem.name);
-        console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
-      };
-
-      function gotDirectory(dir) {
-          console.log("dir Name: " + dir.name);
-          console.log("dir isFile: " + dir.isFile);
-          console.log("dir isDirectory: " + dir.isDirectory);
-          console.log("dir full path: " + dir.fullPath);
-          dir.getFile("newfile.txt", null, gotFile, fail);
-      };
-      
-      function gotFile(file) {
-          console.log("Parent Name: " + file.name);
-          console.log("Parent isFile: " + file.isFile);
-          console.log("Parent full path: " + file.fullPath);
-          var reader = new FileReader();
-          reader.onloadend = function(evt) {
-            console.log("Read as text");
-            console.log(evt.target.result);
-          };
-          reader.readAsText(file);
-      };
-
-      function fail(error) {
-        console.log("error " +error.code);
+      reader.onloadend = function(evt) {
+        alert("Read as text");
+        alert(evt.target.result);
+        var img = new Image();
+        img.src = evt.target.result;
+        $('#photo_list').append(img);
+        $('#photo_list img').removeClass();
+        $('#photo_list img').addClass('fingerphotos');  
       };
   };
 
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
-       alert("uri"+upURI);
+       alert("uri 222"+upURI);
        goFile(upURI);
 
-       function goFile(file) {
-          alert("Parent isFile: " + file.isFile);
-          alert("Parent full path: " + file.fullPath);
+       function goFile(file1) {
+          alert("Parent isFile: " + file1.isFile);
+          alert("Parent full path: " + file1.fullPath);
           var reader = new FileReader();
           reader.onloadend = function(evt) {
             alert("Read as text");
@@ -253,7 +236,7 @@ $fh.ready(function() {
             $('#photo_list img').removeClass();
             $('#photo_list img').addClass('fingerphotos');  
           };
-          reader.readAsDataURL(file);
+          reader.readAsDataURL(file1);
       };
 
       function fail(error) {
