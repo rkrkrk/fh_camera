@@ -249,9 +249,10 @@ $fh.ready(function() {
         var reader = new FileReader();
         alert("reader created");
         reader.readAsDataURL(filein1);
-        alert("reader OK");
-
-        reader.onloadend = function(evt) {
+        alert("reader OK" +reader.readyState);
+        alert("reader OK"+reader.error);
+  
+         reader.onloadend = function(evt) {
           alert("Read as text");
           alert(evt.target.result);
           var img = new Image();
@@ -259,6 +260,10 @@ $fh.ready(function() {
           $('#photo_list').append(img);
           $('#photo_list img').removeClass();
           $('#photo_list img').addClass('fingerphotos');  
+        };
+
+       reader.onerror = function(evt) {
+          alert("Read as text"+evt.error);       
         };
 
         function fail(error) {
