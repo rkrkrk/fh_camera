@@ -232,27 +232,22 @@ $fh.ready(function() {
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
        alert("uri 222"+upURI);
-       goFile(upURI);
 
-       function goFile(file1) {
-          alert("Parent isFile: " + file1.isFile);
-          alert("Parent full path: " + file1.fullPath);
-          var reader = new FileReader();
-          reader.onloadend = function(evt) {
-            alert("Read as text");
-            alert(evt.target.result);
-            var img = new Image();
-            img.src = evt.target.result;
-            $('#photo_list').append(img);
-            $('#photo_list img').removeClass();
-            $('#photo_list img').addClass('fingerphotos');  
-          };
-          reader.readAsDataURL(file1);
-      };
+        upURI.file(win, fail);
 
-      function fail(error) {
-        alert("error " +error.code);
-      };
+        function win(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                console.log("read success");
+                console.log(evt.target.result);
+            };
+            reader.readAsDataURL(file);
+        };
+
+        var fail = function(evt) {
+            console.log(error.code);
+        };
+       
   };
  
 
