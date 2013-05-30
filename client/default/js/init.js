@@ -93,195 +93,172 @@ $fh.ready(function() {
     $('#uploaded').hide();
   };
 
-   //  dummy take pic for testing
-  function takePicture() {
-      var img = new Image();
-      var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
-      // img.src = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
-      // upURI=img.src;
-      img.src = "data:image/jpeg;base64," + imageData;
-      $('#photo_list').append(img);
-      $('#photo_list img').removeClass();
-      $('#photo_list img').addClass('fingerphotos');  
-      // $('.fingerphotos').unbind('click');
-      // $('.fingerphotos').click(function(e) {
-      //   showPicture(e);
-      // }); 
-      alert("write");
-            // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
-
-      function onSuccess(fileSystem) {
-         alert("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
-      };
-
-      function directoryCreated(dir) {
-          alert("dir full path: " + dir.fullPath);
-          dir.getFile("newfile.txt", {create: true, exclusive: false}, fileCreated, fail);
-      };
-      
-      function fileCreated(file) {
-            alert("Parent full path: " + file.fullPath);
-          file.createWriter(writeData, fail);
-      };
-
-      function writeData(writer) {
-          alert("writing text");
-          writer.write(imageData);
-      };
-
-      function fail(error) {
-        alert("error " +error.code);
-      };
-
+  //  //  dummy take pic for testing
+  // function takePicture() {
+  //     var img = new Image();
+  //     var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
+  //     // img.src = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
+  //     // upURI=img.src;
+  //     img.src = "data:image/jpeg;base64," + imageData;
+  //     $('#photo_list').append(img);
+  //     $('#photo_list img').removeClass();
+  //     $('#photo_list img').addClass('fingerphotos');  
+  //     // $('.fingerphotos').unbind('click');
+  //     // $('.fingerphotos').click(function(e) {
+  //     //   showPicture(e);
+  //     // }); 
+     
 
       
-  };
+  // };
 
  
   //deletePictures();
  // listPictures();
 
-  // function takePicture() {
-  //   navigator.camera.getPicture(function(imageData) {
-  //     var img = new Image();
-  //     // var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
-  //     img.src = 'data:image/jpeg;base64,' + imageData;
-  //     // console.log(imageURI)
-  //     // img.src = imageURI;
-  //     // $('.fingerphotos').remove()
-  //     $('#photo_list').append(img);
-  //     $('#photo_list').append(counttaken++ +"taken<br/>");
-  //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass('fingerphotos');  
-  //     console.log("cmon");
+  function takePicture() {
+    navigator.camera.getPicture(function(imageURI) {
+      var img = new Image();
+      // var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
+      // img.src = 'data:image/jpeg;base64,' + imageData;
+      console.log(imageURI)
+      img.src = imageURI;
+      upURI=imageURI;
+      // $('.fingerphotos').remove()
+      $('#photo_list').append(img);
+      $('#photo_list').append(counttaken++ +"taken<br/>");
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos');  
+      console.log("cmon");
 
 
 
-  //     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, console.log("name "+fileSystem.name), fail);
-  //     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, console.log("root "+fileSystem.root), fail);
-     
+      // console.log("write");
+      //       // request the persistent file system
+      // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
-  //     function success(parent) {
-  //         console.log("Parent Name: " + parent.name);
-  //     };
+      // function onSuccess(fileSystem) {
+      //   console.log("name "+fileSystem.name);
+      //   console.log("root "+fileSystem.root.name);
+      //   fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
+      // };
 
-  //     function fail(error) {
-  //         alert("Failed to retrieve file: " + error.code);
-  //     };
-  //     // Retrieve an existing file, or create it if it does not exist
-  //     fileSystem.root.getFile("newFile.txt", {create: true, exclusive: false}, success, fail);
+      // function directoryCreated(dir) {
+      //     console.log("dir Name: " + dir.name);
+      //     console.log("dir isFile: " + dir.isFile);
+      //     console.log("dir isDirectory: " + dir.isDirectory);
+      //     console.log("dir full path: " + dir.fullPath);
+      //     dir.getFile("newfile.txt", {create: true, exclusive: false}, fileCreated, fail);
+      // };
+      
+      // function fileCreated(file) {
+      //     console.log("Parent Name: " + file.name);
+      //     console.log("Parent isFile: " + file.isFile);
+      //     console.log("Parent full path: " + file.fullPath);
+      //     file.createWriter(writeData, fail);
+      // };
 
+      // function writeData(writer) {
+      //     console.log("writing text");
+      //     writer.write(imageData);
+      // };
 
-
-  //     // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-     
-
-  //     // function gotFS(fileSystem) {
-  //     //     fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-  //     // };
-
-  //     // function gotFileEntry(fileEntry) {
-  //     //     fileEntry.createWriter(gotFileWriter, fail);
-  //     // };
-
-  //     // function gotFileWriter(writer) {
-  //     //     writer.onwriteend = function(evt) {
-  //     //         console.log("contents of file now 'some sample text'");
-  //     //         writer.truncate(11);  
-  //     //         writer.onwriteend = function(evt) {
-  //     //             console.log("contents of file now 'some sample'");
-  //     //             writer.seek(4);
-  //     //             writer.write(" different text");
-  //     //             writer.onwriteend = function(evt){
-  //     //                 console.log("contents of file now 'some different text'");
-  //     //             }
-  //     //         };
-  //     //     };
-  //     //     writer.write("some sample text");
-  //     // };
-
-  //     // function fail(error) {
-  //     //     console.log(error.code);
-  //     // };
+      // function fail(error) {
+      //   console.log("error " +error.code);
+      // };
 
 
     
 
-  //     // $fh.act({
-  //     //   "act": "postPicture",
-  //     //   "req": {
-  //     //     "data": imageData,
-  //     //     "ts": new Date().getTime()
-  //     //   }
-  //     // }, function(res) {
-  //     //   // Cloud call was successful. Alert the response
-  //     //   // alert('Image sent.');
-  //     //   $('#photo_list').append(countuploaded++ +"uploaded<br/>");
+      // $fh.act({
+      //   "act": "postPicture",
+      //   "req": {
+      //     "data": imageData,
+      //     "ts": new Date().getTime()
+      //   }
+      // }, function(res) {
+      //   // Cloud call was successful. Alert the response
+      //   // alert('Image sent.');
+      //   $('#photo_list').append(countuploaded++ +"uploaded<br/>");
         
-  //     // }, function(msg, err) {
-  //     //   // An error occured during the cloud call. Alert some debugging information
-  //     //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      // }, function(msg, err) {
+      //   // An error occured during the cloud call. Alert some debugging information
+      //   alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
         
-  //     // });
+      // });
 
-  //   }, function() {
-  //     //error
-  //     Alert("camera error");
-  //   }, {
-  //     quality: 90,
-  //     targetWidth: 1800,
-  //     targetHeight: 1200,
-  //     sourceType : Camera.PictureSourceType.CAMERA,
-  //     destinationType : Camera.DestinationType.DATA_URL,
-  //   });
-  // };
+    }, function() {
+      //error
+      Alert("camera error");
+    }, {
+      quality: 90,
+      targetWidth: 1800,
+      targetHeight: 1200,
+      sourceType : Camera.PictureSourceType.CAMERA,
+      destinationType : Camera.DestinationType.FILE_URI,
+    });
+  };
 
   function one() {
-      alert("read");
+      console.log("hello");
             // request the persistent file system
       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        alert("name "+fileSystem.name);
-        alert("root "+fileSystem.root.name);
+        console.log("name "+fileSystem.name);
+        console.log("root "+fileSystem.root.name);
         fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
       };
 
       function gotDirectory(dir) {
-          alert("dir isDirectory: " + dir.isDirectory);
-          alert("dir full path: " + dir.fullPath);
+          console.log("dir Name: " + dir.name);
+          console.log("dir isFile: " + dir.isFile);
+          console.log("dir isDirectory: " + dir.isDirectory);
+          console.log("dir full path: " + dir.fullPath);
           dir.getFile("newfile.txt", null, gotFile, fail);
       };
       
       function gotFile(file) {
+          console.log("Parent Name: " + file.name);
+          console.log("Parent isFile: " + file.isFile);
+          console.log("Parent full path: " + file.fullPath);
+          var reader = new FileReader();
+          reader.onloadend = function(evt) {
+            console.log("Read as text");
+            console.log(evt.target.result);
+          };
+          reader.readAsText(file);
+      };
+
+      function fail(error) {
+        console.log("error " +error.code);
+      };
+  };
+
+ function two() {
+       // window.getFile(upURI,null,gotFile, fail);
+       gotFile(upURI);
+
+
+       function gotFile(file) {
           alert("Parent isFile: " + file.isFile);
           alert("Parent full path: " + file.fullPath);
           var reader = new FileReader();
           reader.onloadend = function(evt) {
             alert("Read as text");
             alert(evt.target.result);
+            var img = new Image();
+            img.src = evt.target.result;
+            $('#photo_list').append(img);
+            $('#photo_list img').removeClass();
+            $('#photo_list img').addClass('fingerphotos');  
           };
-          reader.readAsText(file);
+          reader.readAsDataURL(file);
       };
 
       function fail(error) {
         alert("error " +error.code);
       };
-  };
-
- function two() {
-       var img = new Image();
-      // var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
-         img.src = 'img/testimage1800_1200_90.jpg';
-    // console.log(imageURI)
-      // img.src = imageURI;
-      // $('.fingerphotos').remove()
-      $('#photo_list').append(img);
-      $('#photo_list').append(counttaken++ +"taken<br/>");
-      $('#photo_list img').removeClass();
-      $('#photo_list img').addClass('fingerphotos');  
   };
  
 
