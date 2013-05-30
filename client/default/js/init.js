@@ -107,38 +107,32 @@ $fh.ready(function() {
       // $('.fingerphotos').click(function(e) {
       //   showPicture(e);
       // }); 
-      console.log("hello");
+      alert("write");
             // request the persistent file system
       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        console.log("name "+fileSystem.name);
-        console.log("root "+fileSystem.root.name);
+         alert("root "+fileSystem.root.name);
         fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
       };
 
       function directoryCreated(dir) {
-          console.log("dir Name: " + dir.name);
-          console.log("dir isFile: " + dir.isFile);
-          console.log("dir isDirectory: " + dir.isDirectory);
-          console.log("dir full path: " + dir.fullPath);
+          alert("dir full path: " + dir.fullPath);
           dir.getFile("newfile.txt", {create: true, exclusive: false}, fileCreated, fail);
       };
       
       function fileCreated(file) {
-          console.log("Parent Name: " + file.name);
-          console.log("Parent isFile: " + file.isFile);
-          console.log("Parent full path: " + file.fullPath);
+            alert("Parent full path: " + file.fullPath);
           file.createWriter(writeData, fail);
       };
 
       function writeData(writer) {
-          console.log("writing text");
+          alert("writing text");
           writer.write(imageData);
       };
 
       function fail(error) {
-        console.log("error " +error.code);
+        alert("error " +error.code);
       };
 
 
@@ -245,38 +239,35 @@ $fh.ready(function() {
   // };
 
   function one() {
-      console.log("hello");
+      alert("read");
             // request the persistent file system
       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        console.log("name "+fileSystem.name);
-        console.log("root "+fileSystem.root.name);
+        alert("name "+fileSystem.name);
+        alert("root "+fileSystem.root.name);
         fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
       };
 
       function gotDirectory(dir) {
-          console.log("dir Name: " + dir.name);
-          console.log("dir isFile: " + dir.isFile);
-          console.log("dir isDirectory: " + dir.isDirectory);
-          console.log("dir full path: " + dir.fullPath);
+          alert("dir isDirectory: " + dir.isDirectory);
+          alert("dir full path: " + dir.fullPath);
           dir.getFile("newfile.txt", null, gotFile, fail);
       };
       
       function gotFile(file) {
-          console.log("Parent Name: " + file.name);
-          console.log("Parent isFile: " + file.isFile);
-          console.log("Parent full path: " + file.fullPath);
+          alert("Parent isFile: " + file.isFile);
+          alert("Parent full path: " + file.fullPath);
           var reader = new FileReader();
           reader.onloadend = function(evt) {
-            console.log("Read as text");
-            console.log(evt.target.result);
+            alert("Read as text");
+            alert(evt.target.result);
           };
           reader.readAsText(file);
       };
 
       function fail(error) {
-        console.log("error " +error.code);
+        alert("error " +error.code);
       };
   };
 
