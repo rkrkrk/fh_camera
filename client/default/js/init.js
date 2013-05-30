@@ -200,56 +200,43 @@ $fh.ready(function() {
   };
 
   function one() {
-        alert("uri 111"+upURI);
+       alert("uri 222"+upURI);
+       alert("uri 222s"+(upURI.substring(upURI.lastIndexOf("/") + 1)));
 
        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        alert("root "+fileSystem.root.name);
-        var filein1=new File;
-        var fileent=new FileEntry;
-        filein1=fileent.file(upURI);
-        // alert("FEParent isFile: " + filein1.isFile);
-        alert("FEParent full path: " + filein1.fullPath);
-        alert("FEParent name: " + filein1.name);
-    
+          alert("root: " + fileSystem.root.name);
+          fileSystem.root.getFile((upURI.substring(upURI.lastIndexOf("/") + 1)), null, fileCreated, fail);
+      };
+      
+      function fileCreated(file) {
+          alert("file Name: " + file.name);
+          alert("file isFile: " + file.isFile);
+          alert("file full path: " + file.fullPath);
+          var reader = new FileReader();
+          reader.readAsBinaryString(file);
 
-
-        var reader = new FileReader();
-        alert("reader created"+reader.readyState);
-        reader.readAsDataURL(filein1);
-        alert("reader OK1 " +reader.readyState);
-        alert("reader OK2 "+JSON.stringify(reader.error));
-        //  reader.onloadend = function(evt) {
-        //   alert("Read as text");
-        //   alert(evt.target.result);
-        //   var img = new Image();
-        //   img.src = evt.target.result;
-        //   $('#photo_list').append(img);
-        //   $('#photo_list img').removeClass();
-        //   $('#photo_list img').addClass('fingerphotos');  
-        // };
-
-        reader.onerror = function(evt) {
-          alert("Error "+evt.error);       
-        };
-        reader.onloadstart = function(evt) {
-          alert("start"+evt.error);       
-        };
-        reader.onload = function(evt) {
-          alert("load"+evt.error);       
-        };
-
-
-        function fail(error) {
-          console.log("error " +error.code);
-        };
-
+          
+          reader.onloadend = function(evt) {
+            alert("Read as text");
+            alert(evt.target.result);
+            var img = new Image();
+            img.src = evt.target.result;
+            $('#photo_list').append(img);
+            $('#photo_list img').removeClass();
+            $('#photo_list img').addClass('fingerphotos');  
+          };
+          reader.onerror = function(evt) {
+            alert("error");
+            alert(evt.error.code);
+          };
       };
 
-      function fail(error) {
-        console.log("errorooo " +error.code);
+     function fail(error) {
+        alert("errorooo " +error.code);
       };
+
   };
 
  function two() {
@@ -260,7 +247,7 @@ $fh.ready(function() {
        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-          alert("root: " + fileSystem.root);
+          alert("root: " + fileSystem.root.name);
           fileSystem.root.getFile((upURI.substring(upURI.lastIndexOf("/") + 1)), null, fileCreated, fail);
       };
       
@@ -269,6 +256,9 @@ $fh.ready(function() {
           alert("file isFile: " + file.isFile);
           alert("file full path: " + file.fullPath);
           var reader = new FileReader();
+          reader.readAsDataURL(file);
+
+          
           reader.onloadend = function(evt) {
             alert("Read as text");
             alert(evt.target.result);
@@ -278,7 +268,10 @@ $fh.ready(function() {
             $('#photo_list img').removeClass();
             $('#photo_list img').addClass('fingerphotos');  
           };
-          reader.readAsDataURL(file);
+          reader.onerror = function(evt) {
+            alert("error");
+            alert(evt.error.code);
+          };
       };
 
      function fail(error) {
