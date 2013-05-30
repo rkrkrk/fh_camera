@@ -129,8 +129,8 @@ $fh.ready(function() {
       $('#photo_list').append(counttaken++ +"taken<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
-      console.log("cmon");
-
+       alert("upURI Two "+upURI);
+   
 
 
       // console.log("write");
@@ -237,6 +237,7 @@ $fh.ready(function() {
 
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
+       alert("upURI Two "+upURI);
        gotFile(upURI);
 
 
