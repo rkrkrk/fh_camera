@@ -255,13 +255,13 @@ $fh.ready(function() {
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
        alert("uri 222"+upURI);
-       alert("uri 222s"+(upURI.substring(str.lastIndexOf("/") + 1)));
+       alert("uri 222s"+(upURI.substring(upURI.lastIndexOf("/") + 1)));
 
        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
           alert("root: " + fileSystem.root);
-          fileSystem.root.getFile((upURI.substring(str.lastIndexOf("/") + 1)), null, fileCreated, fail);
+          fileSystem.root.getFile((upURI.substring(upURI.lastIndexOf("/") + 1)), null, fileCreated, fail);
       };
       
       function fileCreated(file) {
