@@ -202,10 +202,12 @@ $fh.ready(function() {
   function one() {
            // window.getFile(upURI,null,gotFile, fail);
       alert("uri 111"+upURI); 
+      var filein=new File();
+      filein.fullPath=upURI;
       alert("Parent isFile: " + upURI.isFile);
       alert("Parent full path: " + upURI.fullPath);
       var reader = new FileReader();
-      reader.readAsDataURL(upURI);
+      reader.readAsDataURL(filein);
 
       reader.onloadend = function(evt) {
         alert("Read as text");
