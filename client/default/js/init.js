@@ -204,8 +204,8 @@ $fh.ready(function() {
       alert("uri 111"+upURI); 
       var filein=new File();
       filein.fullPath=upURI;
-      alert("Parent isFile: " + upURI.isFile);
-      alert("Parent full path: " + upURI.fullPath);
+      alert("Parent isFile: " + filein.isFile);
+      alert("Parent full path: " + filein.fullPath);
       var reader = new FileReader();
       reader.readAsDataURL(filein);
 
