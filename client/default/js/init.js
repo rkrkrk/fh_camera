@@ -200,35 +200,46 @@ $fh.ready(function() {
   };
 
   function one() {
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
-      
-
         alert("uri 111"+upURI);
-      alert("uri isFile"+upURI); 
-      var filein=new File();
-      filein=upURI;
-      alert("FParent isFile: " + filein.isFile);
-      alert("FParent full path: " + filein.fullPath);
-     
-      var filein1=new FileEntry();
-      filein1.fullPath=upURI;
-      filein1.isFile=true;
-      alert("FEParent isFile: " + filein1.isFile);
-      alert("FEParent full path: " + filein1.fullPath);
+
+        
+        var filein1=new FileEntry();
+        filein1.file=upURI;
+        alert("FEParent isFile: " + filein1.isFile);
+        alert("FEParent full path: " + filein1.fullPath);
    
 
-      var reader = new FileReader();
-      reader.readAsDataURL(filein1);
 
-      reader.onloadend = function(evt) {
-        alert("Read as text");
-        alert(evt.target.result);
-        var img = new Image();
-        img.src = evt.target.result;
-        $('#photo_list').append(img);
-        $('#photo_list img').removeClass();
-        $('#photo_list img').addClass('fingerphotos');  
-      };
+        var reader = new FileReader();
+        alert("reader created"+reader.readyState);
+        reader.readAsDataURL(filein1);
+        alert("reader OK1 " +reader.readyState);
+        alert("reader OK2 "+reader.error);
+        //  reader.onloadend = function(evt) {
+        //   alert("Read as text");
+        //   alert(evt.target.result);
+        //   var img = new Image();
+        //   img.src = evt.target.result;
+        //   $('#photo_list').append(img);
+        //   $('#photo_list img').removeClass();
+        //   $('#photo_list img').addClass('fingerphotos');  
+        // };
+
+        reader.onerror = function(evt) {
+          alert("Error "+evt.error);       
+        };
+        reader.onloadstart = function(evt) {
+          alert("start"+evt.error);       
+        };
+        reader.onload = function(evt) {
+          alert("load"+evt.error);       
+        };
+
+
+        function fail(error) {
+          console.log("error " +error.code);
+        };
+
   };
 
  function two() {
@@ -249,10 +260,8 @@ $fh.ready(function() {
         var reader = new FileReader();
         alert("reader created"+reader.readyState);
         reader.readAsDataURL(filein1);
-        alert("reader OK" +reader.readyState);
-        alert("reader OK"+reader.error);
-        alert("reader OK"+reader.error);
-  
+        alert("reader OK1 " +reader.readyState);
+        alert("reader OK2 "+reader.error);
         //  reader.onloadend = function(evt) {
         //   alert("Read as text");
         //   alert(evt.target.result);
