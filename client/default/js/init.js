@@ -209,7 +209,7 @@ $fh.ready(function() {
         var filein1=new File;
         var fileent=new FileEntry;
         filein1=fileent.file(upURI);
-        alert("FEParent isFile: " + filein1.isFile);
+        // alert("FEParent isFile: " + filein1.isFile);
         alert("FEParent full path: " + filein1.fullPath);
         alert("FEParent name: " + filein1.name);
     
@@ -254,110 +254,38 @@ $fh.ready(function() {
 
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
-       alert("uri 111"+upURI);
+       alert("uri 222"+upURI);
+       alert("uri 222s"+(upURI.substring(str.lastIndexOf("/") + 1)));
 
        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        alert("root "+fileSystem.root.name);
-        var filein1=new File;
-        var fileent=new FileEntry;
-        fileent=upURI;
-        filein1=fileent;
-        alert("FEParent isFile: " + filein1.isFile);
-        alert("FEParent full path: " + filein1.fullPath);
-        alert("FEParent name: " + filein1.name);
-    
-
-
-
-        var reader = new FileReader();
-        alert("reader created"+reader.readyState);
-        reader.readAsDataURL(filein1);
-        alert("reader OK1 " +reader.readyState);
-        alert("reader OK2 "+JSON.stringify(reader.error));
-        //  reader.onloadend = function(evt) {
-        //   alert("Read as text");
-        //   alert(evt.target.result);
-        //   var img = new Image();
-        //   img.src = evt.target.result;
-        //   $('#photo_list').append(img);
-        //   $('#photo_list img').removeClass();
-        //   $('#photo_list img').addClass('fingerphotos');  
-        // };
-
-        reader.onerror = function(evt) {
-          alert("Error "+evt.error);       
-        };
-        reader.onloadstart = function(evt) {
-          alert("start"+evt.error);       
-        };
-        reader.onload = function(evt) {
-          alert("load"+evt.error);       
-        };
-
-
-        function fail(error) {
-          console.log("error " +error.code);
-        };
-
-
-        // fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
+          alert("root: " + fileSystem.root);
+          fileSystem.root.getFile((upURI.substring(str.lastIndexOf("/") + 1)), null, fileCreated, fail);
+      };
+      
+      function fileCreated(file) {
+          alert("file Name: " + file.name);
+          alert("file isFile: " + file.isFile);
+          alert("file full path: " + file.fullPath);
+          var reader = new FileReader();
+          reader.onloadend = function(evt) {
+            alert("Read as text");
+            alert(evt.target.result);
+            var img = new Image();
+            img.src = evt.target.result;
+            $('#photo_list').append(img);
+            $('#photo_list img').removeClass();
+            $('#photo_list img').addClass('fingerphotos');  
+          };
+          reader.readAsDataURL(file);
       };
 
-      // function directoryCreated(dir) {
-      //     console.log("dir Name: " + dir.name);
-      //     console.log("dir isFile: " + dir.isFile);
-      //     console.log("dir isDirectory: " + dir.isDirectory);
-      //     console.log("dir full path: " + dir.fullPath);
-      //     dir.getFile("newfile.txt", {create: true, exclusive: false}, fileCreated, fail);
-      // };
-      
-      // function fileCreated(file) {
-      //     console.log("Parent Name: " + file.name);
-      //     console.log("Parent isFile: " + file.isFile);
-      //     console.log("Parent full path: " + file.fullPath);
-      //     file.createWriter(writeData, fail);
-      // };
-
-      // function writeData(writer) {
-      //     console.log("writing text");
-      //     writer.write(imageData);
-      // };
-
-      function fail(error) {
-        console.log("error " +error.code);
+     function fail(error) {
+        alert("errorooo " +error.code);
       };
 
       
-
-      //   alert("uri 111"+upURI);
-      // alert("uri isFile"+upURI); 
-      // var filein=new File();
-      // filein=upURI;
-      // alert("FParent isFile: " + filein.isFile);
-      // alert("FParent full path: " + filein.fullPath);
-     
-      // var filein1=new FileEntry();
-      // filein1.fullPath=upURI;
-      // filein1.isFile=true;
-      // alert("FEParent isFile: " + filein1.isFile);
-      // alert("FEParent full path: " + filein1.fullPath);
-   
-
-      // var reader = new FileReader();
-      // reader.readAsDataURL(filein1);
-
-      // reader.onloadend = function(evt) {
-      //   alert("Read as text");
-      //   alert(evt.target.result);
-      //   var img = new Image();
-      //   img.src = evt.target.result;
-      //   $('#photo_list').append(img);
-      //   $('#photo_list img').removeClass();
-      //   $('#photo_list img').addClass('fingerphotos');  
-      // };
-       
   };
  
 
@@ -368,9 +296,10 @@ $fh.ready(function() {
   // };
 
   function three() {
-    alert("three");
-    deletePictures(); 
-    alert("three end");
+    // upURI="file:///storage/sdcard0/Android/data/com.feedhenry.fhqJI_fnfDY1qSSZPYh1RKW1UJ/cache/1369924807112.jpg";
+    var str = upURI;
+    alert("uri :"+upURI);
+    alert("filename:"+str.substring(str.lastIndexOf("/") + 1));
   };
 
 
