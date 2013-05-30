@@ -94,23 +94,23 @@ $fh.ready(function() {
   };
 
    //  dummy take pic for testing
-  // function takePicture() {
-  //     var img = new Image();
-  //     var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
-  //     // img.src = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
-  //     // upURI=img.src;
-  //     img.src = "data:image/jpeg;base64," + imageData;
-  //     $('#photo_list').append(img);
-  //     $('#photo_list img').removeClass();
-  //     $('#photo_list img').addClass('fingerphotos');  
-  //     // $('.fingerphotos').unbind('click');
-  //     // $('.fingerphotos').click(function(e) {
-  //     //   showPicture(e);
-  //     // }); 
+  function takePicture() {
+      var img = new Image();
+      var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
+      // img.src = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
+      // upURI=img.src;
+      img.src = "data:image/jpeg;base64," + imageData;
+      $('#photo_list').append(img);
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos');  
+      alert("wtf");// $('.fingerphotos').unbind('click');
+      // $('.fingerphotos').click(function(e) {
+      //   showPicture(e);
+      // }); 
      
 
       
-  // };
+  };
 
  
   //deletePictures();
@@ -129,7 +129,7 @@ $fh.ready(function() {
       $('#photo_list').append(counttaken++ +"taken<br/>");
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');  
-      console.log("uri"+upURI);
+      alert("cmon");
 
 
 
@@ -200,42 +200,50 @@ $fh.ready(function() {
   };
 
   function one() {
-           // window.getFile(upURI,null,gotFile, fail);
-      alert("uri 111"+upURI);
-      alert("uri isFile"+upURI.isFile); 
-      var filein=new File();
-      filein=upURI;
-      alert("FParent isFile: " + filein.isFile);
-      alert("FParent full path: " + filein.fullPath);
-     
-      var filein1=new FileEntry();
-      filein1=upURI;
-      alert("FEParent isFile: " + filein1.isFile);
-      alert("FEParent full path: " + filein1.fullPath);
-   
+      console.log("hello");
+            // request the persistent file system
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
-      var reader = new FileReader();
-      reader.readAsDataURL(filein1);
+      function onSuccess(fileSystem) {
+        console.log("name "+fileSystem.name);
+        console.log("root "+fileSystem.root.name);
+        fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+      };
 
-      reader.onloadend = function(evt) {
-        alert("Read as text");
-        alert(evt.target.result);
-        var img = new Image();
-        img.src = evt.target.result;
-        $('#photo_list').append(img);
-        $('#photo_list img').removeClass();
-        $('#photo_list img').addClass('fingerphotos');  
+      function gotDirectory(dir) {
+          console.log("dir Name: " + dir.name);
+          console.log("dir isFile: " + dir.isFile);
+          console.log("dir isDirectory: " + dir.isDirectory);
+          console.log("dir full path: " + dir.fullPath);
+          dir.getFile("newfile.txt", null, gotFile, fail);
+      };
+      
+      function gotFile(file) {
+          console.log("Parent Name: " + file.name);
+          console.log("Parent isFile: " + file.isFile);
+          console.log("Parent full path: " + file.fullPath);
+          var reader = new FileReader();
+          reader.onloadend = function(evt) {
+            console.log("Read as text");
+            console.log(evt.target.result);
+          };
+          reader.readAsText(file);
+      };
+
+      function fail(error) {
+        console.log("error " +error.code);
       };
   };
 
  function two() {
        // window.getFile(upURI,null,gotFile, fail);
-       alert("uri 222"+upURI);
-       goFile(upURI);
+       gotFile(upURI);
 
-       function goFile(file1) {
-          alert("Parent isFile: " + file1.isFile);
-          alert("Parent full path: " + file1.fullPath);
+
+       function gotFile(file) {
+          alert("Parent Name: " + file.name);
+          alert("Parent isFile: " + file.isFile);
+          alert("Parent full path: " + file.fullPath);
           var reader = new FileReader();
           reader.onloadend = function(evt) {
             alert("Read as text");
@@ -246,7 +254,7 @@ $fh.ready(function() {
             $('#photo_list img').removeClass();
             $('#photo_list img').addClass('fingerphotos');  
           };
-          reader.readAsDataURL(file1);
+          reader.readAsDataURL(file);
       };
 
       function fail(error) {
