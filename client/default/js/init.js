@@ -240,8 +240,7 @@ $fh.ready(function() {
       function onSuccess(fileSystem) {
         alert("root "+fileSystem.root.name);
         var filein1=new FileEntry();
-        filein1.fullPath=upURI;
-        filein1.isFile=true;
+        filein1.file=upURI;
         alert("FEParent isFile: " + filein1.isFile);
         alert("FEParent full path: " + filein1.fullPath);
    
