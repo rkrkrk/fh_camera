@@ -203,11 +203,18 @@ $fh.ready(function() {
            // window.getFile(upURI,null,gotFile, fail);
       alert("uri 111"+upURI); 
       var filein=new File();
-      filein.fullPath=upURI;
-      alert("Parent isFile: " + filein.isFile);
-      alert("Parent full path: " + filein.fullPath);
+      filein=upURI;
+      alert("FParent isFile: " + filein.isFile);
+      alert("FParent full path: " + filein.fullPath);
+     
+      var filein1=new FileEntry();
+      filein1=upURI;
+      alert("FEParent isFile: " + filein1.isFile);
+      alert("FEParent full path: " + filein1.fullPath);
+   
+
       var reader = new FileReader();
-      reader.readAsDataURL(filein);
+      reader.readAsDataURL(filein1);
 
       reader.onloadend = function(evt) {
         alert("Read as text");
