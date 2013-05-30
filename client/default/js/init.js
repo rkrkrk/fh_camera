@@ -247,24 +247,32 @@ $fh.ready(function() {
 
 
         var reader = new FileReader();
-        alert("reader created");
+        alert("reader created"+reader.readyState);
         reader.readAsDataURL(filein1);
         alert("reader OK" +reader.readyState);
         alert("reader OK"+reader.error);
+        alert("reader OK"+reader.error);
   
-         reader.onloadend = function(evt) {
-          alert("Read as text");
-          alert(evt.target.result);
-          var img = new Image();
-          img.src = evt.target.result;
-          $('#photo_list').append(img);
-          $('#photo_list img').removeClass();
-          $('#photo_list img').addClass('fingerphotos');  
+        //  reader.onloadend = function(evt) {
+        //   alert("Read as text");
+        //   alert(evt.target.result);
+        //   var img = new Image();
+        //   img.src = evt.target.result;
+        //   $('#photo_list').append(img);
+        //   $('#photo_list img').removeClass();
+        //   $('#photo_list img').addClass('fingerphotos');  
+        // };
+
+        reader.onerror = function(evt) {
+          alert("Error "+evt.error);       
+        };
+        reader.onloadstart = function(evt) {
+          alert("start"+evt.error);       
+        };
+        reader.onload = function(evt) {
+          alert("load"+evt.error);       
         };
 
-       reader.onerror = function(evt) {
-          alert("Read as text"+evt.error);       
-        };
 
         function fail(error) {
           console.log("error " +error.code);
