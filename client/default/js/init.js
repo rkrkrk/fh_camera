@@ -245,6 +245,8 @@ $fh.ready(function() {
           console.log("error " +error.code);
         };
 
+      };
+
   };
 
  function two() {
