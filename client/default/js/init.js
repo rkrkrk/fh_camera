@@ -247,6 +247,9 @@ $fh.ready(function() {
 
       };
 
+      function fail(error) {
+        console.log("errorooo " +error.code);
+      };
   };
 
  function two() {
@@ -260,7 +263,7 @@ $fh.ready(function() {
         var filein1=new File;
         var fileent=new FileEntry;
         fileent=upURI;
-        filein1=fileent.file();
+        filein1=fileent;
         alert("FEParent isFile: " + filein1.isFile);
         alert("FEParent full path: " + filein1.fullPath);
         alert("FEParent name: " + filein1.name);
