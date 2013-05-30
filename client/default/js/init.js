@@ -47,6 +47,10 @@ $fh.ready(function() {
     $('#three').click(function() {
       three();
     });
+    $('#four').click(function() {
+      four();
+    });
+ 
     $('#quit').click(function() {
       quit();
     });
@@ -306,11 +310,96 @@ $fh.ready(function() {
   // };
 
   function three() {
-    // upURI="file:///storage/sdcard0/Android/data/com.feedhenry.fhqJI_fnfDY1qSSZPYh1RKW1UJ/cache/1369924807112.jpg";
-    var str = upURI;
-    alert("uri :"+upURI);
-    alert("filename:"+str.substring(str.lastIndexOf("/") + 1));
-  };
+      alert("Parent Name: " + upURI.name);
+      alert("Parent isFile: " + upURI.isFile);
+      alert("Parent full path: " + upURI.fullPath);
+      var reader = new FileReader();
+      reader.onloadend = function(evt) {
+        console.log("Read as text");
+        console.log(evt.target.result);
+        console.log(JSON.stringify(evt.target));
+        var img = new Image();
+        img.src = evt.target.result;
+        $('#photo_list').append(img);
+        $('#photo_list img').removeClass();
+        $('#photo_list img').addClass('fingerphotos');  
+      };
+      reader.readAsDataURL(upURI);
+    };
+
+     function four() {
+      console.log("write");
+            // request the persistent file system
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+
+      function onSuccess(fileSystem) {
+        console.log("name "+fileSystem.name);
+        console.log("root "+fileSystem.root.name);
+        fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
+      };
+
+      function directoryCreated(dir) {
+          console.log("dir Name: " + dir.name);
+          console.log("dir isFile: " + dir.isFile);
+          console.log("dir isDirectory: " + dir.isDirectory);
+          console.log("dir full path: " + dir.fullPath);
+          dir.getFile("newfile.txt", {create: true, exclusive: false}, fileCreated, fail);
+      };
+      
+      function fileCreated(file) {
+          console.log("Parent Name: " + file.name);
+          console.log("Parent isFile: " + file.isFile);
+          console.log("Parent full path: " + file.fullPath);
+          file.createWriter(writeData, fail);
+      };
+
+      function writeData(writer) {
+          console.log("writing text");
+          writer.write("qweweqeqweqweqe");
+      };
+
+      function fail(error) {
+        console.log("error " +error.code);
+      };
+
+
+
+      console.log("write");
+            // request the persistent file system
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+
+      function onSuccess(fileSystem) {
+        console.log("name "+fileSystem.name);
+        console.log("root "+fileSystem.root.name);
+        fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+      };
+
+      function gotDirectory(dir) {
+          console.log("dir Name: " + dir.name);
+          console.log("dir isFile: " + dir.isFile);
+          console.log("dir isDirectory: " + dir.isDirectory);
+          console.log("dir full path: " + dir.fullPath);
+          dir.getFile("newfile.txt", null, gotFile, fail);
+      };
+      
+      function gotFile(file) {
+          console.log("Parent Name: " + file.name);
+          console.log("Parent isFile: " + file.isFile);
+          console.log("Parent full path: " + file.fullPath);
+          var reader = new FileReader();
+          reader.onloadend = function(evt) {
+            console.log("Read as text");
+            console.log(evt.target.result);
+          };
+          reader.readAsText(file);
+      };
+
+      function fail(error) {
+        console.log("error " +error.code);
+      };
+
+
+    };
 
 
 
