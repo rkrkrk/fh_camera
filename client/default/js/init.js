@@ -224,7 +224,7 @@ $fh.ready(function() {
         alert("Parent Name: " + file.name);
         alert("Parent isFile: " + file.isFile);
         alert("Parent full path: " + file.fullPath);
-        // filetmp=file;
+        filetmp=file;
         alert("tiletmp: " + file.fullPath);
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail3);
@@ -248,7 +248,8 @@ $fh.ready(function() {
  
               function copyFile(file) {
                 alert("copyfile " +file.fullPath);
-                file.copyTo(dir,null, successCopy, fail5);
+                alert("copyfile o" +filetmp.fullPath);
+                filetmp.copyTo(dir,null, successCopy, fail5);
               };
 
               function successCopy(file) {
