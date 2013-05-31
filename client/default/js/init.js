@@ -432,6 +432,7 @@ $fh.ready(function() {
       $('#photo_list').empty();     
    };
 
+
   function listPictures() {
     console.log("list");
     $fh.act({
