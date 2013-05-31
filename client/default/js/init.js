@@ -322,7 +322,7 @@ $fh.ready(function() {
         alert("Read as text");
         console.log("Read as text");
         console.log("result "+evt.target.result);
-        console.log("all "+evt);
+        console.log("alll "+evt);
         // alert(evt.target.result.substring(0,40));
         img.src = evt.target.result;
         $('#photo_list').append(img);
