@@ -307,7 +307,7 @@ $fh.ready(function() {
         var img = new Image();
         alert("Read as text");
         console.log(evt.target.result);
-        console.log(JSON.stringify(evt.target));        
+        alert(evt.target.result.substring(0,40));
         img.src = evt.target.result;
         $('#photo_list').append(img);
         $('#photo_list img').removeClass();
