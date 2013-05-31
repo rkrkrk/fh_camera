@@ -304,6 +304,7 @@ $fh.ready(function() {
       alert("Parent full path: " + upURI.fullPath);
       var reader = new FileReader();
       reader.onloadend = function(evt) {
+        var img = new Image();
         alert("Read as text");
         console.log(evt.target.result);
         console.log(JSON.stringify(evt.target));        
