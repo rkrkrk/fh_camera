@@ -239,17 +239,22 @@ $fh.ready(function() {
   
 
       function directoryCreated(dir) {
-        alert("dir  " +dir.fullpath);
+        alert("dir  " +dir.fullPath);
         dirFH=dir;
       };
 
       alert("dir is "+dirFH.fullPath);
       alert("file is "+filetmp.fullPath);
-      filetmp.copyTo(dirFH, "file.copy", successCopy, fail);
+      filetmp.copyTo(dirFH, "file.copy",successCopy, fail);
+      alert("file is "+filetmp.fullPath);
+      filetmp.copyTo(dirFH, successCopy, fail);
+      alert("file is "+filetmp.fullPath);
+      filetmp.copyTo(dirFH,null, successCopy, fail);
+
 
      
       function successCopy(file) {
-        alert("success " +file.fullpath);
+        alert("success " +file.fullPath);
       };
 
       function fail(error) {
@@ -299,38 +304,35 @@ $fh.ready(function() {
   // };
 
   function three() {
-      alert("uri: " + upURI);
-      alert("Parent Name: " + upURI.name);
-      alert("Parent isFile: " + upURI.isFile);
-      alert("Parent full path: " + upURI.fullPath);
-      var reader = new FileReader();
-      reader.error = function(evt) {
-        alert("error");
-        console.log("ERRORRR "+JSON.stringify(evt));
-      };
-     reader.onloadstart = function(evt) {
-        alert("loadstart");
-         console.log("start "+JSON.stringify(evt));
-      };
-     reader.onload = function(evt) {
-        alert("onload");
-         console.log("onload "+JSON.stringify(evt));
-      };
+      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
+      alert("imagename 3"+imageName);
+              // request the persistent file system
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
- 
-      reader.onloadend = function(evt) {
-        var img = new Image();
-        alert("Read as text");
-        console.log("Read as text");
-        console.log("result "+evt.target.result);
-        console.log("alll "+evt);
-        // alert(evt.target.result.substring(0,40));
-        img.src = evt.target.result;
-        $('#photo_list').append(img);
-        $('#photo_list img').removeClass();
-        $('#photo_list img').addClass('fingerphotos');  
+      function onSuccess(fileSystem) {
+         fileSystem.root.getFile(imageName, null, gotFile, fail);
       };
-      reader.readAsDataURL(upURI);
+      
+      function gotFile(file) {
+        var reader = new FileReader();
+        reader.error = function(evt) {
+          alert("read error q");
+          console.log("ERRORRR "+JSON.stringify(evt));
+        };
+        reader.onloadend = function(evt) {
+          var img = new Image();
+          img.src = evt.target.result;
+          $('#photo_list').append(img);
+          $('#photo_list img').removeClass();
+          $('#photo_list img').addClass('fingerphotos');  
+        };
+        alert("reading now");
+        reader.readAsDataURL(file);
+      };
+     
+      function fail(error) {
+        alert("error " +error.code);
+      };
     };
 
      function four() {
