@@ -207,10 +207,12 @@ $fh.ready(function() {
  function one() {
       alert("reading");
       var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
-     alert("uri 222"+upURI);
-     alert("uri 222s"+imageName);
+      var filetmp=new FileEntry();
+      var dirFH=new DirectoryEntry();
+      alert("uri 222"+upURI);
+      alert("uri 222s"+imageName);
 
-            // request the persistent file system
+      // get file entry for tempinage
       window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
@@ -222,35 +224,27 @@ $fh.ready(function() {
         alert("Parent Name: " + file.name);
         alert("Parent isFile: " + file.isFile);
         alert("Parent full path: " + file.fullPath);
-        var reader = new FileReader();
-        reader.error = function(evt) {
-          alert("error");
-          console.log("ERRORRR "+JSON.stringify(evt));
-        };
-       reader.onloadstart = function(evt) {
-          alert("loadstart");
-           console.log("start "+JSON.stringify(evt));
-        };
-       reader.onload = function(evt) {
-          alert("onload");
-           console.log("onload "+JSON.stringify(evt));
-        };
-
-           reader.onloadend = function(evt) {
-          var img = new Image();
-          alert("Read as text");
-          console.log("Read as text");
-          console.log("result "+evt.target.result);
-          console.log("alll "+evt);
-          // alert(evt.target.result.substring(0,40));
-          img.src = evt.target.result;
-          $('#photo_list').append(img);
-          $('#photo_list img').removeClass();
-          $('#photo_list img').addClass('fingerphotos');  
-        };
-        reader.readAsDataURL(file);
+        filetmp=file;
+        alert("tiletmp: " + file.fullPath);
       };
+
+      //create new directory
+      window.requestFileSystem(LocalFileSystem.PERMANENT, 0, onSuccessDir, fail);
+      
+      function onSuccessDir(fileSystem) {
+        console.log("root "+fileSystem.root.name);
+        dirFH=fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+      };
+  
+      alert("dir is "+dirFH.fullPath);
+      alert("file is "+filetmp.fullPath);
+      filetmp.copyTo(dirFH, "file.copy", successCopy, fail);
+
      
+      function successCopy(file) {
+        alert("success " +file.fullpath);
+      };
+
       function fail(error) {
         alert("error " +error.code);
       };
@@ -273,7 +267,6 @@ $fh.ready(function() {
         };
         reader.onloadend = function(evt) {
           var img = new Image();
-          alert("Read as text");
           img.src = evt.target.result;
           $('#photo_list').append(img);
           $('#photo_list img').removeClass();
