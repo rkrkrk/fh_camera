@@ -227,9 +227,10 @@ $fh.ready(function() {
         filetmp=file;
         alert("tiletmp: " + file.fullPath);
       };
+      
 
       //create new directory
-      window.requestFileSystem(LocalFileSystem.PERMANENT, 0, onSuccessDir, fail);
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail1);
       
       function onSuccessDir(fileSystem) {
         console.log("root "+fileSystem.root.name);
@@ -247,6 +248,9 @@ $fh.ready(function() {
 
       function fail(error) {
         alert("error " +error.code);
+      };
+       function fail1(error) {
+        alert("error 1" +error.code);
       };
   };
 
