@@ -246,9 +246,9 @@ $fh.ready(function() {
       alert("dir is "+dirFH.fullPath);
       alert("file is "+filetmp.fullPath);
       filetmp.copyTo(dirFH, "file.copy",successCopy, fail);
-      alert("file is "+filetmp.fullPath);
+      alert("nothing");
       filetmp.copyTo(dirFH, successCopy, fail);
-      alert("file is "+filetmp.fullPath);
+      alert("null");
       filetmp.copyTo(dirFH,null, successCopy, fail);
 
 
@@ -309,10 +309,14 @@ $fh.ready(function() {
               // request the persistent file system
       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
-      function onSuccess(fileSystem) {
-         fileSystem.root.getFile(imageName, null, gotFile, fail);
+       function onSuccess(fileSystem) {
+        fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
       };
-      
+
+      function gotDirectory(dir) {
+          dir.getFile(imageName, null, gotFile, fail);
+      };
+
       function gotFile(file) {
         var reader = new FileReader();
         reader.error = function(evt) {
