@@ -227,14 +227,15 @@ $fh.ready(function() {
         filetmp=file;
         alert("tiletmp: " + file.fullPath);
       };
-      
+
 
       //create new directory
       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail1);
       
       function onSuccessDir(fileSystem) {
         console.log("root "+fileSystem.root.name);
-        dirFH=fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+        dirFH=fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
+
       };
   
       alert("dir is "+dirFH.fullPath);
