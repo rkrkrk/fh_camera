@@ -206,7 +206,7 @@ $fh.ready(function() {
 
  function one() {
       alert("reading");
-      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1))
+      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
      alert("uri 222"+upURI);
      alert("uri 222s"+imageName);
 
@@ -231,7 +231,7 @@ $fh.ready(function() {
         alert("Parent isFile: " + file.isFile);
         alert("Parent full path: " + file.fullPath);
         var reader = new FileReader();
-         reader.error = function(evt) {
+        reader.error = function(evt) {
           alert("error");
           console.log("ERRORRR "+JSON.stringify(evt));
         };
@@ -244,8 +244,7 @@ $fh.ready(function() {
            console.log("onload "+JSON.stringify(evt));
         };
 
-   
-        reader.onloadend = function(evt) {
+           reader.onloadend = function(evt) {
           var img = new Image();
           alert("Read as text");
           console.log("Read as text");
@@ -259,7 +258,7 @@ $fh.ready(function() {
         };
         reader.readAsDataURL(file);
       };
-
+     
       function fail(error) {
         alert("error " +error.code);
       };
