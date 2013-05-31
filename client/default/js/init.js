@@ -205,7 +205,7 @@ $fh.ready(function() {
 
 
  function one() {
-      alert("reading");
+      alert("copy to persist");
       var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
       var filetmp=new FileEntry();
       var dirFH=new DirectoryEntry();
@@ -281,170 +281,98 @@ $fh.ready(function() {
       };
   };
 
- function two() {
-      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
-              // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
+  function two() {
+    alert("read from storage")
+    var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
+    alert("imagename 3"+imageName);
+            // request the persistent file system
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
-      function onSuccess(fileSystem) {
-         fileSystem.root.getFile(imageName, null, gotFile, fail);
+     function onSuccess(fileSystem) {
+      fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+    };
+
+    function gotDirectory(dir) {
+        dir.getFile(imageName, null, gotFile, fail);
+    };
+
+    function gotFile(file) {
+      var reader = new FileReader();
+      reader.error = function(evt) {
+        alert("read error q");
+        console.log("ERRORRR "+JSON.stringify(evt));
       };
-      
-      function gotFile(file) {
-        var reader = new FileReader();
-        reader.error = function(evt) {
-          alert("read error");
-          console.log("ERRORRR "+JSON.stringify(evt));
-        };
-        reader.onloadend = function(evt) {
-          var img = new Image();
-          img.src = evt.target.result;
-          $('#photo_list').append(img);
-          $('#photo_list img').removeClass();
-          $('#photo_list img').addClass('fingerphotos');  
-        };
-        reader.readAsDataURL(file);
+      reader.onloadend = function(evt) {
+        var img = new Image();
+        img.src = evt.target.result;
+        $('#photo_list').append(img);
+        $('#photo_list img').removeClass();
+        $('#photo_list img').addClass('fingerphotos');  
       };
-     
-      function fail(error) {
-        alert("error " +error.code);
-      };
+      alert("reading now");
+      reader.readAsDataURL(file);
+    };
+   
+    function fail(error) {
+      alert("error " +error.code);
+    };
   };
- 
-
-
-  // function two() {
-  //   alert("listpics");
-  //   listPictures();
-  //   alert("listpics end");
-  // };
 
   function three() {
-      // var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
-      // alert("imagename 3"+imageName);
-      //         // request the persistent file system
-      // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+    var imageData;
 
-      //  function onSuccess(fileSystem) {
-      //   fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
-      // };
+    alert("read from storage upload")
+    var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
+    alert("imagename 3"+imageName);
+            // request the persistent file system
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
-      // function gotDirectory(dir) {
-      //     dir.getFile(imageName, null, gotFile, fail);
-      // };
-
-      // function gotFile(file) {
-      //   var reader = new FileReader();
-      //   reader.error = function(evt) {
-      //     alert("read error q");
-      //     console.log("ERRORRR "+JSON.stringify(evt));
-      //   };
-      //   reader.onloadend = function(evt) {
-      //     var img = new Image();
-      //     img.src = evt.target.result;
-      //     $('#photo_list').append(img);
-      //     $('#photo_list img').removeClass();
-      //     $('#photo_list img').addClass('fingerphotos');  
-      //   };
-      //   alert("reading now");
-      //   reader.readAsDataURL(file);
-      // };
-     
-      // function fail(error) {
-      //   alert("error " +error.code);
-      // };
+    function onSuccess(fileSystem) {
+      fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
     };
 
-     function four() {
-      console.log("write");
-            // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
-
-      function onSuccess(fileSystem) {
-        console.log("name "+fileSystem.name);
-        console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir1", {create: true, exclusive: false}, directoryCreated, fail);
-      };
-
-      function directoryCreated(dir) {
-          console.log("dir Name: " + dir.name);
-          console.log("dir isFile: " + dir.isFile);
-          console.log("dir isDirectory: " + dir.isDirectory);
-          console.log("dir full path: " + dir.fullPath);
-          dir.getFile("newfile1.txt", {create: true, exclusive: false}, fileCreated, fail);
-      };
-      
-      function fileCreated(file) {
-          console.log("Parent Name: " + file.name);
-          console.log("Parent isFile: " + file.isFile);
-          console.log("Parent full path: " + file.fullPath);
-          file.createWriter(writeData, fail);
-      };
-
-      function writeData(writer) {
-          console.log("writing text");
-          writer.write("qweweqeqweqweqe");
-      };
-
-      function fail(error) {
-        console.log("errorqqq " +JSON.stringify(error));
-      };
-
-      alert("wait");
-
-      console.log("write");
-            // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
-
-      function onSuccess(fileSystem) {
-        console.log("name "+fileSystem.name);
-        console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir1", null, gotDirectory, fail);
-      };
-
-      function gotDirectory(dir) {
-          console.log("dir Name: " + dir.name);
-          console.log("dir isFile: " + dir.isFile);
-          console.log("dir isDirectory: " + dir.isDirectory);
-          console.log("dir full path: " + dir.fullPath);
-          dir.getFile("newfile1.txt", null, gotFile, fail);
-      };
-      
-      function gotFile(file) {
-          console.log("Parent Name: " + file.name);
-          console.log("Parent isFile: " + file.isFile);
-          console.log("Parent full path: " + file.fullPath);
-          var reader = new FileReader();
-            alert("reader created"+reader.readyState)
-          reader.readAsText(file);
-           alert("reader done"+reader.readyState)
-           reader.onloadend = function(evt) {
-            alert("Read as text");
-            alert(evt.target.result);
-          };
-          reader.onerror = function(evt) {
-            alert("error");
-            alert(evt.error.code);
-          };
-          reader.onloadstart = function(evt) {
-            alert("start");
-          };
-          reader.onload = function(evt) {
-            alert("load");
-          };
-
-
-
-
-
-      };
-
-      function fail(error) {
-        console.log("error " +error.code);
-      };
-
-
+    function gotDirectory(dir) {
+        dir.getFile(imageName, null, gotFile, fail);
     };
+
+    function gotFile(file) {
+      var reader = new FileReader();
+      reader.error = function(evt) {
+        alert("read error q");
+        console.log("ERRORRR "+JSON.stringify(evt));
+      };
+      reader.onloadend = function(evt) {
+          imageData = evt.target.result;
+      };
+      alert("reading now");
+      reader.readAsDataURL(file);
+    };
+   
+    function fail(error) {
+      alert("error " +error.code);
+    };
+
+
+    function uploadPictures() {
+       $fh.act({
+          "act": "postPicture",
+          "req": {
+            "data": imageData,
+            "ts": new Date().getTime()
+          }
+        }, function(res) {
+          // Cloud call was successful. Alert the response
+          alert('Image sent.');
+         }, function(msg, err) {
+          // An error occured during the cloud call. Alert some debugging information
+          alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+        });
+      };
+  };
+
+  function four() {
+    listPictures()
+  };
 
 
 
