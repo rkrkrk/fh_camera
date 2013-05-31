@@ -257,52 +257,34 @@ $fh.ready(function() {
   };
 
  function two() {
-       var img = new Image();
-      var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
-      // img.src = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
-      // upURI=img.src;
-      img.src = "data:image/jpeg;base64," + imageData;
-      $('#photo_list').append(img);
-      $('#photo_list img').removeClass();
-      $('#photo_list img').addClass('fingerphotos');  
-      // $('.fingerphotos').unbind('click');
-      // $('.fingerphotos').click(function(e) {
-      //   showPicture(e);
-      // }); 
-      alert("hello");
-            // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
+              // request the persistent file system
+      window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        alert("name "+fileSystem.name);
-        alert("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir1", {create: true, exclusive: false}, directoryCreated, fail);
-      };
-
-      function directoryCreated(dir) {
-          alert("dir Name: " + dir.name);
-          alert("dir isFile: " + dir.isFile);
-          alert("dir isDirectory: " + dir.isDirectory);
-          alert("dir full path: " + dir.fullPath);
-          dir.getFile("newfile1.txt", {create: true, exclusive: false}, fileCreated, fail);
+         fileSystem.root.getFile(imageName, null, gotFile, fail);
       };
       
-      function fileCreated(file) {
-          alert("Parent Name: " + file.name);
-          alert("Parent isFile: " + file.isFile);
-          alert("Parent full path: " + file.fullPath);
-          file.createWriter(writeData, fail);
+      function gotFile(file) {
+        var reader = new FileReader();
+        reader.error = function(evt) {
+          alert("read error");
+          console.log("ERRORRR "+JSON.stringify(evt));
+        };
+        reader.onloadend = function(evt) {
+          var img = new Image();
+          alert("Read as text");
+          img.src = evt.target.result;
+          $('#photo_list').append(img);
+          $('#photo_list img').removeClass();
+          $('#photo_list img').addClass('fingerphotos');  
+        };
+        reader.readAsDataURL(file);
       };
-
-      function writeData(writer) {
-          alert("writing text");
-          writer.write(imageData);
-      };
-
+     
       function fail(error) {
         alert("error " +error.code);
       };
-
   };
  
 
