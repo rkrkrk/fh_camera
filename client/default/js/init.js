@@ -234,10 +234,15 @@ $fh.ready(function() {
       
       function onSuccessDir(fileSystem) {
         console.log("root "+fileSystem.root.name);
-        dirFH=fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
-
+        fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
       };
   
+
+      function directoryCreated(dir) {
+        alert("dir  " +dir.fullpath);
+        dirFH=dir;
+      };
+
       alert("dir is "+dirFH.fullPath);
       alert("file is "+filetmp.fullPath);
       filetmp.copyTo(dirFH, "file.copy", successCopy, fail);
