@@ -230,14 +230,14 @@ $fh.ready(function() {
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail3);
       
           function onSuccessDir(fileSystem) {
-            console.log("root "+fileSystem.root.name);
+            alert("root "+fileSystem.root.name);
             fileSystem.root.getDirectory("fh_dir", {create: true}, directoryCreate, fail4);
           };
       
 
           function directoryCreate(dir) {
             alert("dir s " +dir.fullPath);
-            alert("file is "+filetmp.fullPath);
+            alert("file is "+file.fullPath);
 
             dir.getFile(imageName,null,deleteFile,copyFile);
 
@@ -259,13 +259,6 @@ $fh.ready(function() {
 
 
       //create new directory
-     
-
-    
-
-     
-      
-
       function fail5(error) {
         alert("error 5" +error.code);
       };
@@ -280,6 +273,9 @@ $fh.ready(function() {
       };
      function fail4(error) {
         alert("error 4" +error.code);
+      };
+      function fail6(error) {
+        alert("error 6" +error.code);
       };
   };
 
