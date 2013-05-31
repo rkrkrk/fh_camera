@@ -352,6 +352,7 @@ $fh.ready(function() {
       alert("error " +error.code);
     };
 
+    uploadPictures();
 
     function uploadPictures() {
        $fh.act({
@@ -406,6 +407,8 @@ $fh.ready(function() {
         assignClicks();
       });
    };
+
+   uploadPictures();
 
    function uploadPictures() {
       var winH = $(window).height();
