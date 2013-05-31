@@ -205,13 +205,16 @@ $fh.ready(function() {
 
 
  function one() {
-      alert("hello");
+      alert("reading");
+      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1))
+     alert("uri 222"+upURI);
+     alert("uri 222s"+imageName);
+
             // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+      window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
 
       function onSuccess(fileSystem) {
-        alert("name "+fileSystem.name);
-        alert("root "+fileSystem.root.name);
+         alert("root "+fileSystem.root.name);
         fileSystem.root.getDirectory("fh_dir1", null, gotDirectory, fail);
       };
 
@@ -220,19 +223,41 @@ $fh.ready(function() {
           alert("dir isFile: " + dir.isFile);
           alert("dir isDirectory: " + dir.isDirectory);
           alert("dir full path: " + dir.fullPath);
-          dir.getFile("newfile1.txt", null, gotFile, fail);
+          dir.getFile(imageName, null, gotFile, fail);
       };
       
       function gotFile(file) {
-          alert("Parent Name: " + file.name);
-          alert("Parent isFile: " + file.isFile);
-          alert("Parent full path: " + file.fullPath);
-          var reader = new FileReader();
-          reader.onloadend = function(evt) {
-            alert("Read as text");
-            alert(evt.target.result);
-          };
-          reader.readAsText(file);
+        alert("Parent Name: " + file.name);
+        alert("Parent isFile: " + file.isFile);
+        alert("Parent full path: " + file.fullPath);
+        var reader = new FileReader();
+         reader.error = function(evt) {
+          alert("error");
+          console.log("ERRORRR "+JSON.stringify(evt));
+        };
+       reader.onloadstart = function(evt) {
+          alert("loadstart");
+           console.log("start "+JSON.stringify(evt));
+        };
+       reader.onload = function(evt) {
+          alert("onload");
+           console.log("onload "+JSON.stringify(evt));
+        };
+
+   
+        reader.onloadend = function(evt) {
+          var img = new Image();
+          alert("Read as text");
+          console.log("Read as text");
+          console.log("result "+evt.target.result);
+          console.log("alll "+evt);
+          // alert(evt.target.result.substring(0,40));
+          img.src = evt.target.result;
+          $('#photo_list').append(img);
+          $('#photo_list img').removeClass();
+          $('#photo_list img').addClass('fingerphotos');  
+        };
+        reader.readAsDataURL(file);
       };
 
       function fail(error) {
@@ -307,7 +332,7 @@ $fh.ready(function() {
         alert("error");
         console.log("ERRORRR "+JSON.stringify(evt));
       };
-     reader.loadstart = function(evt) {
+     reader.onloadstart = function(evt) {
         alert("loadstart");
          console.log("start "+JSON.stringify(evt));
       };
