@@ -237,16 +237,24 @@ $fh.ready(function() {
 
           function directoryCreate(dir) {
             alert("dir s " +dir.fullPath);
-            // dirFH=dir;
-            // alert("dir is "+dirFH.fullPath);
             alert("file is "+filetmp.fullPath);
-            file.copyTo(dir,null, successCopy, fail5);
-          };
 
-          function successCopy(file) {
-            alert("success " +file.fullPath);
-          };
+            dir.getFile(imageName,null,deleteFile,copyFile);
 
+              function deleteFile(file) {
+                alert("deletefile " +file.fullPath);
+                file.remove(copyfile,fail);
+              };
+ 
+              function copyFile(file) {
+                alert("copyfile " +file.fullPath);
+                file.copyTo(dir,null, successCopy, fail5);
+              };
+
+              function successCopy(file) {
+                alert("success " +file.fullPath);
+              };
+          };
       };
 
 
