@@ -305,15 +305,15 @@ $fh.ready(function() {
       var reader = new FileReader();
       reader.error = function(evt) {
         alert("error");
-        console.log(JSON.stringify(evt));
+        console.log("ERRORRR "+JSON.stringify(evt));
       };
      reader.loadstart = function(evt) {
         alert("loadstart");
-         console.log(JSON.stringify(evt));
+         console.log("start "+JSON.stringify(evt));
       };
      reader.onload = function(evt) {
         alert("onload");
-         console.log(JSON.stringify(evt));
+         console.log("onload "+JSON.stringify(evt));
       };
 
  
@@ -321,8 +321,8 @@ $fh.ready(function() {
         var img = new Image();
         alert("Read as text");
         console.log("Read as text");
-        console.log(evt.target.result);
-        console.log(evt);
+        console.log("result "+evt.target.result);
+        console.log("all "+evt);
         // alert(evt.target.result.substring(0,40));
         img.src = evt.target.result;
         $('#photo_list').append(img);
