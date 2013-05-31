@@ -242,8 +242,9 @@ $fh.ready(function() {
             dir.getFile(imageName,null,deleteFile,copyFile);
 
               function deleteFile(file) {
+                alert("in delete");
                 alert("deletefile " +file.fullPath);
-                file.remove(copyfile,fail6);
+                file.remove(copyFile,fail6);
               };
  
               function copyFile(file) {
