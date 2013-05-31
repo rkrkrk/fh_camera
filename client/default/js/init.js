@@ -243,7 +243,7 @@ $fh.ready(function() {
 
               function deleteFile(file) {
                 alert("deletefile " +file.fullPath);
-                file.remove(copyfile,fail);
+                file.remove(copyfile,fail6);
               };
  
               function copyFile(file) {
