@@ -215,15 +215,7 @@ $fh.ready(function() {
 
       function onSuccess(fileSystem) {
          alert("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir1", null, gotDirectory, fail);
-      };
-
-      function gotDirectory(dir) {
-          alert("dir Name: " + dir.name);
-          alert("dir isFile: " + dir.isFile);
-          alert("dir isDirectory: " + dir.isDirectory);
-          alert("dir full path: " + dir.fullPath);
-          dir.getFile(imageName, null, gotFile, fail);
+        fileSystem.root.getFile(imageName, null, gotFile, fail);
       };
       
       function gotFile(file) {
