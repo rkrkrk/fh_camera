@@ -224,36 +224,39 @@ $fh.ready(function() {
         alert("Parent Name: " + file.name);
         alert("Parent isFile: " + file.isFile);
         alert("Parent full path: " + file.fullPath);
-        filetmp=file;
+        // filetmp=file;
         alert("tiletmp: " + file.fullPath);
+
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail3);
+      
+          function onSuccessDir(fileSystem) {
+            console.log("root "+fileSystem.root.name);
+            fileSystem.root.getDirectory("fh_dir", {create: true}, directoryCreate, fail4);
+          };
+      
+
+          function directoryCreate(dir) {
+            alert("dir s " +dir.fullPath);
+            // dirFH=dir;
+            // alert("dir is "+dirFH.fullPath);
+            alert("file is "+filetmp.fullPath);
+            file.copyTo(dir,null, successCopy, fail5);
+          };
+
+          function successCopy(file) {
+            alert("success " +file.fullPath);
+          };
+
       };
 
 
       //create new directory
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail3);
-      
-      function onSuccessDir(fileSystem) {
-        console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir", {create: true}, directoryCreate, fail4);
-      };
-  
+     
 
-      function directoryCreate(dir) {
-        alert("dir s " +dir.fullPath);
-        dirFH=dir;
-      };
-
-      alert("dir is "+dirFH.fullPath);
-      alert("file is "+filetmp.fullPath);
-      filetmp.copyTo(dirFH, "file.copy",successCopy, fail5);
-      alert("null");
-      filetmp.copyTo(dirFH,null, successCopy, fail5);
-
+    
 
      
-      function successCopy(file) {
-        alert("success " +file.fullPath);
-      };
+      
 
       function fail5(error) {
         alert("error 5" +error.code);
