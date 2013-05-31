@@ -5,6 +5,7 @@ $fh.ready(function() {
 
   var myScroll,counttaken=0,countuploaded=0;
   var upURI="";
+  deletePictures();
     // function loaded() {
   // setTimeout(function () {
   //   myScroll = new iScroll('#wrapper1');
@@ -443,10 +444,10 @@ $fh.ready(function() {
           i++;
           alert(i+" -  "+picture.fields.data.substring(0,15));
            var img = new Image();
-          // img.src = "data:image/jpeg;base64," + picture.fields.data;
-          // $('#photo_list').append(img);
-          // $('#photo_list img').removeClass();
-          // $('#photo_list img').addClass('fingerphotos');  
+          img.src = "data:image/jpeg;base64," + picture.fields.data;
+          $('#photo_list').append(img);
+          $('#photo_list img').removeClass();
+          $('#photo_list img').addClass('fingerphotos');  
           $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
         });
       }, function(msg, err) {
