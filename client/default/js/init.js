@@ -246,8 +246,6 @@ $fh.ready(function() {
       alert("dir is "+dirFH.fullPath);
       alert("file is "+filetmp.fullPath);
       filetmp.copyTo(dirFH, "file.copy",successCopy, fail);
-      alert("nothing");
-      filetmp.copyTo(dirFH, successCopy, fail);
       alert("null");
       filetmp.copyTo(dirFH,null, successCopy, fail);
 
