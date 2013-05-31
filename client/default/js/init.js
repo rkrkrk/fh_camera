@@ -213,11 +213,11 @@ $fh.ready(function() {
       alert("uri 222s"+imageName);
 
       // get file entry for tempinage
-      window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail);
+      window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail1);
 
       function onSuccess(fileSystem) {
          alert("root "+fileSystem.root.name);
-        fileSystem.root.getFile(imageName, null, gotFile, fail);
+        fileSystem.root.getFile(imageName, null, gotFile, fail2);
       };
       
       function gotFile(file) {
@@ -230,24 +230,24 @@ $fh.ready(function() {
 
 
       //create new directory
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail1);
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail3);
       
       function onSuccessDir(fileSystem) {
         console.log("root "+fileSystem.root.name);
-        fileSystem.root.getDirectory("fh_dir", {create: true, exclusive: false}, directoryCreated, fail);
+        fileSystem.root.getDirectory("fh_dir", {create: true}, directoryCreate, fail4);
       };
   
 
-      function directoryCreated(dir) {
-        alert("dir  " +dir.fullPath);
+      function directoryCreate(dir) {
+        alert("dir s " +dir.fullPath);
         dirFH=dir;
       };
 
       alert("dir is "+dirFH.fullPath);
       alert("file is "+filetmp.fullPath);
-      filetmp.copyTo(dirFH, "file.copy",successCopy, fail);
+      filetmp.copyTo(dirFH, "file.copy",successCopy, fail5);
       alert("null");
-      filetmp.copyTo(dirFH,null, successCopy, fail);
+      filetmp.copyTo(dirFH,null, successCopy, fail5);
 
 
      
@@ -255,11 +255,20 @@ $fh.ready(function() {
         alert("success " +file.fullPath);
       };
 
-      function fail(error) {
-        alert("error " +error.code);
+      function fail5(error) {
+        alert("error 5" +error.code);
       };
        function fail1(error) {
         alert("error 1" +error.code);
+      };
+      function fail2(error) {
+        alert("error 2" +error.code);
+      };
+      function fail3(error) {
+        alert("error 3" +error.code);
+      };
+     function fail4(error) {
+        alert("error 4" +error.code);
       };
   };
 
@@ -302,39 +311,39 @@ $fh.ready(function() {
   // };
 
   function three() {
-      var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
-      alert("imagename 3"+imageName);
-              // request the persistent file system
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
+      // var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
+      // alert("imagename 3"+imageName);
+      //         // request the persistent file system
+      // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
 
-       function onSuccess(fileSystem) {
-        fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
-      };
+      //  function onSuccess(fileSystem) {
+      //   fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
+      // };
 
-      function gotDirectory(dir) {
-          dir.getFile(imageName, null, gotFile, fail);
-      };
+      // function gotDirectory(dir) {
+      //     dir.getFile(imageName, null, gotFile, fail);
+      // };
 
-      function gotFile(file) {
-        var reader = new FileReader();
-        reader.error = function(evt) {
-          alert("read error q");
-          console.log("ERRORRR "+JSON.stringify(evt));
-        };
-        reader.onloadend = function(evt) {
-          var img = new Image();
-          img.src = evt.target.result;
-          $('#photo_list').append(img);
-          $('#photo_list img').removeClass();
-          $('#photo_list img').addClass('fingerphotos');  
-        };
-        alert("reading now");
-        reader.readAsDataURL(file);
-      };
+      // function gotFile(file) {
+      //   var reader = new FileReader();
+      //   reader.error = function(evt) {
+      //     alert("read error q");
+      //     console.log("ERRORRR "+JSON.stringify(evt));
+      //   };
+      //   reader.onloadend = function(evt) {
+      //     var img = new Image();
+      //     img.src = evt.target.result;
+      //     $('#photo_list').append(img);
+      //     $('#photo_list img').removeClass();
+      //     $('#photo_list img').addClass('fingerphotos');  
+      //   };
+      //   alert("reading now");
+      //   reader.readAsDataURL(file);
+      // };
      
-      function fail(error) {
-        alert("error " +error.code);
-      };
+      // function fail(error) {
+      //   alert("error " +error.code);
+      // };
     };
 
      function four() {
