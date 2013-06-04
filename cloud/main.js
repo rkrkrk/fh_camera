@@ -58,19 +58,20 @@ exports.postPicture = function(params, callback) {
 };
 
 exports.getList = function(params, callback) {
-  console.log('in getList with ts:' + Date.now());
+  console.log('in getListtt with ts:' + Date.now());
+
   $fh.db({
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
-      console.log('inside:' + Date.now());
-
+    console.log('inside:' + Date.now());
     return callback(null, {
-      count: data.list.count,
-      list:"list"
+      status: "ok",
+      pictures: data
     });
   });
 };
+
 
 // exports.getList = function(params, callback) {
 //   console.log('in getList with ts:' + Date.now());
@@ -112,9 +113,9 @@ exports.deletePictures = function(params, callback) {
     return callback(null, {
       status: data.status,
       count: data.count,
+      error1:err,
       fm: "qqq",
       bill:"err",
-      error1:err
     });    
   });
 };
