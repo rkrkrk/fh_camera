@@ -71,7 +71,7 @@ exports.getList = function(params, callback) {
         var pictureName=new Array();
     return callback(null, {
       status: "ok",
-      pictures: data
+      pictures: pictures
     });
   });
 };
