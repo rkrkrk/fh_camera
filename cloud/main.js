@@ -82,8 +82,9 @@ exports.getList = function(params, callback) {
      var pictureName=new Array();
 
     for (var i = 0; i < picture_count; i++) {
-      pictureName[i] = pictures[i].name;
-      console.log("picname "+pictureName[i]);
+      pictureName.pop(pictures[i].name);
+      console.log("picname "+pictures[i].name);
+      console.log("picname "+pictures[i].ts);
     };
 
     return callback(null, {
