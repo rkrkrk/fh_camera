@@ -90,7 +90,8 @@ exports.getList = function(params, callback) {
 
     return callback(null, {
       status: "ok2",
-      pictures: pictureName
+      pictures: pictureName,
+      data: pictures
     });
   });
 };
