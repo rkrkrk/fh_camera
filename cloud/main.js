@@ -57,44 +57,46 @@ exports.postPicture = function(params, callback) {
   });
 };
 
-// exports.getList = function(params, callback) {
-//   console.log('in getList with ts:' + Date.now());
-//   $fh.db({
-//     "act": "list",
-//     "type": "pictures"
-//   }, function(err, data) {
-//     return callback(null, {
-//       status: "ok2",
-//       pictures: data
-//     });
-//   });
-// };
-
 exports.getList = function(params, callback) {
   console.log('in getList with ts:' + Date.now());
   $fh.db({
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
-     var pictures = data.list;
-     var picture_count = pictures.length;
-     console.log("count" +picture_count);
-     // console.log("data " +JSON.stringify(data));
-     // console.log("data list " +JSON.stringify(data.list));
-     var pictureName=new Array();
-
-    for (var i = 0; i < picture_count; i++) {
-      pictureName.pop(pictures[i].fields.name);
-      console.log("picname "+pictures[i].fields.name);
-     };
-
     return callback(null, {
       status: "ok2",
-      pictures: pictureName,
-      data: pictures
+      pictures: data
     });
   });
 };
+
+// exports.getList = function(params, callback) {
+//   console.log('in getList with ts:' + Date.now());
+//   $fh.db({
+//     "act": "list",
+//     "type": "pictures"
+//   }, function(err, data) {
+//      var pictures = data.list;
+//      var picture_count = pictures.length;
+//      console.log("count" +picture_count);
+//      // console.log("data " +JSON.stringify(data));
+//      // console.log("data list " +JSON.stringify(data.list));
+//      var pictureName=new Array();
+
+//     for (var i = 0; i < picture_count; i++) {
+//       pictureName.pop(pictures[i].fields.name);
+//       console.log("picname "+pictures[i].fields.name);
+//      };
+     
+//      console.log("picname "+pictures[i].fields.name);
+ 
+//     return callback(null, {
+//       status: "ok2",
+//       pictures: pictureName,
+//       data: pictures
+//     });
+//   });
+// };
 
 
 exports.deletePictures = function(params, callback) {

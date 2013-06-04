@@ -369,7 +369,7 @@ $fh.ready(function() {
       "act": "getList",
     }, function(res) {
       console.log("res ",res);
-      console.log("res JSON",JSON.stringify(res));
+      console.log("res JSON ",JSON.stringify(res));
 
 
       // $('#photo_list').empty();
