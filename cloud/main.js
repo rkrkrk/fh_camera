@@ -79,6 +79,8 @@ exports.getList = function(params, callback) {
      var pictures = data.list;
      var picture_count = pictures.length;
      console.log("count" +picture_count);
+     console.log("data " +JSON.stringify(data));
+     console.log("data list " +JSON.stringify(data.list));
      var pictureName=new Array();
 
     for (var i = 0; i < picture_count; i++) {
