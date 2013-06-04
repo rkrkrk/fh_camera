@@ -79,15 +79,15 @@ exports.getList = function(params, callback) {
      var pictures = data.list;
      var picture_count = pictures.length;
      console.log("count" +picture_count);
-     console.log("data " +JSON.stringify(data));
-     console.log("data list " +JSON.stringify(data.list));
+     // console.log("data " +JSON.stringify(data));
+     // console.log("data list " +JSON.stringify(data.list));
      var pictureName=new Array();
 
     for (var i = 0; i < picture_count; i++) {
-      pictureName.pop(pictures[i].name);
-      console.log("picname "+pictures[i].name);
-      console.log("picname "+pictures[i].ts);
-    };
+      pictureName.pop(pictures[i].fields.name);
+      console.log("picname "+pictures[i].fields.name);
+      console.log("picname "+JSON.stringify(pictures[i]);
+     };
 
     return callback(null, {
       status: "ok2",
