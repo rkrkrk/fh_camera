@@ -86,12 +86,11 @@ exports.getList = function(params, callback) {
     for (var i = 0; i < picture_count; i++) {
       pictureName.pop(pictures[i].fields.name);
       console.log("picname "+pictures[i].fields.name);
-      console.log("picname "+JSON.stringify(pictures[i]));
      };
 
     return callback(null, {
       status: "ok2",
-      pictures: data
+      pictures: pictureName
     });
   });
 };
