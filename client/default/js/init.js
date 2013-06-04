@@ -235,8 +235,6 @@ $fh.ready(function() {
     var imageData;
     var j;
     var filetmp=new FileEntry();
-    filetmp=photos[0].locn;
-
     for (var i=0;i<photos.length;i++){
       if (!photos[i].upload){
         j=i;
