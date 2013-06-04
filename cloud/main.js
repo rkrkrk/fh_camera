@@ -66,7 +66,8 @@ exports.getList = function(params, callback) {
       console.log('inside:' + Date.now());
 
     return callback(null, {
-      status: "ok2",
+      count: data.list.count,
+      list:"list"
     });
   });
 };
