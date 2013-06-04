@@ -1,7 +1,7 @@
 $fh.ready(function() {
 
   $fh.legacy.fh_timeout = 500000;
-  $fh.fh_timeout=60000;
+  $fh.fh_timeout=120000;
 
   var myScroll,counttaken=0,countuploaded=0;
   // var upURI="";
@@ -98,6 +98,10 @@ $fh.ready(function() {
     $('#uploaded').hide();
   };
 
+  if(!toCloudRunning)toCloud();
+  displayPhotos();
+    
+
   function takePicture() {
     var photoURI =takePhoto(); 
   };
@@ -107,20 +111,6 @@ $fh.ready(function() {
   //     return photoURI;      
   // };
 
-  function displayPhotos() {
-    $('#photo_list').empty();
-    for (var i=0;i<photos.length;i++)
-    {
-      var img = new Image();
-      img.src = photos[i].locn;
-      $('#photo_list').append(img);
-      $('#photo_list').append("name "+photos[i].name);
-      $('#photo_list').append(" in cloud: "+photos[i].upload);
-      $('#photo_list img').removeClass();
-      $('#photo_list img').addClass('fingerphotos');   
-    }     
-  };
-
   function takePhoto() {
     navigator.camera.getPicture(function(photoURI) {
       console.log("takephoto "+photoURI);
@@ -129,7 +119,7 @@ $fh.ready(function() {
       //error
       Alert("camera error");
     }, {
-      quality: 50,
+      quality: 90,
       // targetWidth: 1800,
       // targetHeight: 1200,
       sourceType : Camera.PictureSourceType.CAMERA,
@@ -139,7 +129,7 @@ $fh.ready(function() {
 
 
  function storePhoto(photoURI) {
-      console.log("copy to persist "+photoURI);
+      console.log("in store photo "+photoURI);
       var imageName= photoURI.substring(photoURI.lastIndexOf("/") + 1);
       var filetmp=new FileEntry();
       var dirFH=new DirectoryEntry();
@@ -194,6 +184,7 @@ $fh.ready(function() {
                 photos.push(photo);
                 console.log(JSON.stringify(photos));
                 displayPhotos();
+                if(!toCloudRunning)toCloud();
               };
           };
       };
@@ -220,7 +211,25 @@ $fh.ready(function() {
       };
   };
 
-  function one() {
+   function displayPhotos() {
+    console.log("in displayPhotos")
+    $('#photo_list').empty();
+    for (var i=0;i<photos.length;i++)
+    {
+      var img = new Image();
+      img.src = photos[i].locn;
+      $('#photo_list').append(img);
+      $('#photo_list').append("name "+photos[i].name);
+      $('#photo_list').append(" in cloud: "+photos[i].upload);
+      $('#photo_list img').removeClass();
+      $('#photo_list img').addClass('fingerphotos');   
+    }     
+  };
+
+
+  function toCloud() {
+    var toCloudRunning=true;
+    console.log("start toCloud "+toCloudRunning)
     var imageData;
     var j;
     var filetmp=new FileEntry();
@@ -233,6 +242,8 @@ $fh.ready(function() {
         gotFile(filetmp);
         break;
       }
+      toCloudRunning=false;
+      console.log("end toCloud "+toCloudRunning)
     }
     // window.getFile(photos[0].locn, null, gotFile, fail);
    
@@ -271,7 +282,7 @@ $fh.ready(function() {
           console.log('Image sent.' +j);
           photos[j].upload=true;
           displayPhotos();
-          one();
+          toCloud();
          }, function(msg, err) {
           // An error occured during the cloud call. Alert some debugging information
           alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
@@ -280,62 +291,12 @@ $fh.ready(function() {
   };
 
   function three() {
-    var imageData;
-
-    alert("read from storage upload")
-    var imageName=upURI.substring(upURI.lastIndexOf("/") + 1);
-    alert("imagename 3"+imageName);
-            // request the persistent file system
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, fail);
-
-    function onSuccess(fileSystem) {
-      fileSystem.root.getDirectory("fh_dir", null, gotDirectory, fail);
-    };
-
-    function gotDirectory(dir) {
-        dir.getFile(imageName, null, gotFile, fail);
-    };
-
-    function gotFile(file) {
-      var reader = new FileReader();
-      reader.error = function(evt) {
-        alert("read error q");
-        console.log("ERRORRR "+JSON.stringify(evt));
-      };
-      reader.onloadend = function(evt) {
-          imageData = evt.target.result;
-      };
-      alert("reading now");
-      reader.readAsDataURL(file);
-    };
-   
-    function fail(error) {
-      alert("error " +error.code);
-    };
-
-    uploadPictures();
-
-    function uploadPictures() {
-       $fh.act({
-          "act": "postPicture",
-          "req": {
-            "data": imageData.substring(23,imageData.length) ,
-            "ts": new Date().getTime()
-          }
-        }, function(res) {
-          // Cloud call was successful. Alert the response
-          alert('Image sent.');
-         }, function(msg, err) {
-          // An error occured during the cloud call. Alert some debugging information
-          alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
-        });
-      };
   };
 
   function four() {
-   var photoURI="file:///storage/sdcard0/Android/data/com.feedhenry.fhWzDk6KaDE5nMyqQFAbNaUVnR/cache/1370302141267.jpg"
-  var imageName=photoURI.substring(photoURI.lastIndexOf("/") + 1);
- console.log(imageName);
+    var photoURI="file:///storage/sdcard0/Android/data/com.feedhenry.fhWzDk6KaDE5nMyqQFAbNaUVnR/cache/1370302141267.jpg"
+    var imageName=photoURI.substring(photoURI.lastIndexOf("/") + 1);
+    console.log(imageName);
   };
 
     // var imageData='/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAcIBQYDBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdUgAAAAAAAAAAAAH4DNp6EAAAGgADlEqLUAAAZ/NAAHKJUWoAAAz+aAAOUSotQAABn80AAcolRagAADP5oAA5RKi1AAAGfzQAByiVFqAAAM/mgADlEbLIAAAQ40MAfAjgAAAPQlJAAAAAAAAAAAAAB//8QAJBAAAAMIAwEBAQAAAAAAAAAAAAQGAwUHEBUXJzUgNkcCQBb/2gAIAQEAAQUC/WfbfRci4n6uFEQyGMhjIYyGMhjIYyGE4o1D/ZTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhD03n7JN7aqEPTefsk3tqoQ9N5+yTe2qhOfLF0hViIqxEVYiKsRFWIirERViIYt2ZiMM27H5MMbQp4WhTwtCnhaFPC0KeFoU8LQp4WhTwcUP3QnT/7P//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8BKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8BKf/EAC4QAAAEAwYEBgMBAAAAAAAAAAABAgQDc5MgMzRFobEhMITBBREiMTJAEhORFP/aAAgBAQAGPwL7biKj5IhqUX8BPGZsjgmo0+siI+Ay/QZfoMv0GX6DL9Bl+gy/QF4P4wbe5OIZQk/zjYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CHOXyOj7WHklewhzl8jo+1h5JXsIc5fI6PtYeSV7CGiK4hQ1fuXwWsiMYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIYxvVIfnCiJiJ/wAfug/MvaxEhL+K0mkxduKwu3FYXbisLtxWF24rC7cVhduKwu3FYE8ZoilGJJp9cTzLj93/xAAhEAABAwQCAwEAAAAAAAAAAAAAAVHwETDB8SExIEBBgf/aAAgBAQABPyH26BiV56qilQT58FqrtxYJJJPwvMmrweEM8g3S54Z5BulzwzyDdLnhnkG6XPDPIN0ueGeQbpc8M8qQe/aE+KpCckJyQnJCckJyQnJCcnQR1L+lPCoQtMe6KlFNoNoNoNoNoNoNoNoE3nBVKXbj3f/aAAwDAQACAAMAAAAQkkkkkkkkkkkkkkkkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkAkkkkkgEkkkkkEAAAAkkAAAAEkkkkkkkkkkkkkn//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8QKf/EACEQAQACAgEDBQAAAAAAAAAAAAEAEcHwITBAQSAxYHGR/9oACAEBAAE/EO7ZZJjYvg8lhLHitZByeOegAAAPzfV9BPuz4nH7KP2Ufso/ZR+yj9lHNG0Ew1NBp6EOHDhw4cMMpsMScixLPQCQROk6h8NLNpxNpxNpxNpxNpxNpxNpxNpxKWQtBByHvx3v/9k=';
