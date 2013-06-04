@@ -236,7 +236,7 @@ $fh.ready(function() {
       }
     }
     // window.getFile(photos[0].locn, null, gotFile, fail);
-    gotFile(filetmp);
+   
 
       function gotFile(filetmp) {
         alert("gotfile"+filetmp);
@@ -273,7 +273,7 @@ $fh.ready(function() {
           photos[j].upload=true;
           displayPhotos();
           alert("done");
-          // two();
+          two();
          }, function(msg, err) {
           // An error occured during the cloud call. Alert some debugging information
           alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
