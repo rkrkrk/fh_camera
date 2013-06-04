@@ -67,8 +67,6 @@ exports.getList = function(params, callback) {
 
     return callback(null, {
       status: "ok2",
-      pictures: data,
-      error:err
     });
   });
 };
@@ -114,7 +112,7 @@ exports.deletePictures = function(params, callback) {
       status: data.status,
       count: data.count,
       fm: "qqq",
-      error:err
+      bill:err
     });    
   });
 };
