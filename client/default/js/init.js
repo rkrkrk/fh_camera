@@ -291,7 +291,12 @@ $fh.ready(function() {
       };
   };
 
-  function three() {
+  function one() {
+    displayPhotos();
+  };
+
+  function two() {
+    tocloud();
   };
 
   function four() {
