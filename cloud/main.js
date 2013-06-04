@@ -78,10 +78,12 @@ exports.getList = function(params, callback) {
   }, function(err, data) {
      var pictures = data.list;
      var picture_count = pictures.length;
+     console.log("count" +pictureName[i]);
      var pictureName=new Array();
 
     for (var i = 0; i < picture_count; i++) {
       pictureName[i] = pictures[i].name;
+      console.log("picname "+pictureName[i]);
     };
 
     return callback(null, {
@@ -101,7 +103,8 @@ exports.deletePictures = function(params, callback) {
   }, function(err, data) {
     return callback(null, {
       status: "ok3",
-      count: data.list.length
+      count: "count",
+      res: data
     });    
   });
 };
