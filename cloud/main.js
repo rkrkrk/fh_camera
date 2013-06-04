@@ -64,7 +64,11 @@ exports.getList = function(params, callback) {
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
-    console.log('inside:' + Date.now());
+        console.log('inside:' + Date.now());
+        var pictures = data.list;
+        var picture_count = pictures.length;
+        console.log("count" +picture_count);
+        var pictureName=new Array();
     return callback(null, {
       status: "ok",
       pictures: data
@@ -112,10 +116,7 @@ exports.deletePictures = function(params, callback) {
     console.log("hello");
     return callback(null, {
       status: data.status,
-      count: data.count,
-      error1:err,
-      fm: "qqq",
-      bill:"err",
+      count: data.count
     });    
   });
 };
