@@ -277,7 +277,7 @@ $fh.ready(function() {
           "req": {
             "data": imageData.substring(23,imageData.length) ,
             "ts": new Date().getTime(),
-            // "name":photos[j].name
+            "name":photos[j].name
           }
         }, function(res) {
           // Cloud call was successful. Alert the response
