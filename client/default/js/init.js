@@ -6,6 +6,8 @@ $fh.ready(function() {
   var myScroll,counttaken=0,countuploaded=0;
   // var upURI="";
   var photos=new Array();
+  var toCloudRunning=false;
+
     // function loaded() {
   // setTimeout(function () {
   //   myScroll = new iScroll('#wrapper1');
@@ -98,7 +100,7 @@ $fh.ready(function() {
     $('#uploaded').hide();
   };
 
-  if(!toCloudRunning)toCloud();
+  if(!toCloudRunning){toCloud()};
   displayPhotos();
     
 
@@ -228,7 +230,7 @@ $fh.ready(function() {
 
 
   function toCloud() {
-    var toCloudRunning=true;
+    toCloudRunning=true;
     console.log("start toCloud "+toCloudRunning)
     var imageData;
     var j;
