@@ -100,13 +100,13 @@ $fh.ready(function() {
     $('#uploaded').hide();
   };
 
-  // if(!toCloudRunning){toCloud()};
-  // displayPhotos();
+  if(!toCloudRunning){toCloud()};
+  displayPhotos();
     
 
-  // function takePicture() {
-  //   var photoURI =takePhoto(); 
-  // };
+  function takePicture() {
+    var photoURI =takePhoto(); 
+  };
 
   // function takePhoto() {
   //      var photoURI = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
@@ -357,6 +357,7 @@ $fh.ready(function() {
       "act": "getList",
     }, function(res) {
       console.log("res back "+JSON.stringify(res));
+      $('#photo_list').append("<br/> List images on cloud<br/><br/>");
       $.each(res.pictures, function(i, picture) {
           $('#photo_list').append("- "+picture+"<br/>");
           console.log(picture);
@@ -371,6 +372,7 @@ $fh.ready(function() {
       "act": "deletePictures"
     }, function(res) {
       console.log("delete_" +JSON.stringify(res));
+      alert("cloud stuff deleted")
       // $()
     }, function(msg, err) {
       console.log('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
