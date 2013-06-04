@@ -363,32 +363,19 @@ $fh.ready(function() {
    };
 
 
-  function listPictures() {
-    console.log("list");
+function listPictures() {
     $fh.act({
       "act": "getList",
     }, function(res) {
-      console.log("res ",res);
-      console.log("res JSON ",JSON.stringify(res));
-
-
-      // $('#photo_list').empty();
-        var img = new Image();
-        var i=0;
-        $.each(res.pictures.list, function(i, picture) {
-          i++;
-          alert(i+" -  "+picture.fields.data.substring(0,15));
-           var img = new Image();
-          img.src = "data:image/jpeg;base64," + picture.fields.data;
-          $('#photo_list').append(img);
-          $('#photo_list img').removeClass();
-          $('#photo_list img').addClass('fingerphotos');  
-          $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
-        });
-      }, function(msg, err) {
-        alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      console.log("res back "+JSON.stringify(res));
+      $('#picture_list').empty();
+      $.each(res.pictures.list, function(i, picture) {
+        $('#picture_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
       });
-    };
+    }, function(msg, err) {
+      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+    });
+  };
 
   function deletePictures() {
 
