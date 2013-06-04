@@ -112,11 +112,10 @@ $fh.ready(function() {
     for (var i=0;i<photos.length;i++)
     {
       var img = new Image();
-      console.log("loop "+photos[i].locn)
       img.src = photos[i].locn;
       $('#photo_list').append(img);
       $('#photo_list').append("name "+photos[i].name);
-      $('#photo_list').append(" uploaded: "+photos[i].upload);
+      $('#photo_list').append(" in cloud: "+photos[i].upload);
       $('#photo_list img').removeClass();
       $('#photo_list img').addClass('fingerphotos');   
     }     
@@ -187,7 +186,7 @@ $fh.ready(function() {
               };
 
               function successCopy(file) {
-                alert("copy success " +file.fullPath);
+                // alert("copy success " +file.fullPath);
                 var photo=new Object();
                 photo.name=saveFile+photos.length+".jpg";
                 photo.locn=file.fullPath;
