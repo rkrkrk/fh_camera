@@ -227,11 +227,12 @@ $fh.ready(function() {
     var filetmp=new FileEntry();
     filetmp=photos[0].locn;
 
-    for (var i=0;i<photos.length;i++)
+    for (var i=0;i<photos.length;i++){
       if (!photos[i].upload){
         j=i;
+        filetmp=photos[i].locn;
         gotFile(filetmp);
-        break:
+        break;
       }
     }
     // window.getFile(photos[0].locn, null, gotFile, fail);
