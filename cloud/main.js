@@ -63,9 +63,12 @@ exports.getList = function(params, callback) {
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
+      console.log('inside:' + Date.now());
+
     return callback(null, {
       status: "ok2",
-      pictures: data
+      pictures: data,
+      error:err
     });
   });
 };
@@ -106,9 +109,12 @@ exports.deletePictures = function(params, callback) {
     "act": "deleteall",
     "type": "pictures",
   }, function(err, data) {
+    console.log("hello");
     return callback(null, {
       status: data.status,
-      count: data.count
+      count: data.count,
+      fm: "qqq",
+      error:err
     });    
   });
 };
