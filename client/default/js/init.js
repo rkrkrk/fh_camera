@@ -272,7 +272,8 @@ $fh.ready(function() {
           alert('Image sent.' +j);
           photos[j].upload=true;
           displayPhotos();
-          two();
+          alert("done");
+          // two();
          }, function(msg, err) {
           // An error occured during the cloud call. Alert some debugging information
           alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
