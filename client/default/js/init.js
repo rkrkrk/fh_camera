@@ -276,7 +276,8 @@ $fh.ready(function() {
           "act": "postPicture",
           "req": {
             "data": imageData.substring(23,imageData.length) ,
-            "ts": new Date().getTime()
+            "ts": new Date().getTime(),
+            "name":photos[j].name
           }
         }, function(res) {
           // Cloud call was successful. Alert the response
@@ -292,11 +293,11 @@ $fh.ready(function() {
   };
 
   function one() {
-    displayPhotos();
+    deletePictures();
   };
 
   function two() {
-    tocloud();
+    listPictures();
   };
 
   function four() {
@@ -367,19 +368,23 @@ $fh.ready(function() {
     $fh.act({
       "act": "getList",
     }, function(res) {
+      console.log("res ",res);
+      console.log("res JSON",JSON.stringify(res));
+
+
       // $('#photo_list').empty();
-        var img = new Image();
-        var i=0;
-        $.each(res.pictures.list, function(i, picture) {
-          i++;
-          alert(i+" -  "+picture.fields.data.substring(0,15));
-           var img = new Image();
-          img.src = "data:image/jpeg;base64," + picture.fields.data;
-          $('#photo_list').append(img);
-          $('#photo_list img').removeClass();
-          $('#photo_list img').addClass('fingerphotos');  
-          $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
-        });
+        // var img = new Image();
+        // var i=0;
+        // $.each(res.pictures.list, function(i, picture) {
+        //   i++;
+        //   alert(i+" -  "+picture.fields.data.substring(0,15));
+        //    var img = new Image();
+        //   img.src = "data:image/jpeg;base64," + picture.fields.data;
+        //   $('#photo_list').append(img);
+        //   $('#photo_list img').removeClass();
+        //   $('#photo_list img').addClass('fingerphotos');  
+        //   $('#photo_list').append('<li>Timestamp: ' + picture.fields.ts + ', Transferred: ' + picture.fields.transferred + '</li>');
+        // });
       }, function(msg, err) {
         alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
       });
@@ -390,10 +395,10 @@ $fh.ready(function() {
     $fh.act({
       "act": "deletePictures"
     }, function(res) {
-      alert("delete_" +JSON.stringify(res));
+      console.log("delete_" +JSON.stringify(res));
       // $()
     }, function(msg, err) {
-      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      console.log('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
     });
   };
 

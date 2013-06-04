@@ -34,6 +34,7 @@ exports.postPicture = function(params, callback) {
     "fields": {
       "data": params.data,
       "ts": params.ts,
+      "name" : params.name,
       "transferred": false
     }
   }, function(err, data) {
@@ -56,15 +57,36 @@ exports.postPicture = function(params, callback) {
   });
 };
 
+// exports.getList = function(params, callback) {
+//   console.log('in getList with ts:' + Date.now());
+//   $fh.db({
+//     "act": "list",
+//     "type": "pictures"
+//   }, function(err, data) {
+//     return callback(null, {
+//       status: "ok2",
+//       pictures: data
+//     });
+//   });
+// };
+
 exports.getList = function(params, callback) {
   console.log('in getList with ts:' + Date.now());
   $fh.db({
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
+     var pictures = data.list;
+     var picture_count = pictures.length;
+     var pictureName=new Array();
+
+    for (var i = 0; i < picture_count; i++) {
+      var pictureName[i] = pictures[i].name;
+    };
+
     return callback(null, {
       status: "ok2",
-      pictures: data
+      pictures: pictureName
     });
   });
 };
@@ -74,26 +96,40 @@ exports.deletePictures = function(params, callback) {
   console.log('in deletePictures with ts:' + Date.now());
 
   $fh.db({
-    "act": "list",
+    "act": "deleteall",
     "type": "pictures",
-    "fields": ["ts", "transferred"]
   }, function(err, data) {
-    var pictures = data.list;
-    var picture_count = pictures.length;
-
-    for (var i = 0; i < picture_count; i++) {
-      var picture = pictures[i];
-      var guid = picture.guid;
-
-      $fh.db({
-        "act": "delete",
-        "type": "pictures",
-        "guid": guid
-      }, function(err, data) {});
-    };
-
     return callback(null, {
-      status: "ok3"
-    });
+      status: "ok3",
+      count: data.list.length
+    });    
   });
 };
+
+// exports.deletePictures = function(params, callback) {
+//   console.log('in deletePictures with ts:' + Date.now());
+
+//   $fh.db({
+//     "act": "list",
+//     "type": "pictures",
+//     "fields": ["ts", "transferred"]
+//   }, function(err, data) {
+//     var pictures = data.list;
+//     var picture_count = pictures.length;
+
+//     for (var i = 0; i < picture_count; i++) {
+//       var picture = pictures[i];
+//       var guid = picture.guid;
+
+//       $fh.db({
+//         "act": "delete",
+//         "type": "pictures",
+//         "guid": guid
+//       }, function(err, data) {});
+//     };
+
+//     return callback(null, {
+//       status: "ok3"
+//     });
+//   });
+// };
