@@ -140,7 +140,7 @@ $fh.ready(function() {
 
 
  function storePhoto(photoURI) {
-      alert("copy to persist "+photoURI);
+      console.log("copy to persist "+photoURI);
       var imageName= photoURI.substring(photoURI.lastIndexOf("/") + 1);
       var filetmp=new FileEntry();
       var dirFH=new DirectoryEntry();
@@ -221,7 +221,7 @@ $fh.ready(function() {
       };
   };
 
-  function two() {
+  function one() {
     var imageData;
     var j;
     var filetmp=new FileEntry();
@@ -239,7 +239,7 @@ $fh.ready(function() {
    
 
       function gotFile(filetmp) {
-        alert("gotfile"+filetmp);
+        console.log("gotfile"+filetmp);
         var reader = new FileReader();
         reader.error = function(evt) {
           alert("read error q");
@@ -249,7 +249,7 @@ $fh.ready(function() {
             imageData = evt.target.result;
             uploadPictures();
         };
-        alert("reading now");
+        // alert("reading now");
         reader.readAsDataURL(filetmp);
       };
      
@@ -260,7 +260,7 @@ $fh.ready(function() {
       
 
       function uploadPictures() {
-      alert("in upload");
+      console.log("in upload");
        $fh.act({
           "act": "postPicture",
           "req": {
@@ -269,11 +269,10 @@ $fh.ready(function() {
           }
         }, function(res) {
           // Cloud call was successful. Alert the response
-          alert('Image sent.' +j);
+          console.log('Image sent.' +j);
           photos[j].upload=true;
           displayPhotos();
-          alert("done");
-          two();
+          one();
          }, function(msg, err) {
           // An error occured during the cloud call. Alert some debugging information
           alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
