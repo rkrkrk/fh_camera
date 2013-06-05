@@ -143,18 +143,14 @@ exports.emailPictures = function(params, callback) {
 
 // send the message and get a callback with an error or details of the message that was sent
 var message ={
-   text:    "i hope this works so I do", 
+   text:    "i hope this works", 
    from:    "you <fintan.mahon@feedhenry.com>", 
    to:      "someone <fintan.mahon@feedhenry.com>",
    subject: "testing emailjs attach",
    attachment: 
    [
-      {data:varURI,name:"111"},
-      {data:imageData,name:"222"},
-      {data:varURI,name:"333", encoded:true},
-      {data:imageData,name:"444",encoded:true},
-      {path:"dddd.jpg", type:"image/jpeg", name:"renamed.jpg"}
-   ]
+      {data:imageData,name:"test.jpg",encoded:true},
+    ]
 };
 
 // send the message and get a callback with an error or details of the message that was sent

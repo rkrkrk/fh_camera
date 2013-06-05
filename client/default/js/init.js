@@ -165,19 +165,17 @@ $fh.ready(function() {
             //check if file already exists first and delete it to avoid error
             //otherwise copy cache file to persistent storage
             dir.getFile(saveFileName+photos.length+".jpg",null,deleteFile,copyFile);
-             function deleteFile(file) {
+              function deleteFile(file) {
                 // alert("in delete");
-                alert("destination file " +file.fullPath);
                 file.remove(copyFile,fail6);
               };
  
               function copyFile(file) {
-               alert("destination file " +file.fullPath);
-                 filetmp.copyTo(dir,null, successCopy, fail5);
+                filetmp.copyTo(dir,saveFileName+photos.length+".jpg", successCopy, fail5);
               };
 
               function successCopy(file) {
-                // alert("copy success " +file.fullPath);
+                alert("copy success " +file.fullPath);
                 var photo=new Object();
                 photo.name=saveFileName+photos.length+".jpg";
                 photo.locn=file.fullPath;
@@ -357,7 +355,9 @@ $fh.ready(function() {
         $('#content').fadeTo(500,1);
         $('#uploaded').hide();
       });
-      $('#photo_list').empty();     
+      $('#photo_list').empty();  
+      deletePictures();  
+      photos.length=0; 
    };
 
 
