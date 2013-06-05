@@ -98,6 +98,7 @@ $fh.ready(function() {
     // iscroll = new iScroll($('#wrapper'));
     $('#singlephoto').hide();
     $('#uploaded').hide();
+    displayPhotos();
   };
 
   if(!toCloudRunning){toCloud()};
