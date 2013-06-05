@@ -126,8 +126,7 @@ exports.emailPictures = function(params, callback) {
 
 
     return callback(null, {
-      status: "ok",
-      pictures: pictureName
+      status: "ok email"
     });
   });
 
