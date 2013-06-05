@@ -126,12 +126,12 @@ exports.emailPictures = function(params, callback) {
            subject: "testing emailjs attach",
            attachment: 
            [
-              {data:imageData,name:"test.jpg",encoded:true},
+              {data:emailPic,name:"test.jpg",encoded:true},
             ]
         };
 
         // send the message and get a callback with an error or details of the message that was sent
-        server.send(emailPic, function(err, message) { console.log("error--"+err || message); });
+        server.send(message, function(err, message) { console.log("error--"+err || message); });
       };
 
     return callback(null, {
