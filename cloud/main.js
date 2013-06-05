@@ -116,13 +116,12 @@ exports.emailPictures = function(params, callback) {
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
-        console.log('inside:' + data.list.count);
+        console.log('inside:' + data.list.length);
 
-        // for (var i = 0; i < data.list.count; i++) {
-        //   emailPic=data.list[i].fields.data.substring(0,20);
-        //   console.log("qqq "+i+" "+emailPic);
-        //   // console.log("picname "+pictures[i].fields.name);
-        // };
+        for (var i = 0; i < data.list.length; i++) {
+          emailPic=data.list[i].fields.data.substring(0,20);
+          console.log("qqq "+i+" "+emailPic);
+         };
 
 
     return callback(null, {
