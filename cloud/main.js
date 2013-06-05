@@ -116,35 +116,31 @@ exports.emailPictures = function(params, callback) {
     "act": "list",
     "type": "pictures"
   }, function(err, data) {
-        console.log('inside:' + data.list.length);
+      console.log('inside:' + data.list.length);
 
-        for (var i = 0; i < data.list.length; i++) {
-          emailPic=data.list[i].fields.data.substring(0,20);
-          console.log("qqq "+i+" "+emailPic);
-         };
+      for (var i = 0; i < data.list.length; i++) {
+        emailPic=data.list[i].fields.data;
+        console.log("qqq "+i+" "+emailPic.substring(0,10));
+        // send the message and get a callback with an error or details of the message that was sent
+        var message ={
+           text:    "i hope this works", 
+           from:    "you <fintan.mahon@feedhenry.com>", 
+           to:      "someone <fintan.mahon@feedhenry.com>",
+           subject: "testing emailjs attach",
+           attachment: 
+           [
+              {data:imageData,name:"test.jpg",encoded:true},
+            ]
+        };
 
+        // send the message and get a callback with an error or details of the message that was sent
+        server.send(emailPic, function(err, message) { console.log("error--"+err || message); });
+      };
 
     return callback(null, {
       status: "ok email"
     });
   });
-
-
-
-  // send the message and get a callback with an error or details of the message that was sent
-  // var message ={
-  //    text:    "i hope this works", 
-  //    from:    "you <fintan.mahon@feedhenry.com>", 
-  //    to:      "someone <fintan.mahon@feedhenry.com>",
-  //    subject: "testing emailjs attach",
-  //    attachment: 
-  //    [
-  //       {data:imageData,name:"test.jpg",encoded:true},
-  //     ]
-  // };
-
-  // // send the message and get a callback with an error or details of the message that was sent
-  // server.send(message, function(err, message) { console.log("error--"+err || message); });
 };
 
 // exports.emailPictures = function(params, callback) {
