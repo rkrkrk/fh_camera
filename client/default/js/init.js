@@ -4,25 +4,17 @@ $fh.ready(function() {
   $fh.fh_timeout=120000;
 
   var myScroll,counttaken=0,countuploaded=0;
-  // var upURI="";
   var photos=new Array();
   var toCloudRunning=false;
 
-    // function loaded() {
-  // setTimeout(function () {
-  //   myScroll = new iScroll('#wrapper1');
-  //   }, 100);
-  // }
-  // window.addEventListener('load', loaded, false);
+  
   //show login screen, hide the rest
   $('#loginscreen').show();
   $('#content').hide();
   $('#singlephoto').hide();
   $('#uploaded').hide();
-
   var winH = $(window).height();
   $('#loginlogo').css('height',  winH/2.2);
-
 
   assignClicks();
           
@@ -95,20 +87,22 @@ $fh.ready(function() {
   function login() {
     $('#loginscreen').hide();
     $('#content').show();
-    // iscroll = new iScroll($('#wrapper'));
     $('#singlephoto').hide();
     $('#uploaded').hide();
     displayPhotos();
   };
 
-  // if(!toCloudRunning){toCloud()};
-  // displayPhotos();
+  //startup upload to cloud
+  if(!toCloudRunning){toCloud()};
+  //show photos taken already
+  displayPhotos();
     
 
   function takePicture() {
-    var photoURI =takePhoto(); 
+    takePhoto(); 
   };
 
+  // fhc local test take photo
   // function takePhoto() {
   //      var photoURI = 'http://127.0.0.1:8000/img/fingerprint40.jpg';
   //     return photoURI;      
@@ -133,15 +127,16 @@ $fh.ready(function() {
 
  function storePhoto(photoURI) {
       console.log("in store photo "+photoURI);
-      var imageName= photoURI.substring(photoURI.lastIndexOf("/") + 1);
-      var filetmp=new FileEntry();
-      var dirFH=new DirectoryEntry();
-      var saveDir="fh-dir";
-      var saveFile="fprint"
+      //get .jpg filename of photo
+      var imageName=photoURI.substring(photoURI.lastIndexOf("/") + 1);
+      var filetmp=new FileEntry();//to store reference to cache file
+      var saveDir="fh-dir"; //dir to save to
+      var saveFileName="fprint" //filename to save to
       // alert("uri 222"+upURI);
       // alert("uri 222s"+imageName);
 
-      // get file entry for tempinage
+      // get cache file name first, then get persistent storage
+      // filename and copy cache file to persistent
       window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onSuccess, fail1);
 
       function onSuccess(fileSystem) {
@@ -153,9 +148,10 @@ $fh.ready(function() {
         // alert("Parent Name: " + file.name);
         // alert("Parent isFile: " + file.isFile);
         // alert("Parent full path: " + file.fullPath);
-        filetmp=file;
-        // alert("filetmp: " + file.fullPath);
+        filetmp=file; // got cache file name
+        alert("cache filetmp: " + file.fullPath);
 
+        // find persistent storage dir 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccessDir, fail3);
       
           function onSuccessDir(fileSystem) {
@@ -166,26 +162,28 @@ $fh.ready(function() {
 
           function directoryCreate(dir) {
      
-            dir.getFile(saveFile+photos.length+".jpg",null,deleteFile,copyFile);
-
-              function deleteFile(file) {
+            //check if file already exists first and delete it to avoid error
+            //otherwise copy cache file to persistent storage
+            dir.getFile(saveFileName+photos.length+".jpg",null,deleteFile,copyFile);
+             function deleteFile(file) {
                 // alert("in delete");
-                // alert("deletefile " +file.fullPath);
+                alert("destination file " +file.fullPath);
                 file.remove(copyFile,fail6);
               };
  
               function copyFile(file) {
+               alert("destination file " +file.fullPath);
                  filetmp.copyTo(dir,null, successCopy, fail5);
               };
 
               function successCopy(file) {
                 // alert("copy success " +file.fullPath);
                 var photo=new Object();
-                photo.name=saveFile+photos.length+".jpg";
+                photo.name=saveFileName+photos.length+".jpg";
                 photo.locn=file.fullPath;
                 photo.upload=false;
                 photos.push(photo);
-                console.log(JSON.stringify(photos));
+                //console.log(JSON.stringify(photos));
                 displayPhotos();
                 if(!toCloudRunning)toCloud();
               };
@@ -229,7 +227,7 @@ $fh.ready(function() {
     }     
   };
 
-
+  //upload to cloud
   function toCloud() {
     toCloudRunning=true;
     console.log("start toCloud "+toCloudRunning)
@@ -305,9 +303,9 @@ $fh.ready(function() {
     $fh.act({
       "act": "emailPictures"
     }, function(res) {
-      console.log("delete_" +JSON.stringify(res));
+      alert("delete_" +JSON.stringify(res));
     }, function(msg, err) {
-      console.log('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+      alert('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
     });
   };
 
