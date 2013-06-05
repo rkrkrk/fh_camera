@@ -103,8 +103,8 @@ exports.emailPictures = function(params, callback) {
   console.log('in emailPictures with ts:' + Date.now());
   var emailPic;
   var server  = email.server.connect({
-     user:    "fintan.mahon@feedhenry.com", 
-     password:"cvsfh99cvs", 
+     user:    "fmfeedhenry@gmail.com", 
+     password:"starvehenry", 
      host:    "smtp.gmail.com", 
      ssl:     true
   });
@@ -121,7 +121,7 @@ exports.emailPictures = function(params, callback) {
         // send the message and get a callback with an error or details of the message that was sent
         var message ={
            text:    "i hope this works", 
-           from:    "you <fintan.mahon@feedhenry.com>", 
+           from:    "fmtest <fmfeedhenry@gmail.com>", 
            to:      "someone <fintan.mahon@feedhenry.com>",
            subject: "testing emailjs attach",
            attachment: 
