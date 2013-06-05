@@ -1,5 +1,6 @@
 var util = require('util');
 var transfer = require('transfer');
+var email   = require("node_modules/emailjs/email");
 
 exports.transfer = function(params, callback) {
   console.log('in transfer with ts: ' + Date.now());
@@ -123,6 +124,30 @@ exports.deletePictures = function(params, callback) {
       count: data.count
     });    
   });
+};
+
+exports.emailPictures = function(params, callback) {
+  console.log('in deletePictures with ts:' + Date.now());
+
+  var server  = email.server.connect({
+   user:    "fintan@cvs3d.com", 
+   password:"cvsfmcvs", 
+   host:    "mail.supremecenterhost.com", 
+   ssl:     true
+
+});
+
+// send the message and get a callback with an error or details of the message that was sent
+server.send({
+   text:    "i hope this works", 
+   from:    "you <fintan@cvs3d.com>", 
+   to:      "someone <fintan.mahon@feedhenry.com>",
+   subject: "testing emailjs"
+}, function(err, message) { console.log("email--"+err || message); });
+  
+    return callback(null, {
+      status: "OK email"
+    });    
 };
 
 // exports.deletePictures = function(params, callback) {

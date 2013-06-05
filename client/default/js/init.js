@@ -101,8 +101,8 @@ $fh.ready(function() {
     displayPhotos();
   };
 
-  if(!toCloudRunning){toCloud()};
-  displayPhotos();
+  // if(!toCloudRunning){toCloud()};
+  // displayPhotos();
     
 
   function takePicture() {
@@ -301,6 +301,16 @@ $fh.ready(function() {
     listPictures();
   };
 
+  function three() {
+    $fh.act({
+      "act": "emailPictures"
+    }, function(res) {
+      console.log("delete_" +JSON.stringify(res));
+    }, function(msg, err) {
+      console.log('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
+    });
+  };
+
   function four() {
     var photoURI="file:///storage/sdcard0/Android/data/com.feedhenry.fhWzDk6KaDE5nMyqQFAbNaUVnR/cache/1370302141267.jpg"
     var imageName=photoURI.substring(photoURI.lastIndexOf("/") + 1);
@@ -379,7 +389,6 @@ $fh.ready(function() {
       console.log('Cloud call failed with error:' + msg + '. Error properties:' + JSON.stringify(err));
     });
   };
-
 
   // $('.photos').click(function(e) {
   //   var target = $(e.currentTarget);
