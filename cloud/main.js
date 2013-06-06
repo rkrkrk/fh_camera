@@ -117,7 +117,7 @@ exports.emailPictures = function(params, callback) {
 
       for (var i = 0; i < data.list.length; i++) {
         emailPic=data.list[i].fields.data;
-        console.log("qqq "+i+" "+emailPic.substring(0,10));
+        console.log("sending email "+i+" "+emailPic.substring(0,10));
         // send the message and get a callback with an error or details of the message that was sent
         var message ={
            text:    "i hope this works", 
@@ -131,7 +131,9 @@ exports.emailPictures = function(params, callback) {
         };
 
         // send the message and get a callback with an error or details of the message that was sent
-        server.send(message, function(err, message) { console.log("error--"+err || message); });
+        server.send(message, 
+          function(err, message) 
+            { console.log("email "+i+" of "+data.list.length+" msg:"+err || message); });
       };
 
     return callback(null, {
