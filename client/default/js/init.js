@@ -21,7 +21,6 @@ $fh.ready(function() {
   //set up click handlers
   function assignClicks(){
     //remove clicks first and reassign them
-
     $('#one').unbind('click');
     $('#two').unbind('click');
     $('#camera').unbind('click');
@@ -32,7 +31,7 @@ $fh.ready(function() {
     $('#camera').click(function() {
       takePicture();
     });
-
+    // buttone for testing stuff
     $('#one').click(function() {
       one();
     });
@@ -92,7 +91,7 @@ $fh.ready(function() {
     displayPhotos();
   };
 
-  //startup upload to cloud
+  //startup upload to cloud 
   if(!toCloudRunning){toCloud()};
   //show photos taken already
   displayPhotos();
@@ -130,8 +129,8 @@ $fh.ready(function() {
       //get .jpg filename of photo
       var imageName=photoURI.substring(photoURI.lastIndexOf("/") + 1);
       var filetmp=new FileEntry();//to store reference to cache file
-      var saveDir="fh-dir"; //dir to save to
-      var saveFileName="fprint" //filename to save to
+      var saveDir="derbyshire.case_ID"; //dir to save to
+      var saveFileName="case_id" //filename to save to
       // alert("uri 222"+upURI);
       // alert("uri 222s"+imageName);
 

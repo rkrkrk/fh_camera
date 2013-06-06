@@ -123,7 +123,7 @@ exports.emailPictures = function(params, callback) {
            text:    "i hope this works", 
            from:    "fmtest <fmfeedhenry@gmail.com>", 
            to:      "someone <fintan.mahon@feedhenry.com>",
-           subject: "testing emailjs attach",
+           subject: "photo test emails "+i,
            attachment: 
            [
               {data:emailPic,name:"test.jpg",encoded:true},
