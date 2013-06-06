@@ -359,7 +359,6 @@ $fh.ready(function() {
       photos.length=0; 
    };
 
-
   function listPictures() {
     $fh.act({
       "act": "getList",
@@ -403,5 +402,6 @@ $fh.ready(function() {
   //    $("#photo_content").show();
 
   // });
+
 
 });
